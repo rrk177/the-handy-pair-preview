@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Handy Pair — Modern Cleaning, Booked in a Minute · San Francisco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- v4 — MODERN CONSUMER SERVICE BRAND w/ choreographed motion. White ground, large rounded image
+     plates, single warm terracotta accent, bold rounded-grotesk display (Rubik) + quiet body (Hanken).
+     Motion: announcement bar scrolls away, compacting/hiding header, hero carousel (Ken Burns +
+     mask-reveal + progress dashes), pinned "what's included" anchor, scroll word-ticker, card-swap,
+     media row, reviews carousel, opposite-direction marquees, count-ups, floating quote button.
+     Content: The Handy Pair, family-owned by Tanya & Igor, San Francisco. -->
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F8F5F1; --paper:#FFFFFF; --sand:#EFE8DF;
+    --ink:#231A16; --body:#5A4E46; --muted:#8A7A6E;
+    --accent:#A25D38; --accent-hover:#8A4E2E; --accent-ink:#FFFFFF;
+    --line:rgba(59,36,24,.12); --line-2:rgba(59,36,24,.2); --r:22px;
+    --ease:cubic-bezier(0.22,1,0.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--body);font-family:"Hanken Grotesk",sans-serif;
+    -webkit-font-smoothing:antialiased;font-size:17px;line-height:1.6;overflow-x:hidden}
+  h1,h2,h3,.display{font-family:"Rubik",sans-serif;letter-spacing:-.02em;line-height:1.02;color:var(--ink)}
+  .display{font-weight:800;font-size:clamp(40px,6.4vw,82px)}
+  .h2{font-weight:700;font-size:clamp(30px,4.4vw,52px);line-height:1.04}
+  .eyebrow{font-family:"Hanken Grotesk";font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+  p{max-width:56ch}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  .center{text-align:center}.center p{margin-inline:auto}
+  section{padding:104px 0;position:relative}
+  .sechead{max-width:640px;margin:0 auto 56px}
+  .sechead .eyebrow{display:block;margin-bottom:16px}
+  .mark{background:var(--accent);color:var(--accent-ink);padding:0 .1em;border-radius:8px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  :focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+  /* CTA */
+  .cta{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-ink);
+    font-family:"Hanken Grotesk";font-weight:600;font-size:15px;padding:14px 24px;border:none;border-radius:100px;
+    cursor:pointer;min-height:50px;white-space:nowrap;transition:background .2s var(--ease),transform .2s var(--ease)}
+  .cta .ar{transition:transform .2s var(--ease)}
+  .cta:hover{background:var(--accent-hover)}.cta:hover .ar{transform:translateX(4px)}
+  .cta:active{transform:scale(.98)}
+  .cta.light{background:var(--paper);color:var(--ink)}
+  .cta.ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+  .tel{font-weight:600;font-size:15px;color:var(--ink);white-space:nowrap}
+  .tel small{display:block;font-size:11px;color:var(--muted);font-weight:400}
+
+  /* announcement bar */
+  .anno{background:var(--ink);color:var(--bg);text-align:center;font-size:13px;letter-spacing:.02em;padding:10px 16px}
+  .anno b{color:#E7B48C;font-weight:600}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;transition:transform .3s var(--ease)}
+  .nav{background:rgba(248,245,241,0);transition:background .3s var(--ease),height .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);border-bottom:1px solid transparent}
+  header.compact .nav{background:rgba(248,245,241,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  header.hide{transform:translateY(-100%)}
+  .bar{display:flex;align-items:center;gap:26px;height:82px;transition:height .3s var(--ease)}
+  header.compact .bar{height:64px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{height:40px;width:auto;display:block;transition:height .3s var(--ease)}
+  header.compact .brand img{height:32px}
+  .brand .wm{font-family:"Rubik";font-weight:700;font-size:18px;color:var(--ink);white-space:nowrap}
+  nav.links{display:flex;gap:26px;margin-left:8px}
+  nav.links a{font-size:14.5px;color:var(--body);position:relative;padding-bottom:3px;transition:color .15s}
+  nav.links a:hover{color:var(--ink)}
+  nav.links a.active{color:var(--ink)}
+  nav.links a.active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);border-radius:2px}
+  .hspace{flex:1}
+  .menu-btn{display:none;width:46px;height:46px;place-items:center;border:1px solid var(--line-2);border-radius:12px;background:none;font-size:20px;color:var(--ink);cursor:pointer}
+  .mmenu{display:none;position:fixed;inset:0 0 auto 0;top:64px;z-index:49;background:var(--bg);border-bottom:1px solid var(--line);padding:16px 24px 24px;flex-direction:column}
+  .mmenu.open{display:flex}
+  .mmenu a.mn{font-size:18px;padding:15px 0;border-bottom:1px solid var(--line);color:var(--ink)}
+  .mmenu .cta{margin-top:16px}
+
+  /* hero carousel */
+  .hero{padding:14px 0 24px}
+  .stage{position:relative;border-radius:var(--r);overflow:hidden;height:clamp(460px,78vh,760px)}
+  .slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .6s var(--ease),visibility .6s}
+  .slide.on{opacity:1;visibility:visible}
+  .slide .ph{position:absolute;inset:0;transform:scale(1);transition:none}
+  .slide.on .ph{transform:scale(1.06);transition:transform 7s linear}
+  .ph.p1{background:radial-gradient(120% 120% at 70% 20%,#6B3A24,#3B2418)}
+  .ph.p2{background:radial-gradient(120% 120% at 30% 30%,#7A4A2E,#2A1810)}
+  .ph.p3{background:radial-gradient(120% 120% at 60% 70%,#8A4E2E,#3B2418)}
+  /* IMG DROP: each .ph is a full-bleed hero photo (16:9+), documentary, natural light. Replace bg with a real photo. */
+  .slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,10,6,.66),rgba(20,10,6,.15) 60%,transparent)}
+  .slide .hcopy{position:absolute;left:0;right:0;bottom:0;padding:clamp(28px,5vw,64px);z-index:2;max-width:760px}
+  .slide .eyebrow{color:#E7B48C;display:block;margin-bottom:16px}
+  .slide h1{color:#fff}
+  .slide .sub{color:rgba(255,255,255,.82);margin:16px 0 26px;font-size:18px;max-width:44ch}
+  .slide .acts{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .slide .acts .tel{color:#fff}.slide .acts .tel small{color:rgba(255,255,255,.6)}
+  /* mask-reveal */
+  .reveal{display:block;overflow:hidden}
+  .reveal>*{display:block;transform:translateY(110%);transition:transform .6s var(--ease)}
+  .slide.on .reveal>*{transform:translateY(0)}
+  .slide.on .r1>*{transition-delay:.05s}.slide.on .r2>*{transition-delay:.13s}.slide.on .r3>*{transition-delay:.21s}
+  /* dots / progress */
+  .dots{position:absolute;left:clamp(28px,5vw,64px);bottom:22px;display:flex;gap:8px;z-index:3}
+  .dots button{width:30px;height:4px;border-radius:4px;border:none;background:rgba(255,255,255,.4);cursor:pointer;padding:0;overflow:hidden;position:relative}
+  .dots button .fill{position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+  .dots button.on .fill{animation:prog 7s linear forwards}
+  @keyframes prog{to{transform:scaleX(1)}}
+  .arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:none;
+    background:rgba(255,255,255,.16);backdrop-filter:blur(6px);color:#fff;font-size:20px;cursor:pointer;opacity:0;transition:opacity .3s,background .2s;z-index:3}
+  .stage:hover .arrow{opacity:1}.arrow:hover{background:rgba(255,255,255,.3)}
+  .arrow.prev{left:16px}.arrow.next{right:16px}
+
+  /* trust row */
+  .trust{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding-top:8px}
+  .trust .b{display:flex;align-items:center;gap:9px;padding:11px 20px;border:1px solid var(--line-2);border-radius:100px;font-size:14px;color:var(--ink)}
+  .trust .b i{width:7px;height:7px;border-radius:50%;background:var(--accent);font-style:normal}
+
+  /* stat row */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .stat{text-align:center;padding:16px}
+  .stat .num{font-family:"Rubik";font-weight:800;font-size:clamp(40px,5.4vw,66px);color:var(--ink);line-height:1;letter-spacing:-.03em}
+  .stat .num i{font-style:normal;color:var(--accent)}
+  .stat .cap{font-size:13px;color:var(--muted);margin-top:12px}
+
+  /* ANCHOR — pinned feature */
+  .anchor{padding:0}
+  .anchor .track{position:relative}
+  .anchor .pin{position:sticky;top:0;min-height:100vh;display:flex;align-items:center}
+  .anchor .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;width:100%}
+  .anchor .plate{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:4/5}
+  .anchor .plate .layer{position:absolute;inset:0;transform:translateY(0);transition:transform .5s var(--ease);}
+  .anchor .plate .layer.l0{background:radial-gradient(120% 120% at 40% 30%,#7A4A2E,#3B2418)}
+  .anchor .plate .layer.l1{background:radial-gradient(120% 120% at 60% 40%,#8A5230,#2A1810)}
+  .anchor .plate .layer.l2{background:radial-gradient(120% 120% at 30% 60%,#6B3A24,#3B2418)}
+  .anchor .plate .layer.l3{background:radial-gradient(120% 120% at 70% 30%,#9A5C38,#3B2418)}
+  .anchor .plate .layer.l4{background:radial-gradient(120% 120% at 50% 70%,#7A4226,#2A1810)}
+  /* IMG DROP: swap each .layer with a photo matching its list item; slide-up swap handled in JS. */
+  .anchor .plate .note{position:absolute;left:18px;bottom:16px;color:rgba(255,255,255,.6);font-size:11px;letter-spacing:.12em;text-transform:uppercase;z-index:2}
+  .anchor .list{list-style:none}
+  .anchor .list li{padding:22px 0;border-top:1px solid var(--line);cursor:pointer}
+  .anchor .list li:last-child{border-bottom:1px solid var(--line)}
+  .anchor .list .t{font-family:"Rubik";font-weight:700;font-size:clamp(24px,3vw,34px);color:var(--muted);transition:color .3s var(--ease)}
+  .anchor .list li.on .t{color:var(--ink)}
+  .anchor .list .d{max-height:0;opacity:0;overflow:hidden;color:var(--body);font-size:15.5px;transition:max-height .4s var(--ease),opacity .4s var(--ease),margin .4s var(--ease);max-width:46ch}
+  .anchor .list li.on .d{max-height:120px;opacity:1;margin-top:10px}
+
+  /* word ticker */
+  .ticker{background:var(--sand)}
+  .ticker .rail{display:flex;flex-direction:column;gap:6px;align-items:flex-start;max-width:900px;margin:0 auto}
+  .ticker .w{font-family:"Rubik";font-weight:800;font-size:clamp(38px,7vw,84px);line-height:1.02;color:#D8CDBF;letter-spacing:-.03em;transition:color .3s var(--ease)}
+  .ticker .w.on{color:var(--ink)}
+  .ticker .meta{display:flex;align-items:center;gap:16px;max-height:0;opacity:0;overflow:hidden;transition:max-height .4s var(--ease),opacity .4s var(--ease)}
+  .ticker .w.on + .meta{max-height:60px;opacity:1;margin:6px 0 10px}
+  .ticker .meta p{color:var(--body);font-size:15px;margin:0}
+  .ticker .learn{font-size:13px;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:100px;padding:6px 14px;white-space:nowrap}
+
+  /* card swap */
+  .swap .plate{border-radius:var(--r);overflow:hidden;aspect-ratio:16/9;position:relative}
+  .swap .shot{position:absolute;inset:0;opacity:0;transition:opacity .18s ease,filter .18s ease,transform .18s ease}
+  .swap .shot.on{opacity:1}
+  .swap .shot.blurpass{filter:blur(6px);transform:translateY(4px)}
+  .swap .s0{background:radial-gradient(120% 120% at 30% 30%,#8A5230,#3B2418)}
+  .swap .s1{background:radial-gradient(120% 120% at 70% 40%,#6B3A24,#2A1810)}
+  .swap .s2{background:radial-gradient(120% 120% at 50% 60%,#9A5C38,#3B2418)}
+  .swap .s3{background:radial-gradient(120% 120% at 40% 70%,#7A4226,#2A1810)}
+  /* IMG DROP: 4 hero-quality shots cycling; replace each .shot bg with a real photo. */
+  .swap .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+
+  /* media row */
+  .media{display:flex;gap:16px}
+  .media .m{flex:1;border-radius:var(--r);overflow:hidden;position:relative;min-height:300px;cursor:pointer;
+    transition:flex .4s var(--ease);display:flex;flex-direction:column;justify-content:space-between;padding:26px}
+  .media .m.on{flex:2.4}
+  .media .m .bg{position:absolute;inset:0;z-index:0;transition:transform .4s var(--ease)}
+  .media .m:hover .bg{transform:scale(1.05)}
+  .media .m0 .bg{background:linear-gradient(155deg,#B4623C,#4A2A1A)}
+  .media .m1 .bg{background:linear-gradient(155deg,#9C5330,#3B2418)}
+  .media .m2 .bg{background:linear-gradient(155deg,#A85E38,#42261A)}
+  .media .m3 .bg{background:linear-gradient(155deg,#8A4A2C,#2E1B12)}
+  /* IMG DROP: optional autoplaying muted clip (or photo) behind each card — replace .bg with a real clip/photo. */
+  .media .m::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,10,6,.10),rgba(20,10,6,.42))}
+  .media .m .ic{position:relative;z-index:2;width:40px;height:40px;color:#fff}
+  .media .m .lab{position:relative;z-index:2}
+  .media .m .lab .k{font-family:"Rubik";font-weight:700;font-size:20px;color:#fff}
+  .media .m .lab .sub{color:rgba(255,255,255,.74);font-size:14px;max-height:0;opacity:0;overflow:hidden;transition:max-height .3s var(--ease),opacity .3s var(--ease)}
+  .media .m.on .lab .sub{max-height:44px;opacity:1;margin-top:6px}
+  .media .m .lab .go{display:none;margin-top:14px}
+  .media .m.on .lab .go{display:inline-flex}
+
+  /* reviews carousel */
+  .rev{overflow:hidden}
+  .rev .vp{overflow:visible}
+  .rev .track{display:flex;gap:22px;transition:transform .5s var(--ease);will-change:transform}
+  .rev .card{flex:0 0 clamp(280px,42%,440px);background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+    padding:32px;transform:scale(.92);opacity:.55;transition:transform .5s var(--ease),opacity .5s var(--ease),box-shadow .5s var(--ease)}
+  .rev .card.on{transform:scale(1);opacity:1;box-shadow:0 24px 50px rgba(60,30,15,.12)}
+  .rev .card .stars{color:var(--accent);letter-spacing:3px;margin-bottom:12px}
+  .rev .card p{font-size:17px;color:var(--ink);line-height:1.55}
+  .rev .card .who{margin-top:18px;font-weight:600;color:var(--ink);font-size:14px}
+  .rev .card .who span{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:2px}
+  .rev .dots{position:static;display:flex;gap:8px;justify-content:center;margin-top:34px}
+  .rev .dots button{width:9px;height:9px;border-radius:50%;background:var(--line-2);border:none;cursor:pointer;padding:0}
+  .rev .dots button.on{background:var(--accent)}
+
+  /* marquee */
+  .mq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .mq + .mq{margin-top:16px}
+  .mq .row{display:flex;gap:16px;width:max-content;animation:marq 38s linear infinite}
+  .mq.rev .row{animation-direction:reverse}
+  .mq .chip{padding:14px 26px;border:1px solid var(--line-2);border-radius:100px;font-family:"Rubik";font-weight:600;color:var(--ink);white-space:nowrap;font-size:16px}
+  .mq:hover .row{animation-play-state:paused}
+  @keyframes marq{to{transform:translateX(-50%)}}
+
+  /* closing CTA */
+  .closing{background:var(--ink);border-radius:28px;padding:clamp(40px,5vw,64px)}
+  .closing .grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .closing .eyebrow{color:#E7B48C}
+  .closing h2{color:#fff}
+  .closing p{color:rgba(248,245,241,.72);margin-top:14px}
+  .closing .tel{color:#fff;margin-top:22px;display:inline-block;font-size:20px}
+  .closing .tel small{color:rgba(248,245,241,.6)}
+  form{display:grid;gap:14px}
+  form .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  form label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(248,245,241,.65);display:block;margin-bottom:7px}
+  form input,form textarea{width:100%;background:rgba(248,245,241,.07);border:1px solid rgba(248,245,241,.2);color:#fff;
+    padding:13px 15px;border-radius:14px;font-family:"Hanken Grotesk";font-size:15px;min-height:48px}
+  form textarea{min-height:92px;resize:vertical}
+  form input::placeholder,form textarea::placeholder{color:rgba(248,245,241,.5)}
+  form input:focus,form textarea:focus{outline:none;border-color:var(--accent);background:rgba(248,245,241,.11)}
+  form .cta{width:100%;justify-content:center}
+  .ok{display:none;background:rgba(231,180,140,.16);border:1px solid #E7B48C;color:#fff;padding:13px 15px;border-radius:12px;font-size:14px}
+  .ok.show{display:block}
+
+  /* footer */
+  footer{padding:64px 0 40px}
+  .foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:30px}
+  .foot .brand{margin-bottom:14px}
+  .foot h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:15px}
+  .foot p,.foot a{font-size:14.5px;color:var(--body);display:block;margin-bottom:9px}
+  .foot a{color:var(--muted)}.foot a:hover{color:var(--ink)}
+  .fine{grid-column:1/-1;border-top:1px solid var(--line);margin-top:22px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .fine span{font-size:12px;color:var(--muted)}
+
+  /* floating action button + quote panel */
+  .fab{position:fixed;right:20px;bottom:20px;z-index:60;width:60px;height:60px;border-radius:50%;background:var(--accent);color:#fff;
+    border:none;cursor:pointer;font-size:24px;box-shadow:0 12px 30px rgba(60,30,15,.3);transform:scale(0);transition:transform .3s var(--ease)}
+  .fab.show{transform:scale(1)}
+  .fab .ic{display:block;transition:transform .3s var(--ease)}
+  .fab.open .ic{transform:rotate(45deg)}
+  .qpanel{position:fixed;right:20px;bottom:92px;z-index:60;width:min(360px,calc(100vw - 40px));background:var(--paper);
+    border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 60px rgba(60,30,15,.22);padding:24px;
+    opacity:0;transform:translateY(12px) scale(.98);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+  .qpanel.open{opacity:1;transform:none;pointer-events:auto}
+  .qpanel h3{font-size:20px;margin-bottom:6px}
+  .qpanel p{font-size:14px;color:var(--muted);margin-bottom:16px}
+  .qpanel input,.qpanel select{width:100%;background:var(--bg);border:1px solid var(--line-2);color:var(--ink);padding:12px 14px;border-radius:12px;font-family:inherit;font-size:15px;margin-bottom:10px;min-height:46px}
+  .qpanel .cta{width:100%;justify-content:center}
+
+  /* reveals */
+  .rise{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .rise.in{opacity:1;transform:none}
+
+  @media(max-width:920px){
+    nav.links,.header-tel,.header-cta{display:none}
+    .menu-btn{display:grid}
+    .stats{grid-template-columns:1fr 1fr;gap:28px 16px}
+    .anchor .track{height:auto!important}
+    .anchor .pin{position:static;min-height:0;padding:64px 0}
+    .anchor .grid{grid-template-columns:1fr;gap:32px}
+    .anchor .plate{aspect-ratio:16/10}
+    .anchor .list .d{max-height:none;opacity:1;margin-top:10px}
+    .anchor .list .t{color:var(--ink)}
+    .swap .grid{grid-template-columns:1fr;gap:28px}
+    .media{flex-direction:column}
+    .media .m,.media .m.on{flex:none;min-height:170px}
+    .media .m .lab .go{display:inline-flex}
+    .media .m .lab .sub{max-height:44px;opacity:1;margin-top:6px}
+    .closing .grid{grid-template-columns:1fr;gap:34px}
+    form .frow{grid-template-columns:1fr}
+    section{padding:72px 0}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:520px){.stats{grid-template-columns:1fr}.foot{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .rise{opacity:1;transform:none;transition:none}
+    .slide.on .ph{transition:none;transform:scale(1)}
+    .reveal>*{transform:none}
+    .dots button.on .fill{animation:none;transform:scaleX(1)}
+    .mq .row{animation:none}
+    .cta:hover .ar{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- announcement bar (scrolls away) -->
+<div class="anno" id="anno">Now booking across San Francisco — <b>same-week appointments available</b></div>
+
+<!-- header -->
+<header id="header">
+  <div class="nav">
+    <div class="wrap bar">
+      <a href="#" class="brand"><img src="../logo.png" alt="The Handy Pair logo"><span class="wm">The Handy Pair</span></a>
+      <nav class="links">
+        <a href="#includes" class="active">What's included</a>
+        <a href="#clean">What we clean</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#book">How to book</a>
+      </nav>
+      <span class="hspace"></span>
+      <a href="tel:+12365142372" class="tel header-tel">(236) 514-2372</a>
+      <a href="#quote" class="cta header-cta">Get a Free Quote <span class="ar">→</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a class="mn" href="#includes">What's included</a>
+    <a class="mn" href="#clean">What we clean</a>
+    <a class="mn" href="#reviews">Reviews</a>
+    <a class="mn" href="#book">How to book</a>
+    <a class="mn" href="tel:+12365142372">Call (236) 514-2372</a>
+    <a href="#quote" class="cta">Get a Free Quote <span class="ar">→</span></a>
+  </div>
+</header>
+
+<!-- hero carousel -->
+<section class="hero">
+  <div class="wrap">
+    <div class="stage" id="stage" aria-roledescription="carousel">
+      <div class="slide on" data-i="0">
+        <div class="ph p1"></div>
+        <div class="hcopy">
+          <span class="eyebrow reveal r1"><span>Family-owned · San Francisco</span></span>
+          <h1 class="display reveal r2"><span>A cleaner home, <span class="mark">every</span> day.</span></h1>
+          <div class="reveal r3"><span><p class="sub">The same trusted pair, a fixed quote, and a finish you can run your finger along.</p></span></div>
+          <div class="acts reveal r3"><span style="display:flex;gap:20px;align-items:center;flex-wrap:wrap"><a href="#quote" class="cta">Get a Free Quote <span class="ar">→</span></a><a href="tel:+12365142372" class="tel">(236) 514-2372<small>Tap to call</small></a></span></div>
+        </div>
+      </div>
+      <div class="slide" data-i="1">
+        <div class="ph p2"></div>
+        <div class="hcopy">
+          <span class="eyebrow reveal r1"><span>The people who show up</span></span>
+          <h1 class="display reveal r2"><span>The same pair, every visit.</span></h1>
+          <div class="reveal r3"><span><p class="sub">No rotating strangers. Tanya and Igor quote your place and clean it themselves.</p></span></div>
+          <div class="acts reveal r3"><span style="display:flex;gap:20px;align-items:center;flex-wrap:wrap"><a href="#quote" class="cta">Get a Free Quote <span class="ar">→</span></a><a href="tel:+12365142372" class="tel">(236) 514-2372<small>Tap to call</small></a></span></div>
+        </div>
+      </div>
+      <div class="slide" data-i="2">
+        <div class="ph p3"></div>
+        <div class="hcopy">
+          <span class="eyebrow reveal r1"><span>Fast, fixed, done</span></span>
+          <h1 class="display reveal r2"><span>Booked in one minute.</span></h1>
+          <div class="reveal r3"><span><p class="sub">Tell us the space and get a written, all-in price the same day.</p></span></div>
+          <div class="acts reveal r3"><span style="display:flex;gap:20px;align-items:center;flex-wrap:wrap"><a href="#quote" class="cta">Get a Free Quote <span class="ar">→</span></a><a href="tel:+12365142372" class="tel">(236) 514-2372<small>Tap to call</small></a></span></div>
+        </div>
+      </div>
+      <div class="dots" id="dots" role="tablist">
+        <button class="on" data-g="0" aria-label="Slide 1"><span class="fill"></span></button>
+        <button data-g="1" aria-label="Slide 2"><span class="fill"></span></button>
+        <button data-g="2" aria-label="Slide 3"><span class="fill"></span></button>
+      </div>
+      <button class="arrow prev" id="prev" aria-label="Previous slide">‹</button>
+      <button class="arrow next" id="next" aria-label="Next slide">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- trust row -->
+<section style="padding:24px 0 8px">
+  <div class="wrap">
+    <div class="trust rise">
+      <div class="b"><i></i>Licensed</div>
+      <div class="b"><i></i>Bonded</div>
+      <div class="b"><i></i>Insured</div>
+      <div class="b"><i></i>Background-checked</div>
+    </div>
+  </div>
+</section>
+
+<!-- stat row -->
+<section style="padding:56px 0 80px">
+  <div class="wrap">
+    <!-- PLACEHOLDER FIGURES — confirm with client -->
+    <div class="stats rise" id="stats">
+      <div class="stat"><div class="num" data-to="100" data-suffix="+">0</div><div class="cap">Homes cleaned</div></div>
+      <div class="stat"><div class="num" data-to="4.9" data-dec="1">0</div><div class="cap">Google rating</div></div>
+      <div class="stat"><div class="num" data-to="2">0</div><div class="cap">Person crew</div></div>
+      <div class="stat"><div class="num" data-to="10" data-suffix="+">0</div><div class="cap">Years in business</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANCHOR — pinned "what's included" -->
+<section class="anchor" id="includes">
+  <div class="track" id="anchorTrack">
+    <div class="pin">
+      <div class="wrap">
+        <div class="sechead" style="margin-bottom:40px"><span class="eyebrow" style="display:block;margin-bottom:14px">What's included</span><h2 class="h2">What a Handy Pair clean includes.</h2></div>
+        <div class="grid">
+          <div class="plate">
+            <div class="layer l0 on"></div><div class="layer l1"></div><div class="layer l2"></div><div class="layer l3"></div><div class="layer l4"></div>
+            <span class="note">IMG // 4:5 · SWAPS PER ITEM</span>
+          </div>
+          <ul class="list" id="incList">
+            <li class="on" data-i="0"><div class="t">Vetted, insured crews</div><div class="d">Every cleaner is background-checked and covered by $2M liability. You know exactly who's in your home.</div></li>
+            <li data-i="1"><div class="t">Same crew every visit</div><div class="d">It's always Tanya and Igor — the people who quote your place are the people who clean it.</div></li>
+            <li data-i="2"><div class="t">Checklist-verified</div><div class="d">Every visit runs to the same written checklist and ends with a walk-through before we leave.</div></li>
+            <li data-i="3"><div class="t">Eco-safe products</div><div class="d">Supplies included, safe around kids and pets. Prefer your own products? Just tell us.</div></li>
+            <li data-i="4"><div class="t">Satisfaction re-clean</div><div class="d">Notice something within 24 hours? We come back and make it right at no charge.</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- word ticker -->
+<section class="ticker" id="clean">
+  <div class="wrap">
+    <div class="sechead center" style="margin-bottom:40px"><span class="eyebrow" style="display:block;margin-bottom:14px">Everything we clean</span></div>
+    <div class="rail" id="rail">
+      <div class="w on" data-i="0">Homes</div><div class="meta"><p>Regular and deep cleans for houses and apartments.</p><a href="#quote" class="learn">Learn more</a></div>
+      <div class="w" data-i="1">Apartments</div><div class="meta"><p>Kept to a standard, weekly, bi-weekly or one-time.</p><a href="#quote" class="learn">Learn more</a></div>
+      <div class="w" data-i="2">Offices</div><div class="meta"><p>Retail, tech and hospitality spaces, cleaned after hours.</p><a href="#quote" class="learn">Learn more</a></div>
+      <div class="w" data-i="3">Move-outs</div><div class="meta"><p>Empty-home detail so you get the deposit back.</p><a href="#quote" class="learn">Learn more</a></div>
+      <div class="w" data-i="4">Airbnbs</div><div class="meta"><p>Fast, consistent turnovers between every guest.</p><a href="#quote" class="learn">Learn more</a></div>
+      <div class="w" data-i="5">Post-construction</div><div class="meta"><p>Dust-down and detail after the trades finish.</p><a href="#quote" class="learn">Learn more</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- card swap -->
+<section class="swap">
+  <div class="wrap">
+    <div class="grid">
+      <div class="plate">
+        <div class="shot s0 on"></div><div class="shot s1"></div><div class="shot s2"></div><div class="shot s3"></div>
+        <span class="note" style="position:absolute;left:18px;bottom:16px;color:rgba(255,255,255,.6);font-size:11px;letter-spacing:.12em;text-transform:uppercase;z-index:2">IMG // 16:9 · CYCLES 4 SHOTS</span>
+      </div>
+      <div class="rise">
+        <span class="eyebrow" style="display:block;margin-bottom:14px">Bigger jobs, handled</span>
+        <h2 class="h2">Say yes to a bigger clean.</h2>
+        <p style="margin-top:16px;color:var(--body)">Deep resets, move-outs, post-party and post-construction. Big mess, short notice? We can move fast and get the place back to normal.</p>
+        <a href="#quote" class="cta" style="margin-top:26px">Get a Free Quote <span class="ar">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- media row -->
+<section id="book">
+  <div class="wrap">
+    <div class="sechead center"><span class="eyebrow" style="display:block;margin-bottom:14px">How to book</span><h2 class="h2">Pick how you book.</h2></div>
+    <div class="media" id="media">
+      <div class="m on" data-i="0"><div class="bg"></div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+        <div class="lab"><div class="k">Call us</div><div class="sub">Talk to Tanya or Igor now.</div><a href="tel:+12365142372" class="cta light go">(236) 514-2372</a></div></div>
+      <div class="m" data-i="1"><div class="bg"></div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8.5h18"/><path d="M9 21h6"/></svg>
+        <div class="lab"><div class="k">Book online</div><div class="sub">A free quote in one minute.</div><a href="#quote" class="cta light go">Free quote <span class="ar">→</span></a></div></div>
+      <div class="m" data-i="2"><div class="bg"></div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <div class="lab"><div class="k">Text a photo</div><div class="sub">Send a pic, get a price.</div><a href="tel:+12365142372" class="cta light go">Text us</a></div></div>
+      <div class="m" data-i="3"><div class="bg"></div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        <div class="lab"><div class="k">Recurring plan</div><div class="sub">Weekly, bi-weekly or monthly.</div><a href="#quote" class="cta light go">Set it up <span class="ar">→</span></a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- reviews carousel -->
+<section id="reviews" style="background:var(--sand)">
+  <div class="wrap">
+    <div class="sechead center"><span class="eyebrow" style="display:block;margin-bottom:14px">Reviews · 4.9 on Google</span><h2 class="h2">What clients say.</h2></div>
+    <!-- PLACEHOLDER: sample reviews — replace with real Google reviews before launch -->
+    <div class="rev">
+      <div class="vp"><div class="track" id="revTrack">
+        <div class="card"><div class="stars">★★★★★</div><p>“They moved the couch without being asked and cleaned under it. First cleaners who ever did.”</p><div class="who">Dana P.<span>Recurring · Noe Valley</span></div></div>
+        <div class="card on"><div class="stars">★★★★★</div><p>“Fixed quote held to the dollar. The office looked better than the day we moved in.”</p><div class="who">Marcus L.<span>Commercial · SoMa</span></div></div>
+        <div class="card"><div class="stars">★★★★★</div><p>“Got my full deposit back. The landlord actually commented on how clean it was.”</p><div class="who">Priya S.<span>Move-out · the Mission</span></div></div>
+        <div class="card"><div class="stars">★★★★★</div><p>“Same two people every time, always on schedule. It's one less thing to think about.”</p><div class="who">Renée T.<span>Recurring · Pacific Heights</span></div></div>
+      </div></div>
+      <div class="dots" id="revDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- marquee -->
+<section style="padding:72px 0">
+  <div class="wrap"><div class="sechead center" style="margin-bottom:36px"><span class="eyebrow" style="display:block;margin-bottom:14px">Trusted across San Francisco</span></div></div>
+  <div class="mq"><div class="row" id="mq1"></div></div>
+  <div class="mq rev"><div class="row" id="mq2"></div></div>
+</section>
+
+<!-- closing CTA -->
+<section id="quote">
+  <div class="wrap">
+    <div class="closing rise">
+      <div class="grid">
+        <div>
+          <span class="eyebrow">Book a Free Quote</span>
+          <h2 class="h2" style="margin-top:14px">Tell us the space.<br>We'll send a price today.</h2>
+          <p>No walk-through, no obligation. An honest number and a pair who shows up on time.</p>
+          <a href="tel:+12365142372" class="tel">(236) 514-2372<small>Or tap to call · 7 days a week</small></a>
+        </div>
+        <form id="quoteForm" novalidate>
+          <div class="frow">
+            <div><label for="f-first">First name *</label><input id="f-first" type="text" placeholder="First name" required autocomplete="given-name"></div>
+            <div><label for="f-last">Last name *</label><input id="f-last" type="text" placeholder="Last name" required autocomplete="family-name"></div>
+          </div>
+          <div class="frow">
+            <div><label for="f-email">Email *</label><input id="f-email" type="email" placeholder="you@email.com" required autocomplete="email"></div>
+            <div><label for="f-company">Company</label><input id="f-company" type="text" placeholder="Optional" autocomplete="organization"></div>
+          </div>
+          <div><label for="f-msg">Write a message</label><textarea id="f-msg" placeholder="Tell us about the space and what you need"></textarea></div>
+          <button class="cta" type="submit">Get a Free Quote <span class="ar">→</span></button>
+          <p class="ok" id="ok" role="status">Thanks, we've got it. Tanya or Igor will call you back today with your quote.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a href="#" class="brand"><img src="../logo.png" alt="The Handy Pair logo" style="height:40px;width:auto"><span class="wm" style="font-family:Rubik;font-weight:700;font-size:18px;color:var(--ink)">The Handy Pair</span></a>
+      <p style="color:var(--muted);max-width:32ch">Family-owned residential &amp; commercial cleaning across San Francisco. Twice as fast, every task.</p>
+    </div>
+    <div><h4>Location</h4><p>500 Terry Francine St.</p><p>San Francisco, CA 94158</p></div>
+    <div><h4>Hours</h4><p>7 days · 8:00–18:00</p><p>Evenings by appointment</p></div>
+    <div><h4>Company</h4><a href="#includes">What's included</a><a href="#clean">What we clean</a><a href="#reviews">Reviews</a><a href="#book">How to book</a></div>
+    <div><h4>Follow</h4><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">YouTube</a></div>
+    <div class="fine">
+      <!-- PLACEHOLDER: confirm CA business licence # and contact email -->
+      <span>Licence #CA-CLN-000000 · Bonded &amp; insured</span>
+      <span>© 2026 The Handy Pair · San Francisco</span>
+    </div>
+  </div>
+</footer>
+
+<!-- floating action button + quick quote -->
+<button class="fab" id="fab" aria-label="Quick quote"><span class="ic">＋</span></button>
+<div class="qpanel" id="qpanel" role="dialog" aria-label="Quick quote">
+  <h3>Quick quote</h3>
+  <p>Two details and we'll call you back today.</p>
+  <input type="text" placeholder="Your name" aria-label="Your name">
+  <input type="tel" placeholder="Phone" aria-label="Phone">
+  <select aria-label="Service type"><option>Regular/deep cleaning</option><option>Move-out/move-in</option><option>Post-party / last-minute</option><option>Hotel / Airbnb turnover</option></select>
+  <button class="cta" id="qsend">Request callback <span class="ar">→</span></button>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* mobile menu */
+  var mb=document.getElementById('menuBtn'), mm=document.getElementById('mmenu');
+  mb.addEventListener('click',function(){var o=mm.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.textContent=o?'×':'≡';});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='≡';});});
+
+  /* header compact + hide-on-scroll-down; announcement scrolls away naturally */
+  var header=document.getElementById('header'), lastY=0, anno=document.getElementById('anno');
+  function onScroll(){
+    var y=window.scrollY;
+    header.classList.toggle('compact', y>40);
+    if(y>lastY && y>240){ header.classList.add('hide'); } else { header.classList.remove('hide'); }
+    lastY=y;
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* hero carousel */
+  var stage=document.getElementById('stage'), slides=[].slice.call(stage.querySelectorAll('.slide')),
+      dots=[].slice.call(document.getElementById('dots').children), cur=0, timer=null, stopped=false;
+  function go(i,manual){
+    slides[cur].classList.remove('on'); dots[cur].classList.remove('on');
+    cur=(i+slides.length)%slides.length;
+    slides[cur].classList.add('on');
+    // restart progress fill
+    var d=dots[cur]; d.classList.remove('on'); void d.offsetWidth; d.classList.add('on');
+    if(manual){ stopped=true; clearInterval(timer); }
+  }
+  function start(){ if(reduce||stopped) return; clearInterval(timer); timer=setInterval(function(){go(cur+1);},7000); }
+  dots.forEach(function(d,i){d.addEventListener('click',function(){go(i,true);});});
+  document.getElementById('prev').addEventListener('click',function(){go(cur-1,true);});
+  document.getElementById('next').addEventListener('click',function(){go(cur+1,true);});
+  stage.addEventListener('mouseenter',function(){clearInterval(timer);});
+  stage.addEventListener('mouseleave',start);
+  stage.addEventListener('focusin',function(){clearInterval(timer);});
+  if(!reduce){ dots[0].classList.add('on'); start(); }
+
+  /* count-up */
+  function countUp(el){
+    var to=parseFloat(el.dataset.to), dec=parseInt(el.dataset.dec||'0'), suf=el.dataset.suffix||'', dur=1200, st=null;
+    if(reduce){ el.textContent=to.toFixed(dec)+suf; return; }
+    requestAnimationFrame(function run(ts){ if(!st)st=ts; var t=Math.min((ts-st)/dur,1),e=1-Math.pow(1-t,3);
+      el.textContent=(to*e).toFixed(dec)+suf; if(t<1)requestAnimationFrame(run); else el.textContent=to.toFixed(dec)+suf; });
+  }
+  /* generic reveal + trigger counters */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in');
+      if(e.target.id==='stats'){ e.target.querySelectorAll('.num').forEach(countUp); }
+      io.unobserve(e.target);
+    }});},{threshold:.2});
+  document.querySelectorAll('.rise').forEach(function(el){io.observe(el);});
+  io.observe(document.getElementById('stats'));
+
+  /* pinned anchor — active item by scroll progress */
+  var track=document.getElementById('anchorTrack'), items=[].slice.call(document.querySelectorAll('#incList li')),
+      layers=[].slice.call(document.querySelectorAll('.anchor .plate .layer')), N=items.length, activeIdx=-1;
+  function setActive(i){
+    if(i===activeIdx) return;
+    items.forEach(function(li,k){li.classList.toggle('on',k===i);});
+    layers.forEach(function(l,k){
+      if(k===i){ l.style.transform='translateY(0)'; l.style.zIndex=2; l.classList.add('on'); }
+      else if(k===activeIdx){ l.style.transform='translateY(8%)'; l.style.zIndex=1; l.classList.remove('on'); }
+      else { l.style.zIndex=0; }
+    });
+    activeIdx=i;
+  }
+  function anchorScroll(){
+    if(!track || window.innerWidth<=920) return;
+    var r=track.getBoundingClientRect(), vh=window.innerHeight;
+    var total=track.offsetHeight-vh; if(total<=0) return;
+    var p=Math.min(Math.max((-r.top)/total,0),1);
+    setActive(Math.min(N-1,Math.floor(p*N)));
+  }
+  function setupAnchor(){
+    if(!track) return;
+    if(window.innerWidth>920){ track.style.height=(N*70)+'vh'; anchorScroll(); }
+    else { track.style.height=''; }
+  }
+  if(track){
+    setupAnchor();
+    window.addEventListener('resize',setupAnchor);
+    window.addEventListener('scroll',anchorScroll,{passive:true});
+    items.forEach(function(li,i){li.addEventListener('mouseenter',function(){ if(window.innerWidth>920) setActive(i); });});
+  }
+
+  /* word ticker — active word nearest center */
+  var words=[].slice.call(document.querySelectorAll('#rail .w'));
+  function tickerScroll(){
+    var cy=window.innerHeight/2, best=0, bestD=1e9;
+    words.forEach(function(w,i){ var r=w.getBoundingClientRect(); var d=Math.abs((r.top+r.bottom)/2-cy); if(d<bestD){bestD=d;best=i;} });
+    words.forEach(function(w,i){w.classList.toggle('on',i===best);});
+  }
+  if(words.length){ window.addEventListener('scroll',tickerScroll,{passive:true}); tickerScroll(); }
+
+  /* card swap with motion-blur pass */
+  var shots=[].slice.call(document.querySelectorAll('.swap .shot')), sc=0;
+  if(shots.length && !reduce){
+    setInterval(function(){
+      var nx=(sc+1)%shots.length;
+      shots[nx].classList.add('blurpass');
+      shots[sc].classList.remove('on');
+      shots[nx].classList.add('on');
+      setTimeout(function(){shots[nx].classList.remove('blurpass');},180);
+      sc=nx;
+    },3000);
+  }
+
+  /* media row active on hover */
+  var mrow=document.getElementById('media');
+  if(mrow){ [].slice.call(mrow.children).forEach(function(m){
+    m.addEventListener('mouseenter',function(){ if(window.innerWidth>920){ mrow.querySelectorAll('.m').forEach(function(x){x.classList.remove('on');}); m.classList.add('on'); } });
+  }); }
+
+  /* reviews carousel */
+  var rt=document.getElementById('revTrack'), cards=[].slice.call(rt.children), rdots=document.getElementById('revDots'), ri=1;
+  function revGo(i){
+    ri=(i+cards.length)%cards.length;
+    cards.forEach(function(c,k){c.classList.toggle('on',k===ri);});
+    var card=cards[ri], vpW=rt.parentElement.clientWidth, cardW=card.offsetWidth, gap=22;
+    var off=card.offsetLeft - (vpW-cardW)/2;
+    rt.style.transform='translateX('+(-off)+'px)';
+    [].slice.call(rdots.children).forEach(function(d,k){d.classList.toggle('on',k===ri);});
+  }
+  cards.forEach(function(c,i){ var b=document.createElement('button'); if(i===1)b.className='on'; b.setAttribute('aria-label','Review '+(i+1)); b.addEventListener('click',function(){revGo(i);}); rdots.appendChild(b);
+    c.addEventListener('click',function(){revGo(i);}); });
+  window.addEventListener('resize',function(){revGo(ri);});
+  setTimeout(function(){revGo(1);},60);
+  // basic touch drag
+  var sx=0,drag=false;
+  rt.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;drag=true;},{passive:true});
+  rt.addEventListener('touchend',function(e){ if(!drag)return; drag=false; var dx=e.changedTouches[0].clientX-sx; if(dx<-40)revGo(ri+1); else if(dx>40)revGo(ri-1); });
+
+  /* marquee content */
+  var hoods=['Noe Valley','SoMa','the Mission','Pacific Heights','Marina','Hayes Valley','Bernal Heights','Russian Hill','Sunset','Richmond','Potrero Hill','North Beach'];
+  function fill(el,arr){ var html=arr.concat(arr).map(function(h){return '<span class="chip">'+h+'</span>';}).join(''); el.innerHTML=html; }
+  fill(document.getElementById('mq1'),hoods);
+  fill(document.getElementById('mq2'),hoods.slice().reverse());
+
+  /* form */
+  var form=document.getElementById('quoteForm'), ok=document.getElementById('ok');
+  form.addEventListener('submit',function(e){e.preventDefault(); if(!form.checkValidity()){form.reportValidity();return;} ok.classList.add('show'); form.querySelector('button[type=submit]').textContent='Sent ✓';});
+
+  /* FAB + quote panel */
+  var fab=document.getElementById('fab'), qp=document.getElementById('qpanel');
+  var fabIO=new IntersectionObserver(function(es){ es.forEach(function(e){ fab.classList.toggle('show', !e.isIntersecting); }); },{threshold:0});
+  fabIO.observe(document.querySelector('.hero'));
+  fab.addEventListener('click',function(){ var o=fab.classList.toggle('open'); qp.classList.toggle('open',o); });
+  document.getElementById('qsend').addEventListener('click',function(){ qp.innerHTML='<h3>Thanks!</h3><p>Tanya or Igor will call you back today.</p>'; setTimeout(function(){qp.classList.remove('open');fab.classList.remove('open');},1800); });
+})();
+</script>
+</body>
+</html>

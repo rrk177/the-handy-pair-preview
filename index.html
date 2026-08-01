@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Handy Pair — Five Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F8F5F1; --ink:#3B2418; --muted:#8A7A6E;
+    --accent:#A25D38; --accent-ink:#F8F5F1; --line:rgba(59,36,24,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--paper);font-family:"Space Mono",monospace;overflow:hidden}
+  .switch{
+    height:56px;display:flex;align-items:center;gap:16px;padding:0 18px;
+    background:var(--paper);border-bottom:1px solid var(--line);position:relative;z-index:2;
+  }
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:14px;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
+  .brand .mk{width:24px;height:24px;color:var(--ink);flex:none}
+  .brand small{display:block;font-size:9px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .spacer{flex:1}
+  .toggle{display:inline-flex;background:#EFE8DF;border:1px solid var(--line);border-radius:100px;padding:4px}
+  .toggle button{
+    font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.04em;text-transform:uppercase;
+    border:none;background:none;color:var(--muted);padding:8px 16px;border-radius:100px;cursor:pointer;
+    transition:background .15s,color .15s;white-space:nowrap;min-height:36px;
+  }
+  .toggle button.active{background:var(--accent);color:var(--accent-ink);font-weight:700}
+  .toggle button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .hint{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .stage{position:absolute;inset:56px 0 0 0}
+  iframe{width:100%;height:100%;border:none;display:block;background:var(--paper)}
+  .toggle button b{font-weight:700}
+  @media(max-width:720px){
+    .brand small,.hint{display:none}
+    .toggle button .lbl{display:none}
+    .toggle button{padding:8px 15px;font-size:12px}
+  }
+  @media(max-width:420px){
+    .brand span{display:none}
+  }
+  .logo {
+    height: 48px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+</style>
+</head>
+<body>
+  <div class="switch">
+    <div class="brand">
+      <img src="logo-removebg-preview.png" class="logo" alt="The Handy Pair">
+      <span>The Handy Pair<small>Five concepts</small></span>
+    </div>
+    <span class="hint">Preview &mdash; pick a direction &rarr;</span>
+    <span class="spacer"></span>
+    <div class="toggle" role="tablist" aria-label="Choose a version">
+      <button id="btn-v1" class="active" role="tab" aria-selected="true" onclick="show('v1')"><b>V1</b><span class="lbl"> · Editorial</span></button>
+      <button id="btn-v2" role="tab" aria-selected="false" onclick="show('v2')"><b>V2</b><span class="lbl"> · Corporate Calm</span></button>
+      <button id="btn-v3" role="tab" aria-selected="false" onclick="show('v3')"><b>V3</b><span class="lbl"> · Gradient</span></button>
+      <button id="btn-v4" role="tab" aria-selected="false" onclick="show('v4')"><b>V4</b><span class="lbl"> · Motion</span></button>
+      <button id="btn-v5" role="tab" aria-selected="false" onclick="show('v5')"><b>V5</b><span class="lbl"> · Editorial</span></button>
+    </div>
+  </div>
+  <div class="stage">
+    <iframe id="frame" src="v1/index.html" title="The Handy Pair — selected version"></iframe>
+  </div>
+
+  <script>
+    function show(v){
+      document.getElementById('frame').src = v + '/index.html';
+      ['v1','v2','v3','v4','v5'].forEach(function(k){
+        var b = document.getElementById('btn-'+k);
+        var on = (k===v);
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      try{ localStorage.setItem('thp-version', v); }catch(e){}
+    }
+    // restore last choice
+    try{ var saved = localStorage.getItem('thp-version'); if(saved && saved!=='v1') show(saved); }catch(e){}
+  </script>
+</body>
+</html>

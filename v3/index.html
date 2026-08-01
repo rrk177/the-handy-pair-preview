@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Handy Pair — Fresh, Modern Cleaning · San Francisco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- v3 — SATURATED WARM GRADIENT. Light, fresh, effortless. One continuous full-bleed warm
+     gradient flows down the whole page (brand terracotta → espresso → amber); soft-bodied 3D
+     forms (CSS radial blobs w/ blur + long soft shadow) float across each band, cropped by the
+     viewport; white type, glass cards, one white pill CTA with a circular icon badge. Same content
+     blocks/order as v1 & v2. Content: The Handy Pair, family-run by Tanya & Igor, San Francisco. -->
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pill:#FFFFFF;             /* the only pure-white solid */
+    --pill-ink:#5A2A18;
+    --badge:#C25B38;            /* terracotta icon badge */
+    --glass:rgba(255,255,255,.10);
+    --glass-2:rgba(255,255,255,.14);
+    --gline:rgba(255,255,255,.18);
+    --w:#FFFFFF;
+    --w-70:rgba(255,255,255,.72);
+    --w-55:rgba(255,255,255,.56);
+    --radius:26px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:88px}
+  body{
+    color:var(--w);font-family:"Onest",sans-serif;-webkit-font-smoothing:antialiased;
+    font-size:17px;line-height:1.6;overflow-x:hidden;
+    /* one continuous warm gradient down the whole page */
+    background:linear-gradient(176deg,
+      #C25B38 0%, #B14E30 14%, #9A4229 30%, #7A3623 46%,
+      #5C2A1D 60%, #7E3E28 76%, #A0512F 90%, #C06238 100%);
+    background-attachment:fixed;
+  }
+  h1,h2,h3{font-family:"Schibsted Grotesk",sans-serif;letter-spacing:-.02em;line-height:1.02}
+  .display{font-weight:800;font-size:clamp(44px,7vw,88px)}
+  .h2{font-weight:700;font-size:clamp(30px,4.4vw,50px);line-height:1.05}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--w-70)}
+  p{max-width:52ch;color:var(--w-70)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 26px;position:relative;z-index:2}
+  section{position:relative;padding:96px 0;overflow:hidden}
+  .center{text-align:center}.center p{margin-left:auto;margin-right:auto}
+  .sechead{max-width:640px;margin:0 auto 56px}
+  .sechead .eyebrow{display:block;margin-bottom:16px}
+  :focus-visible{outline:2.5px solid var(--w);outline-offset:3px;border-radius:6px}
+
+  /* floating SOAP BUBBLES (translucent spheres: bright rim + specular highlight + warm bounce) */
+  .blob{position:absolute;border-radius:50%;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(circle at 30% 26%, rgba(255,255,255,.95), rgba(255,255,255,0) 13%),                 /* specular highlight */
+      radial-gradient(circle at 68% 74%, rgba(255,226,198,.26), transparent 44%),                          /* warm bounce light */
+      radial-gradient(circle at 50% 50%, transparent 57%, rgba(188,206,255,.12) 79%, rgba(255,198,224,.14) 88%, rgba(255,255,255,.40) 95%, rgba(255,255,255,0) 100%), /* iridescent bright rim */
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,.07), rgba(255,255,255,.02) 72%, transparent 100%);
+    box-shadow:inset 0 0 55px rgba(255,255,255,.14), 0 40px 80px rgba(50,18,8,.22);
+    backdrop-filter:blur(1.5px);}
+  .blob.b1{width:440px;height:440px}
+  .blob.b2{width:250px;height:250px}
+  .blob.b3{width:150px;height:150px}
+  /* IMG DROP: replace each .blob with a transparent PNG of a soap bubble (translucent, rim light),
+     same size/position, cropped by the viewport (e.g. 900x900 PNG). */
+
+  /* CTA — the only pure-white solid, with a circular icon badge */
+  .cta{display:inline-flex;align-items:center;gap:12px;background:var(--pill);color:var(--pill-ink);
+    font-family:"Onest",sans-serif;font-weight:600;font-size:15px;padding:8px 22px 8px 8px;border:none;
+    border-radius:100px;cursor:pointer;min-height:52px;transition:transform .2s ease,box-shadow .2s ease;white-space:nowrap;
+    box-shadow:0 12px 30px rgba(60,20,10,.24)}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(60,20,10,.30)}
+  .cta:active{transform:translateY(0) scale(.98)}
+  .cta .badge{width:36px;height:36px;border-radius:50%;background:var(--badge);display:grid;place-items:center;flex:none;color:#fff;font-size:16px}
+  .tel{color:var(--w);font-weight:600;font-size:15px;white-space:nowrap}
+  .tel small{display:block;font-size:11px;color:var(--w-55);font-weight:400;margin-top:2px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:40;backdrop-filter:blur(6px);background:rgba(120,54,35,.12);border-bottom:1px solid rgba(255,255,255,.1)}
+  .bar{display:flex;align-items:center;gap:26px;height:84px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logochip{background:#F8F5F1;border-radius:12px;padding:5px 9px;display:inline-flex;align-items:center}
+  .logochip img{height:30px;width:auto;display:block}
+  .brand .wm{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:18px;color:var(--w);letter-spacing:-.01em}
+  nav{display:flex;gap:28px;margin-left:6px}
+  nav a{font-size:14.5px;color:var(--w-70);padding-bottom:3px;transition:color .15s}
+  nav a:hover{color:var(--w)}
+  nav a.active{color:var(--w);border-bottom:2px solid var(--w)}
+  .hspace{flex:1}
+  .header-tel{color:var(--w);font-weight:600;font-size:15px;white-space:nowrap}
+  .menu-btn{display:none;width:46px;height:46px;place-items:center;border:1px solid var(--gline);border-radius:12px;background:none;color:var(--w);font-size:20px;cursor:pointer}
+  .mobile-menu{display:none;position:fixed;inset:84px 0 auto 0;z-index:39;background:rgba(90,42,29,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--gline);padding:14px 26px 24px;flex-direction:column}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a.mnav{font-size:18px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12);color:var(--w)}
+  .mobile-menu .cta{margin-top:18px;align-self:flex-start}
+
+  /* hero — asymmetric: type left third, forms right */
+  .hero{padding:70px 0 84px;min-height:calc(100vh - 84px);display:flex;align-items:center}
+  .hero>.wrap{width:100%}
+  .hero .grid{display:grid;grid-template-columns:minmax(0,44%) 1fr;gap:40px;width:100%;align-items:center}
+  .hero .copy{position:relative;z-index:3}
+  .hero h1{margin:16px 0 22px;font-size:clamp(33px,4.3vw,54px);line-height:1.06}
+  .hero .lead{font-size:19px;color:var(--w-70);max-width:40ch}
+  .hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:32px}
+  .socials{display:flex;gap:12px;margin-top:56px}
+  .socials a{width:38px;height:38px;border-radius:50%;border:1px solid var(--gline);display:grid;place-items:center;color:var(--w);font-size:14px;font-weight:600;transition:background .15s}
+  .socials a:hover{background:rgba(255,255,255,.14)}
+  .hero .forms{position:relative;min-height:460px;z-index:1}
+  .hero .forms .blob.b1{right:-130px;top:-10px}
+  .hero .forms .blob.b2{right:150px;bottom:-30px}
+  .hero .forms .blob.b3{right:10px;top:210px}
+
+  /* trust row */
+  .trust{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .trust .b{display:flex;align-items:center;gap:9px;padding:11px 20px;border:1px solid var(--gline);border-radius:100px;background:rgba(255,255,255,.06);font-size:14px;color:var(--w)}
+  .trust .b span{width:7px;height:7px;border-radius:50%;background:#F0B48C}
+
+  /* stat / proof numerals */
+  .pnums{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .pnums .n{text-align:center;padding:12px}
+  .pnums .num{font-family:"Schibsted Grotesk",sans-serif;font-weight:800;font-size:clamp(40px,5.5vw,68px);line-height:1;letter-spacing:-.03em}
+  .pnums .num i{font-style:normal;color:#F3C09A}
+  .pnums .cap{font-size:13px;color:var(--w-55);margin-top:12px;letter-spacing:.04em}
+
+  /* glass cards (services) */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .glass{background:var(--glass);border:1px solid var(--gline);border-radius:var(--radius);backdrop-filter:blur(16px)}
+  .card{padding:34px 30px;min-height:180px;display:flex;flex-direction:column}
+  .card h3{font-size:21px;font-weight:700;color:var(--w);margin-bottom:10px}
+  .card p{font-size:15px;color:var(--w-70)}
+  .card .tag{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#F3C09A;margin-bottom:14px}
+
+  /* process on a flowing form */
+  .flow{position:relative}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;position:relative;z-index:2}
+  .step{padding-top:22px;border-top:1px solid var(--gline)}
+  .step .n{font-family:"Schibsted Grotesk",sans-serif;font-weight:800;font-size:15px;letter-spacing:.12em;color:#F3C09A;margin-bottom:16px}
+  .step h3{font-size:19px;font-weight:700;color:var(--w);margin-bottom:10px}
+  .step p{font-size:15px;color:var(--w-70);max-width:30ch}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .about .plate{border-radius:var(--radius);aspect-ratio:4/5;position:relative;overflow:hidden;border:1px solid var(--gline);
+    background:linear-gradient(155deg, rgba(240,180,140,.4), rgba(120,54,35,.55))}
+  /* IMG DROP: 4:5 — Tanya & Igor mid-shift, warm natural light. Replace .plate background with a real image. */
+  .about .plate .note{position:absolute;left:18px;bottom:16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--w-55)}
+  .about .txt p{margin-top:18px;color:var(--w-70);font-size:17px}
+  .about .sig{margin-top:24px;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#F3C09A}
+
+  /* proof / rating */
+  .rating{display:flex;flex-direction:column;align-items:center;margin-bottom:48px}
+  .rating .big{font-family:"Schibsted Grotesk",sans-serif;font-weight:800;font-size:clamp(56px,8vw,88px);line-height:1;letter-spacing:-.03em}
+  .rating .stars{color:#F3C09A;font-size:22px;letter-spacing:4px;margin:12px 0 8px}
+  .rating .cap{font-size:13px;color:var(--w-55)}
+
+  /* success stories */
+  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .review{padding:30px}
+  .review .avatar{width:50px;height:50px;border-radius:50%;overflow:hidden;position:relative;margin-bottom:16px;border:1px solid var(--gline);background:radial-gradient(60% 60% at 40% 35%, #F0B48C, #B85E36)}
+  .review .avatar span{position:absolute;inset:0;display:grid;place-items:center;font-size:9px;color:var(--w-70)}
+  .review .stars{color:#F3C09A;letter-spacing:3px;margin-bottom:12px;font-size:15px}
+  .review p{font-size:16px;color:var(--w);line-height:1.55}
+  .review .who{margin-top:18px;font-size:14px;color:var(--w);font-weight:600}
+  .review .who span{display:block;font-weight:400;color:var(--w-55);font-size:13px;margin-top:2px}
+
+  /* industries */
+  .inds{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .ind{border-top:1px solid var(--gline);padding-top:22px}
+  .ind h3{font-size:24px;font-weight:700;color:var(--w);margin-bottom:12px}
+  .ind p{font-size:16px;color:var(--w-70);max-width:34ch}
+
+  /* faq */
+  .faq{max-width:820px;margin:0 auto}
+  .faq details{border-bottom:1px solid var(--gline);padding:22px 0}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;font-family:"Schibsted Grotesk",sans-serif;font-size:19px;font-weight:500;color:var(--w);min-height:44px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pm{font-size:24px;color:#F3C09A;font-weight:300;flex:none;line-height:1}
+  .faq details[open] summary .pm{transform:rotate(45deg)}
+  .faq p{margin-top:14px;font-size:16px;color:var(--w-70);max-width:72ch}
+
+  /* final CTA */
+  .closing{padding:56px 48px;text-align:center}
+  .closing h2{margin-bottom:14px}
+  .closing p{margin:0 auto 8px}
+  .closing .tel{display:inline-block;margin-top:22px;font-size:20px}
+  .closing form{max-width:520px;margin:30px auto 0;display:grid;gap:14px;text-align:left}
+  .closing .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  form label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--w-55);display:block;margin-bottom:7px}
+  form input,form textarea{width:100%;background:rgba(255,255,255,.08);border:1px solid var(--gline);color:var(--w);padding:13px 15px;border-radius:14px;font-family:"Onest",sans-serif;font-size:15px;min-height:48px}
+  form textarea{min-height:92px;resize:vertical}
+  form input::placeholder,form textarea::placeholder{color:var(--w-55)}
+  form input:focus,form textarea:focus{outline:none;border-color:var(--w);background:rgba(255,255,255,.12)}
+  form .cta{width:100%;justify-content:center;padding-right:22px}
+  .form-ok{display:none;background:rgba(255,255,255,.12);border:1px solid var(--gline);color:var(--w);padding:13px 15px;border-radius:12px;font-size:14px}
+  .form-ok.show{display:block}
+
+  /* footer */
+  footer{padding:60px 0 40px;border-top:1px solid rgba(255,255,255,.12);position:relative;z-index:2}
+  .foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:30px}
+  .foot .brand{margin-bottom:14px}
+  .foot h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--w-55);margin-bottom:15px}
+  .foot p,.foot a{font-size:14.5px;color:var(--w-70);display:block;margin-bottom:9px}
+  .foot a:hover{color:var(--w)}
+  .fine{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);margin-top:22px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .fine span{font-size:12px;color:var(--w-55)}
+
+  /* scroll entrance */
+  .rise{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .rise.in{opacity:1;transform:none}
+
+  /* mobile sticky bar */
+  .mobilebar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:45;background:rgba(90,42,29,.92);backdrop-filter:blur(14px);border-top:1px solid var(--gline);padding:10px 16px calc(10px + env(safe-area-inset-bottom));gap:10px}
+  .mobilebar a{flex:1;min-height:50px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:100px;font-weight:600;font-size:15px}
+  .mobilebar .call{border:1px solid var(--w);color:var(--w)}
+  .mobilebar .quote{background:var(--pill);color:var(--pill-ink)}
+
+  @media(max-width:900px){
+    nav,.header-tel,.header-cta{display:none}
+    .brand .wm{white-space:nowrap}
+    .menu-btn{display:grid}
+    .hero{min-height:0;padding:40px 0 60px}
+    .hero .grid{grid-template-columns:1fr;gap:0}
+    .hero .forms{min-height:300px;order:-1;margin-bottom:8px}
+    .hero .forms .blob.b1{width:300px;height:260px;right:-30px;top:0}
+    .hero .forms .blob.b2{width:180px;height:170px;right:auto;left:0;bottom:0}
+    .hero .forms .blob.b3{width:120px;height:110px;right:40px;top:150px}
+    .socials{margin-top:34px}
+    .pnums{grid-template-columns:1fr 1fr;gap:28px 16px}
+    .cards{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr;gap:22px}
+    .about{grid-template-columns:1fr;gap:30px}
+    .reviews{grid-template-columns:1fr}
+    .inds{grid-template-columns:1fr;gap:30px}
+    .closing .frow{grid-template-columns:1fr}
+    section{padding:64px 0}
+    .mobilebar{display:flex}
+    body{padding-bottom:78px}
+    .foot{grid-template-columns:1fr 1fr}
+    .blob.b1{width:340px;height:300px}
+  }
+  @media(max-width:520px){ .pnums{grid-template-columns:1fr} .foot{grid-template-columns:1fr} }
+  @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.rise{opacity:1;transform:none;transition:none}.cta:hover{transform:none}}
+  .logo{
+    height: 48px;
+    width: auto;
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap bar">
+    <a href="#" class="word">
+    <img src="../logo-removebg-preview.png" alt="The Handy Pair" class="logo">
+</a>
+    <nav>
+      <a href="#services" class="active">Services</a>
+      <a href="#how">Process</a>
+      <a href="#stories">Reviews</a>
+      <a href="#industries">Industries</a>
+    </nav>
+    <span class="hspace"></span>
+    <a href="tel:+12365142372" class="header-tel">(236) 514-2372</a>
+    <a href="#quote" class="cta header-cta"><span class="badge">→</span>Get a Free Quote</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">≡</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a class="mnav" href="#services">Services</a>
+    <a class="mnav" href="#how">Process</a>
+    <a class="mnav" href="#stories">Reviews</a>
+    <a class="mnav" href="#industries">Industries</a>
+    <a class="mnav" href="tel:+12365142372">Call (236) 514-2372</a>
+    <a href="#quote" class="cta"><span class="badge">→</span>Get a Free Quote</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="grid">
+      <div class="copy">
+        <span class="eyebrow">Family-run · San Francisco</span>
+        <h1 class="display">A fresh start,<br>every day.</h1>
+        <p class="lead">Modern cleaning for homes and offices. The same trusted pair every visit, and a free quote in one minute.</p>
+        <div class="hero-actions">
+          <a href="#quote" class="cta"><span class="badge">→</span>Get a Free Quote</a>
+          <a href="tel:+12365142372" class="tel">(236) 514-2372<small>Tap to call</small></a>
+        </div>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="forms">
+        <!-- floating soft-bodied forms, cropped by viewport -->
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST ROW ============ -->
+<section style="padding:36px 0">
+  <div class="wrap">
+    <div class="trust rise">
+      <div class="b"><span></span>Licensed</div>
+      <div class="b"><span></span>Bonded</div>
+      <div class="b"><span></span>Insured</div>
+      <div class="b"><span></span>Background-checked</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="blob b2" style="right:-120px;top:40px;opacity:.7"></div>
+  <div class="wrap">
+    <div class="sechead center rise">
+      <span class="eyebrow">Our Services</span>
+      <h2 class="h2">Cleaned properly, every time.</h2>
+    </div>
+    <div class="cards">
+      <div class="glass card rise">
+        <div class="tag">Most booked</div>
+        <h3>Regular/deep house and apartment cleaning</h3>
+        <p>Kept to a standard, or a full top-to-bottom reset. Weekly, bi-weekly or one-time, with the same pair every visit.</p>
+      </div>
+      <div class="glass card rise"><h3>Move-out/move-in cleaning</h3><p>Empty-home detail so you get the deposit back: cabinets, closets, and every corner.</p></div>
+      <div class="glass card rise"><h3>Post-party, emergency and last-minute cleaning</h3><p>Big mess, short notice? We can move fast and get the place back to normal.</p></div>
+      <div class="glass card rise"><h3>Hotel &amp; Airbnb turnovers</h3><p>Fast, consistent turnovers between guests, run to a checklist, so every stay starts spotless.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="how" class="flow">
+  <div class="blob b1" style="left:-160px;bottom:-120px;opacity:.65"></div>
+  <div class="wrap">
+    <div class="sechead center rise">
+      <span class="eyebrow">Process</span>
+      <h2 class="h2">The simple method behind our success.</h2>
+    </div>
+    <div class="steps">
+      <div class="step rise"><div class="n">STEP 01</div><h3>Meet &amp; greet</h3><p>Upon receiving a cleaning request we offer a meet and greet via phone or in person, so you get to know us better.</p></div>
+      <div class="step rise"><div class="n">STEP 02</div><h3>Flexible scheduling</h3><p>We have flexible schedules and will try our best to accommodate the time that works for YOU.</p></div>
+      <div class="step rise"><div class="n">STEP 03</div><h3>We bring the supplies</h3><p>We bring our own cleaning supplies, so you don't have to worry about a thing.</p></div>
+      <div class="step rise"><div class="n">STEP 04</div><h3>We value your feedback</h3><p>We appreciate any feedback and will try our best to meet your needs.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap about">
+    <div class="plate rise"><span class="note">IMG // 4:5 · TANYA &amp; IGOR</span></div>
+    <div class="txt rise">
+      <span class="eyebrow">Who We Are</span>
+      <h2 class="h2" style="margin-top:14px">Hi! We're Tanya and Igor</h2>
+      <p>We're a family-owned cleaning business, and honestly… we just really love what we do. There's something satisfying about turning a space into something fresh, calm, and spotless. We might have a tiny bit of OCD (okay, maybe not so tiny), but that just means we notice the details others miss — the corners, the edges, the little things that make a big difference.</p>
+      <p>For us, cleaning isn't just a job — it's something we take pride in. We treat every home like it's our own and every client like part of our extended family. If you want a space that truly feels clean, we've got you.</p>
+      <div class="sig">Tanya &amp; Igor · Founders</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROOF ============ -->
+<section id="proof">
+  <div class="wrap">
+    <div class="rating rise">
+      <div class="big">4.9</div>
+      <div class="stars">★★★★★</div>
+      <!-- PLACEHOLDER: rating + numbers are sample — confirm real figures with client. -->
+      <div class="cap">Based on 100 Google reviews</div>
+    </div>
+    <div class="pnums rise">
+      <div class="n"><div class="num">100<i>+</i></div><div class="cap">Homes cleaned</div></div>
+      <div class="n"><div class="num">100<i>%</i></div><div class="cap">Client satisfaction</div></div>
+      <div class="n"><div class="num">2</div><div class="cap">Person crew</div></div>
+      <div class="n"><div class="num">10<i>+</i></div><div class="cap">Years in business</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUCCESS STORIES ============ -->
+<section id="stories">
+  <div class="blob b3" style="right:8%;top:30px;opacity:.7"></div>
+  <div class="wrap">
+    <div class="sechead center rise">
+      <span class="eyebrow">Success Stories</span>
+      <h2 class="h2">What clients tell us afterwards.</h2>
+    </div>
+    <!-- PLACEHOLDER: sample review copy — replace with real Google reviews before launch -->
+    <div class="reviews">
+      <div class="glass review rise"><div class="avatar"><span>IMG 1:1</span></div><div class="stars">★★★★★</div><p>“They moved the couch without being asked and cleaned under it. First cleaners who ever did.”</p><div class="who">Dana P.<span>Recurring · Noe Valley</span></div></div>
+      <div class="glass review rise"><div class="avatar"><span>IMG 1:1</span></div><div class="stars">★★★★★</div><p>“Fixed quote held to the dollar. The office looked better than the day we moved in.”</p><div class="who">Marcus L.<span>Commercial · SoMa</span></div></div>
+      <div class="glass review rise"><div class="avatar"><span>IMG 1:1</span></div><div class="stars">★★★★★</div><p>“Got my full deposit back. The landlord actually commented on how clean it was.”</p><div class="who">Priya S.<span>Move-out · the Mission</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section id="industries">
+  <div class="wrap">
+    <div class="sechead center rise">
+      <span class="eyebrow">Industries</span>
+      <h2 class="h2">Homes, and the businesses that keep the city running.</h2>
+    </div>
+    <div class="inds">
+      <div class="ind rise"><h3>Retail</h3><p>Storefronts and showrooms kept presentable for opening: floors, glass, fitting rooms and back-of-house.</p></div>
+      <div class="ind rise"><h3>Technology</h3><p>Offices and workspaces cleaned around your team's hours, so desks and common areas look sharp.</p></div>
+      <div class="ind rise"><h3>Hospitality</h3><p>Hotels, short-stay rentals and venues turned over fast and consistently between guests.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sechead center rise">
+      <span class="eyebrow">Questions</span>
+      <h2 class="h2">Straight answers.</h2>
+    </div>
+    <div class="faq rise">
+      <details open><summary>Do I need to be home during the clean?<span class="pm">+</span></summary><p>No. Most clients give us secure entry instructions once and never think about it again. It's the same two of us every visit, and you get a note when we're done.</p></details>
+      <details><summary>Is the quote really fixed?<span class="pm">+</span></summary><p>Yes. The written price covers labour and supplies for the scope you approved. If something falls outside it, we quote that separately and wait for your go-ahead first.</p></details>
+      <details><summary>Do you bring your own supplies?<span class="pm">+</span></summary><p>Always: equipment, cloths and products included. Prefer we use your own products for allergy or surface reasons? Just tell us.</p></details>
+      <details><summary>What if I'm not happy with something?<span class="pm">+</span></summary><p>Point it out at the walk-through and we redo it on the spot. Notice later? Call within 24 hours and we come back at no charge.</p></details>
+      <details><summary>Are you insured if something breaks?<span class="pm">+</span></summary><p>We carry $2M liability coverage and are bonded against loss. It rarely comes up, but it's there, in writing, before we start.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="quote">
+  <div class="blob b1" style="right:-180px;top:-60px;opacity:.6"></div>
+  <div class="wrap">
+    <div class="glass closing rise">
+      <span class="eyebrow">Book a Free Quote</span>
+      <h2 class="h2" style="margin-top:14px">Tell us the space.<br>We'll send a price today.</h2>
+      <p>No walk-through, no obligation. An honest number and a pair who shows up on time.</p>
+      <a href="tel:+12365142372" class="tel">(236) 514-2372<small>Or tap to call · 7 days a week</small></a>
+      <form id="quoteForm" novalidate>
+        <div class="frow">
+          <div><label for="f-first">First name *</label><input id="f-first" name="first" type="text" placeholder="First name" required autocomplete="given-name"></div>
+          <div><label for="f-last">Last name *</label><input id="f-last" name="last" type="text" placeholder="Last name" required autocomplete="family-name"></div>
+        </div>
+        <div class="frow">
+          <div><label for="f-email">Email *</label><input id="f-email" name="email" type="email" placeholder="you@email.com" required autocomplete="email"></div>
+          <div><label for="f-company">Company</label><input id="f-company" name="company" type="text" placeholder="Optional" autocomplete="organization"></div>
+        </div>
+        <div><label for="f-msg">Write a message</label><textarea id="f-msg" name="message" placeholder="Tell us about the space and what you need"></textarea></div>
+        <button class="cta" type="submit"><span class="badge">→</span>Get a Free Quote</button>
+        <p class="form-ok" id="formOk" role="status">Thanks, we've got it. Tanya or Igor will call you back today with your quote.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a href="#" class="word">
+    <img src="../logo-removebg-preview.png" alt="The Handy Pair" class="logo">
+</a>
+      <p style="max-width:32ch">Family-run residential &amp; commercial cleaning across San Francisco. Twice as fast, every task.</p>
+    </div>
+    <div><h4>Location</h4><p>500 Terry Francine St.</p><p>San Francisco, CA 94158</p></div>
+    <div><h4>Hours</h4><p>7 days · 8:00–18:00</p><p>Evenings by appointment</p></div>
+    <div><h4>Company</h4><a href="#services">Services</a><a href="#about">About</a><a href="#stories">Reviews</a><a href="#industries">Industries</a></div>
+    <div><h4>Follow</h4><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">YouTube</a></div>
+    <div class="fine">
+      <!-- PLACEHOLDER: confirm CA business licence # and contact email -->
+      <span>Licence #CA-CLN-000000 · Bonded &amp; insured</span>
+      <span>© 2026 The Handy Pair · San Francisco</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobilebar">
+  <a href="tel:+12365142372" class="call">Call</a>
+  <a href="#quote" class="quote">Get a Free Quote</a>
+</div>
+
+<script>
+  var mb=document.getElementById('menuBtn'), mm=document.getElementById('mobileMenu');
+  if(mb){mb.addEventListener('click',function(){var o=mm.classList.toggle('open');mb.setAttribute('aria-expanded',o?'true':'false');mb.textContent=o?'×':'≡';});
+    mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='≡';});});}
+  var form=document.getElementById('quoteForm'), ok=document.getElementById('formOk');
+  if(form){form.addEventListener('submit',function(e){e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}ok.classList.add('show');form.querySelector('button[type=submit]').innerHTML='<span class="badge">✓</span>Sent';});}
+  // scroll entrance
+  if('IntersectionObserver' in window && !(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+    document.querySelectorAll('.rise').forEach(function(el){io.observe(el);});
+  } else { document.querySelectorAll('.rise').forEach(function(el){el.classList.add('in');}); }
+</script>
+</body>
+</html>
