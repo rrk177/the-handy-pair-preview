@@ -20,7 +20,8 @@
     --ink-soft:#5A6A5F;    /* muted green on cream */
     --gold:#C7A86A;        /* soft gold accent */
     --gold-h:#B7975A;
-    --gold  nk:#25332B;    /* dark text on gold CTA */
+    --gold-ink:#25332B;    /* dark text on gold CTA */
+    --gold-deep:#7D6530;   /* accessible gold on cream (4.6:1) */
     --ctext:#F1ECDD;       /* cream text on green */
     --ctext-70:rgba(241,236,221,.72);
     --ctext-55:rgba(241,236,221,.55);
@@ -35,7 +36,9 @@
     font-size:16.5px;line-height:1.6;overflow-x:hidden}
   .display{font-family:"Newsreader",serif;font-weight:400;line-height:1.08;letter-spacing:-.01em;font-size:clamp(40px,5.6vw,68px)}
   .h2{font-family:"Newsreader",serif;font-weight:400;line-height:1.12;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,46px)}
-  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep)}
+  .green .eyebrow,.hero .eyebrow,.closing .eyebrow{color:var(--gold)}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   p{max-width:58ch}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1160px;margin:0 auto;padding:0 26px;position:relative;z-index:1}
@@ -57,7 +60,14 @@
   .cta .ar{transition:transform .18s cubic-bezier(0.22,1,0.36,1)}
   .cta:hover{background:var(--gold-h)}
   .cta:active{transform:scale(.98)}
-  @media (hover:hover) and (pointer:fine){ .cta:hover .ar{transform:translateX(4px)} }
+  .cta:disabled{opacity:.75;cursor:default;transform:none}
+  @media (hover:hover) and (pointer:fine){
+    .cta:hover .ar{transform:translateX(4px)}
+    .ind{transition:transform .25s cubic-bezier(0.22,1,0.36,1),box-shadow .25s ease}
+    .ind:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(37,51,43,.10)}
+    .step .n{transition:transform .25s cubic-bezier(0.22,1,0.36,1)}
+    .step:hover .n{transform:translateY(-3px)}
+  }
   .cta.badge{padding-left:8px}
   .cta .b{width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--gold);display:grid;place-items:center;flex:none;font-size:15px}
 
@@ -92,6 +102,17 @@
   .hero .eyebrow{display:block;margin-bottom:20px}
   .hero h1{color:var(--ctext)}
   .hero .sub{font-size:18px;color:var(--ctext-70);margin:20px 0 30px;max-width:42ch}
+  /* hero entrance — one authored sequence: eyebrow → headline lines rise out of a mask → sub → actions */
+  .hero .copy>*:not(h1){opacity:0;transform:translateY(16px);animation:heroIn .7s cubic-bezier(0.22,1,0.36,1) forwards}
+  .hero .eyebrow{animation-delay:.05s}
+  .hero .sub{animation-delay:.34s}
+  .hero .hero-actions{animation-delay:.46s}
+  .hero h1 .hl{display:block;overflow:hidden}
+  .hero h1 .hli{display:inline-block;transform:translateY(112%);animation:lineUp .85s cubic-bezier(0.22,1,0.36,1) forwards}
+  .hero h1 .hl:nth-child(1) .hli{animation-delay:.12s}
+  .hero h1 .hl:nth-child(2) .hli{animation-delay:.24s}
+  @keyframes heroIn{to{opacity:1;transform:none}}
+  @keyframes lineUp{to{transform:none}}
   .hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
   .hero-actions .tel{font-weight:700;color:var(--ctext);font-size:15px;white-space:nowrap}
   .hero-actions .tel small{display:block;font-size:11px;color:var(--ctext-55);font-weight:400;margin-top:2px}
@@ -108,10 +129,20 @@
       radial-gradient(circle at 50% 50%, rgba(241,236,221,.11), rgba(241,236,221,.04) 70%, transparent 100%);
     box-shadow:inset 0 0 60px rgba(255,255,255,.16), 0 24px 55px rgba(10,18,12,.22);
     backdrop-filter:blur(1px)}
+  /* gentle float — transform-only, disabled for reduced motion */
+  @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-13px)}}
+  .bubble{animation:drift 7s ease-in-out infinite alternate}
+  .hero-photo{animation:drift 10s ease-in-out infinite alternate}
   /* IMG DROP: replace each .bubble with a transparent PNG of a soap bubble, same size/position. */
-  .b1{width:300px;height:300px;right:-20px;top:0}
-  .b2{width:200px;height:200px;right:180px;bottom:14px}
-  .b3{width:120px;height:120px;right:70px;top:190px}
+  .b2{width:200px;height:200px;right:180px;bottom:14px;animation-duration:9s;animation-delay:1.2s}
+  .b3{width:120px;height:120px;right:70px;top:190px;animation-duration:6s;animation-delay:.6s}
+  /* IMG DROP: set a real photo of Tanya & Igor as the .hero-photo background (square crop, faces centered):
+     style="background:url(tanya-igor.jpg) center/cover" — the label span can then be deleted. */
+  .hero-photo{position:absolute;width:300px;height:300px;right:-10px;top:0;border-radius:50%;overflow:hidden;
+    background:radial-gradient(circle at 35% 30%, rgba(241,236,221,.30), rgba(241,236,221,.10) 72%);
+    border:1px solid rgba(241,236,221,.38);box-shadow:inset 0 0 60px rgba(255,255,255,.10), 0 24px 55px rgba(10,18,12,.22);
+    display:grid;place-items:center;text-align:center}
+  .hero-photo span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ctext-55);max-width:16ch;line-height:1.8}
   /* site-wide decorative bubbles: a layer behind each section's content, cropped by the section */
   .deco{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
   .deco .bubble{position:absolute}
@@ -136,16 +167,19 @@
 
   /* word-ticker services (from v4) */
   .ticker .rail{display:flex;flex-direction:column;gap:4px;align-items:flex-start;max-width:900px;margin:0 auto}
-  .ticker .w{font-family:"Hanken Grotesk";font-weight:800;font-size:clamp(40px,7.2vw,86px);line-height:1.04;letter-spacing:-.03em;color:#CFC8B6;transition:color .3s ease}
-  .ticker .w.on{color:var(--ink)}
-  .ticker .meta{display:flex;align-items:center;gap:16px;max-height:0;opacity:0;overflow:hidden;transition:max-height .4s ease,opacity .4s ease}
-  .ticker .w.on + .meta{max-height:70px;opacity:1;margin:8px 0 12px}
+  .ticker .w{font-family:"Hanken Grotesk";font-weight:800;font-size:clamp(40px,7.2vw,86px);line-height:1.04;letter-spacing:-.03em;color:#857F6C;transition:color .3s ease,transform .45s cubic-bezier(0.22,1,0.36,1);background:none;border:none;padding:0;cursor:pointer;text-align:left;display:block}
+  .ticker .w.on{color:var(--ink);transform:translateX(12px)}
+  /* expand via grid rows (no layout-thrash max-height); collapsed metas are hidden from tab order */
+  .ticker .meta{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .4s ease,opacity .4s ease,visibility 0s .4s}
+  .ticker .meta>.mi{overflow:hidden;display:flex;align-items:center;gap:16px;min-height:0}
+  .ticker .meta>.mi>*{margin:8px 0 12px} /* spacing as child margins inside the clipped row — collapses to 0, nothing animates layout */
+  .ticker .w.on + .meta{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .4s ease,opacity .4s ease,visibility 0s}
   .ticker .meta p{color:var(--ink-soft);font-size:15px;margin:0;max-width:34ch}
   .ticker .learn{font-size:13px;font-weight:600;color:var(--gold-ink);background:var(--gold);border-radius:100px;padding:8px 16px;white-space:nowrap}
 
   /* process */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
-  .step .n{font-family:"Newsreader",serif;font-size:34px;color:var(--gold);line-height:1;margin-bottom:16px}
+  .step .n{font-family:"Newsreader",serif;font-size:34px;color:var(--gold-deep);line-height:1;margin-bottom:16px}
   .step h3{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:8px}
   .step p{font-size:15px;color:var(--ink-soft);max-width:30ch}
 
@@ -155,7 +189,7 @@
   /* IMG DROP: 4:5 — Tanya & Igor mid-shift, soft daylight. Replace .plate background with a real photo. */
   .about .plate .note{position:absolute;left:18px;bottom:16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6d6552}
   .about .txt p{margin-top:18px;color:var(--ink-soft);font-size:16.5px}
-  .about .sig{margin-top:22px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+  .about .sig{margin-top:22px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep)}
 
   /* reviews carousel (from v4, sliding) */
   .rev{overflow:hidden}
@@ -172,8 +206,10 @@
   .rev .card .who{margin-top:18px;font-weight:600;color:var(--ink);font-size:14px}
   .rev .card .who span{display:block;font-weight:400;color:var(--ink-soft);font-size:13px;margin-top:2px}
   .rev .dots{display:flex;gap:8px;justify-content:center;margin-top:34px}
-  .rev .dots button{width:9px;height:9px;border-radius:50%;background:var(--lgreen);border:none;cursor:pointer;padding:0}
-  .rev .dots button.on{background:var(--gold)}
+  .rev .dots{gap:2px}
+  .rev .dots button{width:26px;height:26px;border-radius:50%;background:none;border:none;cursor:pointer;padding:0;position:relative}
+  .rev .dots button::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:9px;height:9px;border-radius:50%;background:var(--lgreen)}
+  .rev .dots button.on::after{background:var(--gold)}
 
   /* industries */
   .inds{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
@@ -187,7 +223,7 @@
   .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;
     font-family:"Newsreader",serif;font-weight:500;font-size:20px;color:var(--ink);min-height:44px}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary .pm{color:var(--gold);font-size:22px;flex:none;line-height:1;transition:transform .2s ease}
+  .faq summary .pm{color:var(--gold-deep);font-size:22px;flex:none;line-height:1;transition:transform .2s ease}
   .faq details[open] summary .pm{transform:rotate(45deg)}
   .faq p{margin-top:14px;font-size:16px;color:var(--ink-soft);max-width:72ch}
 
@@ -197,23 +233,34 @@
   .closing .h2{color:var(--ctext)}
   .closing p{color:var(--ctext-70)}
   .closing .grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .closing .anchors{list-style:none;margin:22px 0 4px;display:grid;gap:9px}
+  .closing .anchors li{font-size:14.5px;color:var(--ctext-70);display:flex;justify-content:space-between;gap:14px;max-width:34ch;
+    border-bottom:1px dashed var(--lgreen);padding-bottom:9px}
+  .closing .anchors b{color:var(--ctext);font-weight:700;white-space:nowrap}
   .closing .tel{color:var(--ctext);margin-top:22px;display:inline-block;font-weight:700;font-size:20px}
   .closing .tel small{display:block;color:var(--ctext-55);font-size:12px;font-weight:400;margin-top:4px}
   form{display:grid;gap:14px}
   form .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   form label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ctext-55);display:block;margin-bottom:7px}
-  form input,form textarea{width:100%;background:rgba(241,236,221,.07);border:1px solid var(--lgreen);color:var(--ctext);
+  form input,form textarea,form select{width:100%;background:rgba(241,236,221,.07);border:1px solid var(--lgreen);color:var(--ctext);
     padding:13px 15px;border-radius:12px;font-family:inherit;font-size:15px;min-height:48px}
+  form select{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23F1ECDD' stroke-opacity='.6' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 15px center;padding-right:36px}
+  form select:invalid{color:var(--ctext-55)} /* placeholder option tint */
+  form select option{color:var(--ink);background:var(--cream)}
   form textarea{min-height:92px;resize:vertical}
   form input::placeholder,form textarea::placeholder{color:var(--ctext-55)}
-  form input:focus,form textarea:focus{outline:none;border-color:var(--gold);background:rgba(241,236,221,.12)}
+  form input:focus,form textarea:focus,form select:focus{border-color:var(--gold);background-color:rgba(241,236,221,.12)}
   form .cta{width:100%;justify-content:center}
   .ok{display:none;background:rgba(199,168,106,.16);border:1px solid var(--gold);color:var(--ctext);padding:13px 15px;border-radius:12px;font-size:14px}
+  .err{display:none;background:rgba(180,84,58,.18);border:1px solid #C98A63;color:var(--ctext);padding:13px 15px;border-radius:12px;font-size:14px}
+  .err.show{display:block}
   .ok.show{display:block}
 
   /* footer */
   footer{padding:64px 0 40px}
-  .foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:30px}
+  .foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:30px}
   .foot .brand{margin-bottom:14px}
   .foot h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ctext-55);margin-bottom:15px}
   .foot p,.foot a{font-size:14.5px;color:var(--ctext-70);display:block;margin-bottom:9px}
@@ -230,13 +277,22 @@
   /* reveals */
   .rise{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(0.22,1,0.36,1),transform .6s cubic-bezier(0.22,1,0.36,1)}
   .rise.in{opacity:1;transform:none}
+  /* staggered children inside revealed groups */
+  .trust.rise .t,.stats.rise>div{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(0.22,1,0.36,1),transform .55s cubic-bezier(0.22,1,0.36,1)}
+  .trust.rise.in .t,.stats.rise.in>div{opacity:1;transform:none}
+  .trust.rise.in .t:nth-child(2),.stats.rise.in>div:nth-child(2){transition-delay:.08s}
+  .trust.rise.in .t:nth-child(3),.stats.rise.in>div:nth-child(3){transition-delay:.16s}
+  .trust.rise.in .t:nth-child(4),.stats.rise.in>div:nth-child(4){transition-delay:.24s}
+  .steps .step.rise:nth-child(2),.inds .ind.rise:nth-child(2){transition-delay:.08s}
+  .steps .step.rise:nth-child(3),.inds .ind.rise:nth-child(3){transition-delay:.16s}
+  .steps .step.rise:nth-child(4){transition-delay:.24s}
 
   @media(max-width:900px){
     nav.links,.htel,.header-cta{display:none}
     .menu-btn{display:grid}
     .hero .grid{grid-template-columns:1fr;gap:24px;min-height:0}
-    .hero .forms{order:-1;min-height:250px}
-    .b1{width:200px;height:200px}.b2{width:130px;height:130px;right:auto;left:10px}.b3{width:90px;height:90px}
+    .hero .forms{min-height:170px} /* bubbles follow the copy on mobile — headline first */
+    .hero-photo{width:160px;height:160px;right:6px}.b2{width:110px;height:110px;right:auto;left:10px;bottom:0}.b3{width:80px;height:80px;top:100px;right:180px}
     .stats{grid-template-columns:1fr 1fr;gap:30px 16px}
     .steps{grid-template-columns:1fr 1fr;gap:28px}
     .about{grid-template-columns:1fr;gap:30px}
@@ -250,25 +306,31 @@
     .foot{grid-template-columns:1fr 1fr}
   }
   @media(max-width:520px){.stats,.steps{grid-template-columns:1fr}.foot{grid-template-columns:1fr}}
-  @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.rise{opacity:1;transform:none;transition:none}.rev .track{transition:none}}
+  @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.rise{opacity:1;transform:none;transition:none}.rev .track{transition:none}
+    .bubble,.hero-photo,.hero .copy>*,.hero h1 .hli{animation:none!important;opacity:1!important;transform:none!important}
+    .trust.rise .t,.stats.rise>div{opacity:1;transform:none;transition:none}
+    .ticker .w,.ticker .w.on{transform:none;transition:color .3s ease}}
 </style>
+<noscript><style>.rise{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
 
 <!-- header -->
 <header id="header">
   <div class="wrap bar">
-    <a href="#" class="brand"><span class="logo" role="img" aria-label="The Handy Pair logo"></span><span class="wm">The Handy Pair</span></a>
+    <a href="#top" class="brand"><span class="logo" role="img" aria-label="The Handy Pair logo"></span><span class="wm">The Handy Pair</span></a>
     <nav class="links">
-      <a href="#services" class="active">Services</a>
+      <a href="#services">Services</a>
       <a href="#how">Process</a>
       <a href="#reviews">Reviews</a>
       <a href="#industries">Industries</a>
     </nav>
     <span class="hspace"></span>
+    <!-- PLACEHOLDER: (236) is a British Columbia area code — for an SF business confirm a local 415/628
+         number with the client; the mismatch is the site's single biggest trust risk -->
     <a href="tel:+12365142372" class="htel">(236) 514-2372</a>
     <a href="#quote" class="cta badge header-cta"><span class="b">→</span>Get a Free Quote</a>
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">≡</button>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
   </div>
   <div class="mmenu" id="mmenu">
     <a class="mn" href="#services">Services</a>
@@ -286,22 +348,21 @@
     <div class="grid">
       <div class="copy">
         <span class="eyebrow">Family-run · San Francisco</span>
-        <h1 class="display">A fresh start,<br>every day.</h1>
-        <p class="sub">Modern cleaning for homes and offices. The same trusted pair every visit, and a free quote in one minute.</p>
+        <h1 class="display"><span class="hl"><span class="hli">A fresh start,</span></span><span class="hl"><span class="hli">every day.</span></span></h1>
+        <p class="sub">Modern cleaning for homes and offices. The same trusted pair every visit, and a free, fixed quote the same day you ask.</p>
         <div class="hero-actions">
           <a href="#quote" class="cta badge"><span class="b">→</span>Get a Free Quote</a>
           <a href="tel:+12365142372" class="tel">(236) 514-2372<small>Tap to call</small></a>
         </div>
-        <div class="socials">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">ig</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-        </div>
+        <!-- PLACEHOLDER (hidden until real): restore social buttons only with live profile URLs —
+             dead social links read as fake. Markup kept here:
+             <div class="socials"><a href="REAL_FB" aria-label="Facebook">f</a><a href="REAL_IG" aria-label="Instagram">ig</a><a href="REAL_LI" aria-label="LinkedIn">in</a></div> -->
       </div>
-      <div class="forms" aria-hidden="true">
-        <div class="bubble b1"></div>
-        <div class="bubble b2"></div>
-        <div class="bubble b3"></div>
+      <div class="forms">
+        <!-- PLACEHOLDER: the trust anchor — a real photo of Tanya & Igor. See .hero-photo IMG DROP note in CSS. -->
+        <div class="hero-photo"><span>Photo — Tanya &amp; Igor</span></div>
+        <div class="bubble b2" aria-hidden="true"></div>
+        <div class="bubble b3" aria-hidden="true"></div>
       </div>
     </div>
   </div>
@@ -325,10 +386,10 @@
   <div class="wrap">
     <!-- PLACEHOLDER FIGURES — confirm with client -->
     <div class="stats rise" id="stats">
-      <div><div class="num" data-to="100" data-suffix="+">0</div><div class="cap">Homes cleaned</div></div>
-      <div><div class="num" data-to="4.9" data-dec="1">0</div><div class="cap">Google rating</div></div>
-      <div><div class="num" data-to="2">0</div><div class="cap">Person crew</div></div>
-      <div><div class="num" data-to="10" data-suffix="+">0</div><div class="cap">Years in business</div></div>
+      <div><div class="num" data-to="500" data-suffix="+">500+</div><div class="cap">Cleans completed</div></div>
+      <div><div class="num" data-to="4.9" data-dec="1">4.9</div><div class="cap">Google rating</div></div>
+      <div><div class="num">2</div><div class="cap">Person crew</div></div><!-- static: counting "2" up from 0 looks odd -->
+      <div><div class="num" data-to="10" data-suffix="+">10+</div><div class="cap">Years in business</div></div>
     </div>
   </div>
 </section>
@@ -339,12 +400,12 @@
   <div class="wrap">
     <div class="sechead center rise"><span class="eyebrow" style="display:block;margin-bottom:14px">Everything we clean</span></div>
     <div class="rail" id="rail">
-      <div class="w on" data-i="0">Homes</div><div class="meta"><p>Regular and deep cleans for houses, kept to a standard.</p><a href="#quote" class="learn">Learn more</a></div>
-      <div class="w" data-i="1">Apartments</div><div class="meta"><p>Weekly, bi-weekly or one-time — the same pair every visit.</p><a href="#quote" class="learn">Learn more</a></div>
-      <div class="w" data-i="2">Offices</div><div class="meta"><p>Retail, tech and hospitality spaces, cleaned after hours.</p><a href="#quote" class="learn">Learn more</a></div>
-      <div class="w" data-i="3">Move-outs</div><div class="meta"><p>Empty-home detail so you get the deposit back.</p><a href="#quote" class="learn">Learn more</a></div>
-      <div class="w" data-i="4">Airbnbs</div><div class="meta"><p>Fast, consistent turnovers between every guest.</p><a href="#quote" class="learn">Learn more</a></div>
-      <div class="w" data-i="5">Post-construction</div><div class="meta"><p>Dust-down and detail after the trades finish.</p><a href="#quote" class="learn">Learn more</a></div>
+      <button type="button" class="w on" data-i="0">Homes</button><div class="meta"><div class="mi"><p>Regular and deep cleans for houses, kept to a standard.</p><a href="#quote" class="learn">Get a quote</a></div></div>
+      <button type="button" class="w" data-i="1">Apartments</button><div class="meta"><div class="mi"><p>Weekly, bi-weekly or one-time — the same pair every visit.</p><a href="#quote" class="learn">Get a quote</a></div></div>
+      <button type="button" class="w" data-i="2">Offices</button><div class="meta"><div class="mi"><p>Retail, tech and hospitality spaces, cleaned after hours.</p><a href="#quote" class="learn">Get a quote</a></div></div>
+      <button type="button" class="w" data-i="3">Move-outs</button><div class="meta"><div class="mi"><p>Empty-home detail so you get the deposit back.</p><a href="#quote" class="learn">Get a quote</a></div></div>
+      <button type="button" class="w" data-i="4">Airbnbs</button><div class="meta"><div class="mi"><p>Fast, consistent turnovers between every guest.</p><a href="#quote" class="learn">Get a quote</a></div></div>
+      <button type="button" class="w" data-i="5">Post-construction</button><div class="meta"><div class="mi"><p>Dust-down and detail after the trades finish.</p><a href="#quote" class="learn">Get a quote</a></div></div>
     </div>
   </div>
 </section>
@@ -380,12 +441,14 @@
 <!-- reviews carousel -->
 <section class="green rev" id="reviews">
   <div class="deco" aria-hidden="true"><div class="bubble" style="width:240px;height:240px;left:-80px;top:12%;opacity:.7"></div><div class="bubble" style="width:140px;height:140px;right:4%;bottom:8%;opacity:.7"></div></div>
+  <h2 class="sr-only">Reviews</h2>
   <div class="wrap">
     <div class="rating rise">
       <!-- PLACEHOLDER: rating + reviews are sample — replace with real Google reviews before launch -->
       <div class="big">4.9</div>
       <div class="stars">★★★★★</div>
-      <div class="cap">Based on 100 Google reviews</div>
+      <!-- PLACEHOLDER: swap href for the real Google Business profile URL when available -->
+      <div class="cap">Based on 100 Google reviews · <a href="https://www.google.com/search?q=The+Handy+Pair+cleaning+San+Francisco+reviews" target="_blank" rel="noopener" style="text-decoration:underline;color:var(--ctext)">read them on Google</a></div>
     </div>
   </div>
   <div class="wrap">
@@ -405,9 +468,9 @@
   <div class="wrap">
     <div class="sechead center rise"><span class="eyebrow" style="display:block;margin-bottom:16px">Industries</span><h2 class="h2">Homes, and the businesses that keep the city running.</h2></div>
     <div class="inds">
-      <div class="ind rise"><h3>Retail</h3><p>Storefronts and showrooms kept presentable for opening: floors, glass, fitting rooms and back-of-house.</p></div>
-      <div class="ind rise"><h3>Technology</h3><p>Offices and workspaces cleaned around your team's hours, so desks and common areas look sharp.</p></div>
-      <div class="ind rise"><h3>Hospitality</h3><p>Hotels, short-stay rentals and venues turned over fast and consistently between guests.</p></div>
+      <div class="ind rise"><h3>Retail</h3><p>Storefronts and showrooms ready for opening: floors, glass, fitting rooms and back-of-house, finished before your first customer walks in.</p></div>
+      <div class="ind rise"><h3>Technology</h3><p>Offices cleaned after hours by the same two people every visit: desks, kitchens and common areas, no rotating crews.</p></div>
+      <div class="ind rise"><h3>Hospitality</h3><p>Short-stay rentals and venues turned over fast between guests, with a checklist that never changes hands.</p></div>
     </div>
   </div>
 </section>
@@ -417,10 +480,11 @@
   <div class="wrap">
     <div class="sechead center rise"><span class="eyebrow" style="display:block;margin-bottom:16px">Questions</span><h2 class="h2">Straight answers</h2></div>
     <div class="faq rise">
-      <details open><summary>Do I need to be home during the clean?<span class="pm">+</span></summary><p>No. Most clients give us secure entry instructions once and never think about it again. It's the same two of us every visit, and you get a note when we're done.</p></details>
+      <details open><summary>What's included in a standard clean?<span class="pm">+</span></summary><p>Every visit: dusting and wipe-downs in every room, floors vacuumed and mopped, kitchen counters and outside of appliances, bathrooms scrubbed and sanitized, mirrors, trash out and beds made. Add-ons on request: inside the oven or fridge, interior windows, laundry and linens, walls and baseboards. Your written quote lists exactly what's covered.</p></details>
+      <details><summary>Do I need to be home during the clean?<span class="pm">+</span></summary><p>No. Most clients give us secure entry instructions once and never think about it again. It's the same two of us every visit, and you get a note when we're done.</p></details>
       <details><summary>Is the quote really fixed?<span class="pm">+</span></summary><p>Yes. The written price covers labour and supplies for the scope you approved. If something falls outside it, we quote that separately and wait for your go-ahead first.</p></details>
       <details><summary>Do you bring your own supplies?<span class="pm">+</span></summary><p>Always: equipment, cloths and products included. Prefer we use your own products for allergy or surface reasons? Just tell us.</p></details>
-      <details><summary>What if I'm not happy with something?<span class="pm">+</span></summary><p>Point it out at the walk-through and we redo it on the spot. Notice later? Call within 24 hours and we come back at no charge.</p></details>
+      <details><summary>What if I'm not happy with something?<span class="pm">+</span></summary><p>Point it out while we're still there and we redo it on the spot. Notice later? Call within 24 hours and we come back at no charge.</p></details>
       <details><summary>Are you insured if something breaks?<span class="pm">+</span></summary><p>We carry $2M liability coverage and are bonded against loss. It rarely comes up, but it's there, in writing, before we start.</p></details>
     </div>
   </div>
@@ -436,20 +500,39 @@
         <span class="eyebrow">Book a free quote</span>
         <h2 class="h2" style="margin-top:14px;color:var(--ctext)">Tell us the space. We'll send a price today.</h2>
         <p>No walk-through, no obligation. An honest number and a pair who shows up on time.</p>
+        <!-- PLACEHOLDER FIGURES: sample price anchors — confirm real starting prices with the client -->
+        <ul class="anchors">
+          <li>Studios &amp; 1-bed <b>from $129</b></li>
+          <li>2–3 bed homes <b>from $189</b></li>
+          <li>Move-outs <b>from $249</b></li>
+          <li>Offices &amp; commercial <b>quoted by space</b></li>
+        </ul>
         <a href="tel:+12365142372" class="tel">(236) 514-2372<small>Or tap to call · 7 days a week</small></a>
       </div>
       <form id="quoteForm" novalidate>
         <div class="frow">
-          <div><label for="f-first">First name *</label><input id="f-first" type="text" placeholder="First name" required autocomplete="given-name"></div>
-          <div><label for="f-last">Last name *</label><input id="f-last" type="text" placeholder="Last name" required autocomplete="family-name"></div>
+          <div><label for="f-first">First name *</label><input id="f-first" type="text" placeholder="e.g. Dana" required autocomplete="given-name"></div>
+          <div><label for="f-last">Last name *</label><input id="f-last" type="text" placeholder="e.g. Parker" required autocomplete="family-name"></div>
         </div>
         <div class="frow">
+          <div><label for="f-phone">Phone *</label><input id="f-phone" type="tel" placeholder="(415) 555-0123" required autocomplete="tel"></div>
           <div><label for="f-email">Email *</label><input id="f-email" type="email" placeholder="you@email.com" required autocomplete="email"></div>
-          <div><label for="f-company">Company</label><input id="f-company" type="text" placeholder="Optional" autocomplete="organization"></div>
         </div>
-        <div><label for="f-msg">Write a message</label><textarea id="f-msg" placeholder="Tell us about the space and what you need"></textarea></div>
+        <div class="frow">
+          <div><label for="f-type">Type of space *</label>
+            <select id="f-type" required>
+              <option value="" selected disabled>Choose…</option>
+              <option>Home</option><option>Apartment</option><option>Office</option>
+              <option>Move-out</option><option>Airbnb</option><option>Post-construction</option>
+            </select>
+          </div>
+          <div><label for="f-size">Approx. size</label><input id="f-size" type="text" placeholder="e.g. 2 bed / 1,200 sq ft"></div>
+        </div>
+        <div><label for="f-msg">Write a message</label><textarea id="f-msg" placeholder="Anything else — frequency, pets, company name if it's an office"></textarea></div>
+        <input type="text" id="f-hp" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"><!-- honeypot -->
         <button class="cta badge" type="submit"><span class="b">→</span>Get a Free Quote</button>
-        <p class="ok" id="ok" role="status">Thanks, we've got it. Tanya or Igor will call you back today with your quote.</p>
+        <p class="ok" id="ok" role="status">Thanks, we've got it. Tanya or Igor will call you back today, or first thing tomorrow if it's after hours.</p>
+        <p class="err" id="err" role="alert">Something went wrong and the form didn't send. Please call <a href="tel:+12365142372" style="text-decoration:underline">(236) 514-2372</a> — we answer 7 days a week.</p>
       </form>
     </div>
     </div>
@@ -460,16 +543,19 @@
 <footer class="green">
   <div class="wrap foot">
     <div>
-      <a href="#" class="brand"><span class="logo" role="img" aria-label="The Handy Pair logo"></span><span class="wm">The Handy Pair</span></a>
-      <p style="color:var(--ctext-55);max-width:32ch">Family-owned residential &amp; commercial cleaning across San Francisco. Twice as fast, every task.</p>
+      <a href="#top" class="brand"><span class="logo" role="img" aria-label="The Handy Pair logo"></span><span class="wm">The Handy Pair</span></a>
+      <p style="color:var(--ctext-55);max-width:32ch">Family-owned residential &amp; commercial cleaning. Two pros on every visit: twice as fast, every task.</p>
     </div>
-    <div><h4>Location</h4><p>500 Terry Francine St.</p><p>San Francisco, CA 94158</p></div>
+    <!-- PLACEHOLDER: add the real street address here if the client wants one shown — the old
+         "500 Terry Francine St." was the stock Wix placeholder and read as fake -->
+    <div><h4>Service area</h4><p>San Francisco, CA</p><p>Every neighborhood in the city</p></div>
     <div><h4>Hours</h4><p>7 days · 8:00–18:00</p><p>Evenings by appointment</p></div>
-    <div><h4>Contact</h4><a href="tel:+12365142372">(236) 514-2372</a><a href="#quote">Get a free quote</a></div>
-    <div><h4>Follow</h4><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div>
+    <!-- PLACEHOLDER: swap for the business email when one exists (form already delivers to this inbox) -->
+    <div><h4>Contact</h4><a href="tel:+12365142372">(236) 514-2372</a><a href="mailto:emoless2006@gmail.com">emoless2006@gmail.com</a><a href="#quote">Get a free quote</a></div>
     <div class="fine">
-      <!-- PLACEHOLDER: confirm CA business licence # and contact email -->
-      <span>License #CA-CLN-000000 · Bonded &amp; insured</span>
+      <!-- PLACEHOLDER: insert the real CA business licence # when confirmed — an obviously fake
+           number (#CA-CLN-000000) hurts more than none -->
+      <span>Licensed, bonded &amp; insured · Certificates available on request</span>
       <span>© 2026 The Handy Pair · San Francisco</span>
     </div>
   </div>
@@ -487,11 +573,24 @@
 
   /* mobile menu */
   var mb=document.getElementById('menuBtn'), mm=document.getElementById('mmenu');
-  mb.addEventListener('click',function(){var o=mm.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.textContent=o?'×':'≡';});
-  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='≡';});});
+  var icoBurger='<svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+  var icoClose='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+  mb.addEventListener('click',function(){var o=mm.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.innerHTML=o?icoClose:icoBurger;mb.setAttribute('aria-label',o?'Close menu':'Open menu');});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.innerHTML=icoBurger;mb.setAttribute('aria-label','Open menu');});});
 
-  /* header compact */
-  addEventListener('scroll',function(){document.getElementById('header').classList.toggle('compact',scrollY>30);},{passive:true});
+  /* placeholder social links — don't scroll to top */
+  document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});
+
+  /* header compact + nav scrollspy */
+  var navLinks=[].slice.call(document.querySelectorAll('nav.links a'));
+  var spySections=navLinks.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function spy(){
+    var cur=-1;
+    spySections.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<innerHeight*.5)cur=i;});
+    navLinks.forEach(function(a,i){a.classList.toggle('active',i===cur);});
+  }
+  addEventListener('scroll',function(){document.getElementById('header').classList.toggle('compact',scrollY>30);spy();},{passive:true});
+  spy();
 
   /* word ticker — active word nearest viewport center */
   var words=[].slice.call(document.querySelectorAll('#rail .w'));
@@ -501,6 +600,8 @@
     words.forEach(function(w,i){w.classList.toggle('on',i===best);});
   }
   if(words.length){ addEventListener('scroll',tickerScroll,{passive:true}); tickerScroll(); }
+  /* click a service word → scroll it to center; the scroll handler then activates it */
+  words.forEach(function(w){w.addEventListener('click',function(){w.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});});});
 
   /* reviews carousel (sliding) */
   var rt=document.getElementById('revTrack'), cards=[].slice.call(rt.children), rdots=document.getElementById('revDots'), ri=1;
@@ -530,11 +631,14 @@
   revSection.addEventListener('mouseenter',stopAuto);
   revSection.addEventListener('mouseleave',startAuto);
   revSection.addEventListener('touchstart',stopAuto,{passive:true});
+  revSection.addEventListener('touchend',function(){setTimeout(startAuto,8000);},{passive:true}); /* resume after touch */
   startAuto();
 
   /* count-up + reveals */
   function countUp(el){
+    if(!el.dataset.to) return; /* static stats (e.g. "2" person crew) don't animate */
     var to=parseFloat(el.dataset.to),dec=parseInt(el.dataset.dec||'0'),suf=el.dataset.suffix||'',dur=1200,st=null;
+    el.textContent=(0).toFixed(dec)+suf;
     if(reduce){el.textContent=to.toFixed(dec)+suf;return;}
     requestAnimationFrame(function run(ts){if(!st)st=ts;var t=Math.min((ts-st)/dur,1),e=1-Math.pow(1-t,3);
       el.textContent=(to*e).toFixed(dec)+suf;if(t<1)requestAnimationFrame(run);else el.textContent=to.toFixed(dec)+suf;});
@@ -545,7 +649,39 @@
 
   /* form */
   var form=document.getElementById('quoteForm'), ok=document.getElementById('ok');
-  form.addEventListener('submit',function(e){e.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}ok.classList.add('show');form.querySelector('button[type=submit]').innerHTML='Sent ✓';});
+  /* sends via FormSubmit.co (no backend needed on GitHub Pages).
+     To change the destination address, replace the email in FORM_ENDPOINT below.
+     NOTE: the first real submission triggers a one-time activation email to that address — click the link in it. */
+  var FORM_ENDPOINT='https://formsubmit.co/ajax/emoless2006@gmail.com';
+  var err=document.getElementById('err');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){form.reportValidity();return;}
+    var btn=form.querySelector('button[type=submit]'), orig=btn.innerHTML;
+    ok.classList.remove('show'); err.classList.remove('show');
+    if(document.getElementById('f-hp').value){ok.classList.add('show');btn.innerHTML='Sent ✓';btn.disabled=true;return;} /* honeypot: pretend success */
+    btn.disabled=true; btn.innerHTML='Sending…';
+    var v=function(id){var el=document.getElementById(id);return el?el.value.trim():'';};
+    fetch(FORM_ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'New quote request — The Handy Pair',
+        _template:'table',
+        Name:v('f-first')+' '+v('f-last'),
+        Phone:v('f-phone'),
+        Email:v('f-email'),
+        'Type of space':v('f-type'),
+        'Approx. size':v('f-size')||'—',
+        Message:v('f-msg')||'—'
+      })
+    }).then(function(res){
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      ok.classList.add('show'); btn.innerHTML='Sent ✓';
+    }).catch(function(){
+      err.classList.add('show'); btn.disabled=false; btn.innerHTML=orig;
+    });
+  });
 })();
 </script>
 </body>
