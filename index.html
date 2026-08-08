@@ -4,6 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Handy Pair — Family-Run Cleaning · San Francisco</title>
+<meta name="description" content="Family-owned residential &amp; commercial cleaning in San Francisco. The same trusted pair every visit, and a free fixed quote the same day. Licensed, bonded &amp; insured.">
+<!-- PLACEHOLDER: swap canonical/og:url for the custom domain when one exists -->
+<link rel="canonical" href="https://rrk177.github.io/the-handy-pair-preview/">
+<link rel="icon" type="image/png" href="logo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Handy Pair — Family-Run Cleaning · San Francisco">
+<meta property="og:description" content="Modern cleaning for homes and offices. The same trusted pair every visit, and a free fixed quote the same day.">
+<meta property="og:url" content="https://rrk177.github.io/the-handy-pair-preview/">
+<meta property="og:image" content="https://rrk177.github.io/the-handy-pair-preview/logo.png">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"The Handy Pair",
+ "description":"Family-owned residential and commercial cleaning in San Francisco.",
+ "telephone":"+1-236-514-2372","url":"https://rrk177.github.io/the-handy-pair-preview/",
+ "image":"https://rrk177.github.io/the-handy-pair-preview/logo.png",
+ "areaServed":{"@type":"City","name":"San Francisco"},"priceRange":"$$",
+ "openingHours":"Mo-Su 08:00-18:00"}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- FINAL — client-approved direction: deep forest-green + milky-beige bands, soft gold accent.
@@ -166,8 +184,9 @@
   .stats .cap{font-size:13px;color:var(--ctext-70);margin-top:12px}
 
   /* word-ticker services (from v4) */
+  .ticker{overflow-anchor:none} /* don't let scroll anchoring fight the meta expand/collapse */
   .ticker .rail{display:flex;flex-direction:column;gap:4px;align-items:flex-start;max-width:900px;margin:0 auto}
-  .ticker .w{font-family:"Hanken Grotesk";font-weight:800;font-size:clamp(40px,7.2vw,86px);line-height:1.04;letter-spacing:-.03em;color:#857F6C;transition:color .3s ease,transform .45s cubic-bezier(0.22,1,0.36,1);background:none;border:none;padding:0;cursor:pointer;text-align:left;display:block}
+  .ticker .w{font-family:"Hanken Grotesk";font-weight:800;font-size:clamp(40px,7.2vw,86px);line-height:1.04;letter-spacing:-.03em;color:#7A745F;transition:color .3s ease,transform .45s cubic-bezier(0.22,1,0.36,1);background:none;border:none;padding:0;cursor:pointer;text-align:left;display:block}
   .ticker .w.on{color:var(--ink);transform:translateX(12px)}
   /* expand via grid rows (no layout-thrash max-height); collapsed metas are hidden from tab order */
   .ticker .meta{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .4s ease,opacity .4s ease,visibility 0s .4s}
@@ -205,8 +224,9 @@
   .rev .card p{font-size:17px;color:var(--ink);line-height:1.55}
   .rev .card .who{margin-top:18px;font-weight:600;color:var(--ink);font-size:14px}
   .rev .card .who span{display:block;font-weight:400;color:var(--ink-soft);font-size:13px;margin-top:2px}
-  .rev .dots{display:flex;gap:8px;justify-content:center;margin-top:34px}
-  .rev .dots{gap:2px}
+  .rev .dots{display:flex;gap:4px;justify-content:center;align-items:center;margin-top:34px}
+  .rev .pause{width:30px;height:30px;border-radius:50%;border:1px solid var(--lgreen);background:none;color:var(--ctext-70);cursor:pointer;margin-left:10px;display:grid;place-items:center;font-size:11px;line-height:1}
+  .rev .pause:hover{background:rgba(241,236,221,.1)}
   .rev .dots button{width:26px;height:26px;border-radius:50%;background:none;border:none;cursor:pointer;padding:0;position:relative}
   .rev .dots button::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:9px;height:9px;border-radius:50%;background:var(--lgreen)}
   .rev .dots button.on::after{background:var(--gold)}
@@ -241,7 +261,7 @@
   .closing .tel small{display:block;color:var(--ctext-55);font-size:12px;font-weight:400;margin-top:4px}
   form{display:grid;gap:14px}
   form .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  form label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ctext-55);display:block;margin-bottom:7px}
+  form label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ctext-70);display:block;margin-bottom:7px}
   form input,form textarea,form select{width:100%;background:rgba(241,236,221,.07);border:1px solid var(--lgreen);color:var(--ctext);
     padding:13px 15px;border-radius:12px;font-family:inherit;font-size:15px;min-height:48px}
   form select{appearance:none;-webkit-appearance:none;cursor:pointer;
@@ -262,14 +282,15 @@
   footer{padding:64px 0 40px}
   .foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:30px}
   .foot .brand{margin-bottom:14px}
-  .foot h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ctext-55);margin-bottom:15px}
+  .foot h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ctext-55);margin-bottom:15px;font-family:"Hanken Grotesk";font-weight:600}
   .foot p,.foot a{font-size:14.5px;color:var(--ctext-70);display:block;margin-bottom:9px}
   .foot a{color:var(--ctext-55)}.foot a:hover{color:var(--ctext)}
   .fine{grid-column:1/-1;border-top:1px solid var(--lgreen);margin-top:22px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   .fine span{font-size:12px;color:var(--ctext-55)}
 
   /* mobile sticky bar */
-  .mobilebar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:58;background:rgba(27,38,31,.95);backdrop-filter:blur(12px);border-top:1px solid var(--lgreen);padding:10px 16px calc(10px + env(safe-area-inset-bottom));gap:10px}
+  .mobilebar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:58;background:rgba(27,38,31,.95);backdrop-filter:blur(12px);border-top:1px solid var(--lgreen);padding:10px 16px calc(10px + env(safe-area-inset-bottom));gap:10px;transition:transform .3s cubic-bezier(0.22,1,0.36,1)}
+  .mobilebar.hide{transform:translateY(110%)} /* slides away while the quote form is on screen */
   .mobilebar a{flex:1;min-height:50px;display:flex;align-items:center;justify-content:center;border-radius:100px;font-weight:700;font-size:15px}
   .mobilebar .call{border:1px solid var(--ctext);color:var(--ctext)}
   .mobilebar .quote{background:var(--gold);color:var(--gold-ink)}
@@ -292,7 +313,7 @@
     .menu-btn{display:grid}
     .hero .grid{grid-template-columns:1fr;gap:24px;min-height:0}
     .hero .forms{min-height:170px} /* bubbles follow the copy on mobile — headline first */
-    .hero-photo{width:160px;height:160px;right:6px}.b2{width:110px;height:110px;right:auto;left:10px;bottom:0}.b3{width:80px;height:80px;top:100px;right:180px}
+    .hero-photo{width:160px;height:160px;right:6px}.b2{width:100px;height:100px;right:auto;left:0;bottom:0}.b3{width:64px;height:64px;top:6px;right:190px}
     .stats{grid-template-columns:1fr 1fr;gap:30px 16px}
     .steps{grid-template-columns:1fr 1fr;gap:28px}
     .about{grid-template-columns:1fr;gap:30px}
@@ -308,6 +329,7 @@
   @media(max-width:520px){.stats,.steps{grid-template-columns:1fr}.foot{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.rise{opacity:1;transform:none;transition:none}.rev .track{transition:none}
     .bubble,.hero-photo,.hero .copy>*,.hero h1 .hli{animation:none!important;opacity:1!important;transform:none!important}
+    .rev .card{transition:none}.mobilebar{transition:none}
     .trust.rise .t,.stats.rise>div{opacity:1;transform:none;transition:none}
     .ticker .w,.ticker .w.on{transform:none;transition:color .3s ease}}
 </style>
@@ -322,6 +344,7 @@
     <nav class="links">
       <a href="#services">Services</a>
       <a href="#how">Process</a>
+      <a href="#about">About</a>
       <a href="#reviews">Reviews</a>
       <a href="#industries">Industries</a>
     </nav>
@@ -335,6 +358,7 @@
   <div class="mmenu" id="mmenu">
     <a class="mn" href="#services">Services</a>
     <a class="mn" href="#how">Process</a>
+    <a class="mn" href="#about">About</a>
     <a class="mn" href="#reviews">Reviews</a>
     <a class="mn" href="#industries">Industries</a>
     <a class="mn" href="tel:+12365142372">Call (236) 514-2372</a>
@@ -509,27 +533,31 @@
         </ul>
         <a href="tel:+12365142372" class="tel">(236) 514-2372<small>Or tap to call · 7 days a week</small></a>
       </div>
-      <form id="quoteForm" novalidate>
+      <!-- action/method = no-JS fallback: the browser posts straight to FormSubmit so the lead survives even if scripts fail -->
+      <form id="quoteForm" novalidate action="https://formsubmit.co/emoless2006@gmail.com" method="POST">
         <div class="frow">
-          <div><label for="f-first">First name *</label><input id="f-first" type="text" placeholder="e.g. Dana" required autocomplete="given-name"></div>
-          <div><label for="f-last">Last name *</label><input id="f-last" type="text" placeholder="e.g. Parker" required autocomplete="family-name"></div>
+          <div><label for="f-first">First name *</label><input id="f-first" name="First name" type="text" placeholder="e.g. Dana" required autocomplete="given-name"></div>
+          <div><label for="f-last">Last name *</label><input id="f-last" name="Last name" type="text" placeholder="e.g. Parker" required autocomplete="family-name"></div>
         </div>
         <div class="frow">
-          <div><label for="f-phone">Phone *</label><input id="f-phone" type="tel" placeholder="(415) 555-0123" required autocomplete="tel"></div>
-          <div><label for="f-email">Email *</label><input id="f-email" type="email" placeholder="you@email.com" required autocomplete="email"></div>
+          <div><label for="f-phone">Phone *</label><input id="f-phone" name="Phone" type="tel" placeholder="(415) 555-0123" required autocomplete="tel" inputmode="tel" pattern="[0-9\(\)\+\.\s\-]{7,}" title="Please enter a phone number (at least 7 digits)"></div>
+          <div><label for="f-email">Email *</label><input id="f-email" name="Email" type="email" placeholder="you@email.com" required autocomplete="email"></div>
         </div>
         <div class="frow">
           <div><label for="f-type">Type of space *</label>
-            <select id="f-type" required>
+            <select id="f-type" name="Type of space" required>
               <option value="" selected disabled>Choose…</option>
               <option>Home</option><option>Apartment</option><option>Office</option>
               <option>Move-out</option><option>Airbnb</option><option>Post-construction</option>
             </select>
           </div>
-          <div><label for="f-size">Approx. size</label><input id="f-size" type="text" placeholder="e.g. 2 bed / 1,200 sq ft"></div>
+          <div><label for="f-size">Approx. size</label><input id="f-size" name="Approx. size" type="text" placeholder="e.g. 2 bed / 1,200 sq ft"></div>
         </div>
-        <div><label for="f-msg">Write a message</label><textarea id="f-msg" placeholder="Anything else — frequency, pets, company name if it's an office"></textarea></div>
-        <input type="text" id="f-hp" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"><!-- honeypot -->
+        <div><label for="f-msg">Write a message</label><textarea id="f-msg" name="Message" placeholder="Anything else — frequency, pets, company name if it's an office"></textarea></div>
+        <input type="text" id="f-hp" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"><!-- honeypot -->
+        <input type="hidden" name="_subject" value="New quote request — The Handy Pair">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://rrk177.github.io/the-handy-pair-preview/#quote">
         <button class="cta badge" type="submit"><span class="b">→</span>Get a Free Quote</button>
         <p class="ok" id="ok" role="status">Thanks, we've got it. Tanya or Igor will call you back today, or first thing tomorrow if it's after hours.</p>
         <p class="err" id="err" role="alert">Something went wrong and the form didn't send. Please call <a href="tel:+12365142372" style="text-decoration:underline">(236) 514-2372</a> — we answer 7 days a week.</p>
@@ -548,10 +576,10 @@
     </div>
     <!-- PLACEHOLDER: add the real street address here if the client wants one shown — the old
          "500 Terry Francine St." was the stock Wix placeholder and read as fake -->
-    <div><h4>Service area</h4><p>San Francisco, CA</p><p>Every neighborhood in the city</p></div>
-    <div><h4>Hours</h4><p>7 days · 8:00–18:00</p><p>Evenings by appointment</p></div>
+    <div><h3>Service area</h3><p>San Francisco, CA</p><p>Every neighborhood in the city</p></div>
+    <div><h3>Hours</h3><p>7 days · 8:00–18:00</p><p>Evenings by appointment</p></div>
     <!-- PLACEHOLDER: swap for the business email when one exists (form already delivers to this inbox) -->
-    <div><h4>Contact</h4><a href="tel:+12365142372">(236) 514-2372</a><a href="mailto:emoless2006@gmail.com">emoless2006@gmail.com</a><a href="#quote">Get a free quote</a></div>
+    <div><h3>Contact</h3><a href="tel:+12365142372">(236) 514-2372</a><a href="mailto:emoless2006@gmail.com">emoless2006@gmail.com</a><a href="#quote">Get a free quote</a></div>
     <div class="fine">
       <!-- PLACEHOLDER: insert the real CA business licence # when confirmed — an obviously fake
            number (#CA-CLN-000000) hurts more than none -->
@@ -589,7 +617,6 @@
     spySections.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<innerHeight*.5)cur=i;});
     navLinks.forEach(function(a,i){a.classList.toggle('active',i===cur);});
   }
-  addEventListener('scroll',function(){document.getElementById('header').classList.toggle('compact',scrollY>30);spy();},{passive:true});
   spy();
 
   /* word ticker — active word nearest viewport center */
@@ -599,7 +626,18 @@
     words.forEach(function(w,i){var r=w.getBoundingClientRect();var d=Math.abs((r.top+r.bottom)/2-cy);if(d<bd){bd=d;best=i;}});
     words.forEach(function(w,i){w.classList.toggle('on',i===best);});
   }
-  if(words.length){ addEventListener('scroll',tickerScroll,{passive:true}); tickerScroll(); }
+  if(words.length) tickerScroll();
+  /* one rAF-coalesced scroll handler: header compact + scrollspy + ticker (≤1 layout read pass per frame) */
+  var scrollScheduled=false;
+  addEventListener('scroll',function(){
+    if(scrollScheduled) return; scrollScheduled=true;
+    requestAnimationFrame(function(){
+      scrollScheduled=false;
+      document.getElementById('header').classList.toggle('compact',scrollY>30);
+      spy();
+      if(words.length) tickerScroll();
+    });
+  },{passive:true});
   /* click a service word → scroll it to center; the scroll handler then activates it */
   words.forEach(function(w){w.addEventListener('click',function(){w.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});});});
 
@@ -618,20 +656,35 @@
   }
   cards.forEach(function(c,i){var b=document.createElement('button');if(i===1)b.className='on';b.setAttribute('aria-label','Review '+(i+1));b.addEventListener('click',function(){revGo(i);});rdots.appendChild(b);
     c.addEventListener('click',function(){revGo(i);});});
-  addEventListener('resize',function(){revGo(ri);});
-  setTimeout(function(){revGo(1);},60);
+  var rzT;
+  addEventListener('resize',function(){rt.style.transition='none';revGo(ri);clearTimeout(rzT);rzT=setTimeout(function(){rt.style.transition='';},150);});
+  /* first position without a visible slide-in */
+  rt.style.transition='none'; revGo(1);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){rt.style.transition='';});});
   var sx=0,drag=false;
   rt.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;drag=true;},{passive:true});
   rt.addEventListener('touchend',function(e){if(!drag)return;drag=false;var dx=e.changedTouches[0].clientX-sx;if(dx<-40)revGo(ri+1);else if(dx>40)revGo(ri-1);});
-  /* auto-slide the reviews (pauses on hover / touch; off for reduced-motion) */
-  var revAuto=null;
-  function startAuto(){ if(reduce) return; clearInterval(revAuto); revAuto=setInterval(function(){revGo(ri+1);},4500); }
+  /* auto-slide the reviews — explicit pause control (WCAG 2.2.2), hover/touch pause, off for reduced-motion */
+  var revAuto=null, userPaused=false;
+  function startAuto(){ if(reduce||userPaused) return; clearInterval(revAuto); revAuto=setInterval(function(){revGo(ri+1);},4500); }
   function stopAuto(){ clearInterval(revAuto); }
   var revSection=document.getElementById('reviews');
+  var pb=document.createElement('button');
+  pb.className='pause'; pb.textContent='❚❚';
+  pb.setAttribute('aria-label','Pause review rotation'); pb.setAttribute('aria-pressed','false');
+  pb.addEventListener('click',function(){
+    userPaused=!userPaused;
+    pb.textContent=userPaused?'▶':'❚❚';
+    pb.setAttribute('aria-label',userPaused?'Resume review rotation':'Pause review rotation');
+    pb.setAttribute('aria-pressed',userPaused);
+    if(userPaused)stopAuto();else startAuto();
+  });
+  rdots.appendChild(pb);
   revSection.addEventListener('mouseenter',stopAuto);
   revSection.addEventListener('mouseleave',startAuto);
   revSection.addEventListener('touchstart',stopAuto,{passive:true});
-  revSection.addEventListener('touchend',function(){setTimeout(startAuto,8000);},{passive:true}); /* resume after touch */
+  revSection.addEventListener('touchend',function(){setTimeout(startAuto,8000);},{passive:true});
+  document.addEventListener('visibilitychange',function(){document.hidden?stopAuto():startAuto();});
   startAuto();
 
   /* count-up + reveals */
@@ -646,6 +699,11 @@
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');
     if(e.target.id==='stats'){e.target.querySelectorAll('.num').forEach(countUp);}io.unobserve(e.target);}});},{threshold:.2});
   document.querySelectorAll('.rise').forEach(function(el){io.observe(el);});
+
+  /* hide the mobile sticky bar while the quote form is on screen (it duplicates the form's own CTA) */
+  var mbar=document.querySelector('.mobilebar');
+  new IntersectionObserver(function(es){mbar.classList.toggle('hide',es[0].isIntersecting);},{threshold:.15})
+    .observe(document.getElementById('quote'));
 
   /* form */
   var form=document.getElementById('quoteForm'), ok=document.getElementById('ok');
