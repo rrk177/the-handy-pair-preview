@@ -90,9 +90,9 @@
     display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap}
   .hero h1{color:#fff;max-width:15ch;text-transform:uppercase;letter-spacing:.01em}
   .hero .tag{margin:14px 0 22px;font-size:16px;color:rgba(255,255,255,.85)}
-  /* inset couple card overlapping the frame edge */
-  .couple{flex:none;width:300px;background:var(--card);border-radius:var(--r-md);padding:10px 10px 14px;
-    box-shadow:0 18px 44px rgba(31,38,32,.22);color:var(--ink);margin-bottom:-72px}
+  /* couple card — lives in the About side column */
+  .couple{max-width:320px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);
+    padding:10px 10px 14px;color:var(--ink);margin-top:8px}
   .couple .ph{border-radius:12px;aspect-ratio:4/3;background:linear-gradient(140deg,var(--tint),#D7E0D3);
     display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:10px}
   /* IMG DROP: Igor & Tatyana together mid-shift, friendly, 4:3 crop → replace .couple .ph content -->*/
@@ -100,7 +100,7 @@
   .couple b{color:var(--ink)}
 
   /* about + stats */
-  .about{padding-top:120px}
+  .about{padding-top:88px}
   .about .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;margin-bottom:44px}
   .about .lead2{font-size:clamp(19px,2.2vw,25px);font-weight:600;line-height:1.4}
   .about .side{color:var(--muted);font-size:15.5px;display:grid;gap:14px;align-content:center}
@@ -112,6 +112,19 @@
   .stat.hl{background:var(--green-fill);border-color:transparent}
   .stat.hl .n,.stat.hl p{color:#fff}
   .stat.hl p{opacity:.9}
+
+  /* spaces — scroll-driven word rail, same mechanic as the main site's services ticker */
+  .spaces{overflow-anchor:none} /* keep scroll anchoring from fighting the meta expand/collapse */
+  .rail{display:flex;flex-direction:column;gap:4px;align-items:flex-start;max-width:920px}
+  .w{font-weight:800;font-size:clamp(38px,6.8vw,80px);line-height:1.05;letter-spacing:-.025em;color:#827D6D;
+    transition:color .3s ease,transform .45s cubic-bezier(0.22,1,0.36,1);
+    background:none;border:none;padding:0;cursor:pointer;text-align:left;display:block;font-family:inherit}
+  .w.on{color:var(--green);transform:translateX(12px)}
+  .meta{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .4s ease,opacity .4s ease,visibility 0s .4s}
+  .meta>.mi{overflow:hidden;display:flex;align-items:center;gap:16px;min-height:0;flex-wrap:wrap}
+  .meta>.mi>*{margin:8px 0 12px} /* spacing as child margins inside the clipped row — collapses to 0 */
+  .w.on+.meta{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .4s ease,opacity .4s ease,visibility 0s}
+  .meta p{color:var(--muted);font-size:15px;max-width:38ch}
 
   /* services */
   .services .head{max-width:640px;margin-bottom:34px}
@@ -186,10 +199,7 @@
     nav.links,.htel{display:none}
     .menu-btn{display:grid}
     .hero .frame{min-height:440px}
-    /* when the couple card wraps below the copy the text rides high — darken the whole scrim so it stays readable */
-    .hero .shade{background:linear-gradient(to top,rgba(31,38,32,.84),rgba(31,38,32,.62))}
-    .couple{margin-bottom:-40px;width:260px}
-    .about{padding-top:96px}
+    .hero .shade{background:linear-gradient(to top,rgba(31,38,32,.84),rgba(31,38,32,.55))}
     .about .grid{grid-template-columns:1fr;gap:20px}
     .stats{grid-template-columns:1fr 1fr}
     .show{grid-template-columns:1fr}
@@ -200,13 +210,14 @@
   @media(max-width:560px){
     .stats{grid-template-columns:1fr}
     .hero .content{padding:84px 24px 24px}
-    .couple{width:100%;margin-bottom:-56px}
+    .couple{max-width:100%}
     .frow{grid-template-columns:1fr}
     .header-cta{display:none}
   }
   @media(prefers-reduced-motion:reduce){
     *{scroll-behavior:auto!important}
     .rise{opacity:1;transform:none;transition:none}
+    .w,.w.on{transform:none;transition:color .3s ease}
   }
 </style>
 <noscript><style>.rise{opacity:1;transform:none}</style></noscript>
@@ -253,10 +264,6 @@
           <p class="tag">Spotless is our standard.</p>
           <a href="#contacts" class="btn">Request a quote</a>
         </div>
-        <div class="couple">
-          <div class="ph">Photo — Igor &amp; Tatyana</div>
-          <p><b>Our cleaning pair</b>: we handle every job ourselves: homes, offices and everything in between, across San Francisco.</p>
-        </div>
       </div>
     </div>
   </div>
@@ -271,6 +278,10 @@
       <div class="side rise">
         <p>We create the kind of clean you actually want to live and work in: spotless, and with zero hassle for you.</p>
         <p>Our job isn't just to clean. It's to make the whole process clear, comfortable and even pleasant.</p>
+        <div class="couple">
+          <div class="ph">Photo — Igor &amp; Tatyana</div>
+          <p><b>Our cleaning pair</b>: we handle every job ourselves — homes, offices and everything in between, across San Francisco.</p>
+        </div>
       </div>
     </div>
     <div class="stats">
@@ -279,6 +290,21 @@
       <div class="stat rise"><div class="n">&gt;500 happy<br>clients</div><p>When this many people invite us back again and again, it says a lot.</p></div>
       <div class="stat hl rise"><div class="n">The Handy Pair —</div><p>the team that turns cleaning from a chore into a clean solution.</p></div>
       <div class="stat rise"><div class="n">&gt;1000 cleans<br>done</div><p>We give our clients back spotless spaces and free time.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- where we clean — scroll-driven rail -->
+<section class="spaces" id="spaces">
+  <div class="wrap">
+    <span class="eb rise">Where we clean</span>
+    <div class="rail" id="rail">
+      <button type="button" class="w on">Homes</button><div class="meta"><div class="mi"><p>Regular and deep cleans for houses, kept to a standard.</p><a href="#contacts" class="btn sm">Request a quote</a></div></div>
+      <button type="button" class="w">Apartments</button><div class="meta"><div class="mi"><p>Weekly, bi-weekly or one-time: the same pair every visit.</p><a href="#contacts" class="btn sm">Request a quote</a></div></div>
+      <button type="button" class="w">Offices</button><div class="meta"><div class="mi"><p>Retail, tech and hospitality spaces, cleaned after hours.</p><a href="#contacts" class="btn sm">Request a quote</a></div></div>
+      <button type="button" class="w">Move-outs</button><div class="meta"><div class="mi"><p>Empty-home detail so you get the deposit back.</p><a href="#contacts" class="btn sm">Request a quote</a></div></div>
+      <button type="button" class="w">Airbnbs</button><div class="meta"><div class="mi"><p>Fast, consistent turnovers between every guest.</p><a href="#contacts" class="btn sm">Request a quote</a></div></div>
+      <button type="button" class="w">Post-construction</button><div class="meta"><div class="mi"><p>Dust-down and detail after the trades finish.</p><a href="#contacts" class="btn sm">Request a quote</a></div></div>
     </div>
   </div>
 </section>
@@ -380,11 +406,23 @@
 
 <script>
 (function(){
-  /* header border on scroll */
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* word rail — active word nearest viewport center (same mechanic as the main site) */
+  var words=[].slice.call(document.querySelectorAll('#rail .w'));
+  function railScroll(){
+    var cy=innerHeight/2,best=0,bd=1e9;
+    words.forEach(function(w,i){var r=w.getBoundingClientRect();var d=Math.abs((r.top+r.bottom)/2-cy);if(d<bd){bd=d;best=i;}});
+    words.forEach(function(w,i){w.classList.toggle('on',i===best);});
+  }
+  words.forEach(function(w){w.addEventListener('click',function(){w.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});});});
+  if(words.length)railScroll();
+
+  /* one rAF-coalesced scroll handler: header border + word rail */
   var hdr=document.getElementById('hdr'),sch=false;
   addEventListener('scroll',function(){
     if(sch)return;sch=true;
-    requestAnimationFrame(function(){sch=false;hdr.classList.toggle('solid',scrollY>10);});
+    requestAnimationFrame(function(){sch=false;hdr.classList.toggle('solid',scrollY>10);if(words.length)railScroll();});
   },{passive:true});
 
   /* mobile menu */
