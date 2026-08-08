@@ -95,8 +95,8 @@
   .hero h1{color:#fff;max-width:15ch;text-transform:uppercase;letter-spacing:.01em}
   .hero .tag{margin:14px 0 22px;font-size:16px;color:rgba(255,255,255,.85)}
   /* couple card — lives in the About side column */
-  .couple{max-width:320px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);
-    padding:10px 10px 14px;color:var(--ink);margin-top:8px}
+  .couple{max-width:340px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);
+    padding:10px 10px 14px;color:var(--ink);justify-self:center}
   .couple .ph{border-radius:12px;aspect-ratio:4/3;background:linear-gradient(140deg,var(--tint),#D7E0D3);
     display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:10px}
   /* IMG DROP: Igor & Tatyana together mid-shift, friendly, 4:3 crop → replace .couple .ph content -->*/
@@ -105,9 +105,9 @@
 
   /* about + stats */
   .about{padding-top:88px}
-  .about .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;margin-bottom:44px}
+  .about .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;margin-bottom:44px;align-items:center}
   .about .lead2{font-size:clamp(19px,2.2vw,25px);font-weight:600;line-height:1.4}
-  .about .side{color:var(--muted);font-size:15.5px;display:grid;gap:14px;align-content:center}
+  .about .side{color:var(--muted);font-size:15.5px;display:grid;gap:14px;margin-top:24px}
   .about .side p{max-width:48ch}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -122,7 +122,8 @@
   /* spaces — scroll-driven word rail, same mechanic as the main site's services ticker */
   .spaces{overflow-anchor:none} /* keep scroll anchoring from fighting the meta expand/collapse */
   .rail{display:flex;flex-direction:column;gap:4px;align-items:flex-start;max-width:920px}
-  .w{font-weight:800;font-size:clamp(38px,6.8vw,80px);line-height:1.05;letter-spacing:-.025em;color:#827D6D;
+  /* nowrap + a floor that keeps the longest word ("Post-construction") on one line down to 320px */
+  .w{font-weight:800;font-size:clamp(30px,6.8vw,80px);line-height:1.05;letter-spacing:-.025em;color:#827D6D;white-space:nowrap;
     transition:color .3s ease,transform .45s cubic-bezier(0.22,1,0.36,1);
     background:none;border:none;padding:0;cursor:pointer;text-align:left;display:block;font-family:inherit}
   .w.on{color:var(--green);transform:translateX(12px)}
@@ -130,6 +131,7 @@
   .meta{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .4s ease,opacity .4s ease,visibility 0s .4s}
   .meta>.mi{overflow:hidden;display:flex;align-items:center;gap:16px;min-height:0;flex-wrap:wrap}
   .meta>.mi>*{margin:8px 0 12px} /* spacing as child margins inside the clipped row — collapses to 0 */
+  .meta .btn{flex:none}
   .w.on+.meta{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .4s ease,opacity .4s ease,visibility 0s}
   .meta p{color:var(--muted);font-size:15px;max-width:38ch}
 
@@ -286,21 +288,23 @@
     <h2 class="sr-only">About us</h2>
     <span class="eb rise">About us</span>
     <div class="grid">
-      <p class="lead2 rise"><span class="em">We're a professional cleaning pair</span> who bring back comfort, shine and order to your home or business. We work carefully, fast, and with real attention to every client.</p>
-      <div class="side rise">
-        <p>We create the kind of clean you actually want to live and work in: spotless, and with zero hassle for you.</p>
-        <p>Our job isn't just to clean. It's to make the whole process clear, comfortable and even pleasant.</p>
-        <div class="couple">
-          <div class="ph">Photo — Igor &amp; Tatyana</div>
-          <p><b>Our cleaning pair</b>: we handle every job ourselves: homes, offices and everything in between, across San Francisco.</p>
+      <div>
+        <p class="lead2 rise"><span class="em">We're a professional cleaning pair</span> who bring back comfort, shine and order to your home or business. We work carefully, fast, and with real attention to every client.</p>
+        <div class="side rise">
+          <p>We create the kind of clean you actually want to live and work in: spotless, and with zero hassle for you.</p>
+          <p>Our job isn't just to clean. It's to make the whole process clear, comfortable and even pleasant.</p>
         </div>
+      </div>
+      <div class="couple rise">
+        <div class="ph">Photo — Igor &amp; Tatyana</div>
+        <p><b>Our cleaning pair</b>: we handle every job ourselves: homes, offices and everything in between, across San Francisco.</p>
       </div>
     </div>
     <div class="stats">
       <!-- PLACEHOLDER FIGURES — confirm with client -->
       <div class="stat rise"><div class="n">&gt;10 years<br>experience</div><p>We've been at this long enough to make cleaning easy and surprise-free.</p></div>
       <div class="stat rise"><div class="n">&gt;500 happy<br>clients</div><p>When this many people invite us back again and again, it says a lot.</p></div>
-      <div class="stat hl rise"><div class="n">The Handy Pair —</div><p>the team that turns cleaning from a chore into a clean solution.</p></div>
+      <div class="stat hl rise"><div class="n">The Handy Pair</div><p>The team that turns cleaning from a chore into a clean solution.</p></div>
       <div class="stat rise"><div class="n">&gt;1000 cleans<br>done</div><p>We give our clients back spotless spaces and free time.</p></div>
     </div>
   </div>
