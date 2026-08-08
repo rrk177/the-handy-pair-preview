@@ -80,8 +80,7 @@
   .hero{padding:34px 0 88px}
   .hero .frame{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:520px;
     background:linear-gradient(150deg,var(--warm),var(--warm-2));display:flex;align-items:flex-end}
-  /* IMG DROP: hero interior — warm living room, soft daylight, wide 16:9-ish crop filling .frame
-     (position:absolute;inset:0;object-fit:cover). Layout is sized for it already. -->*/
+  .frame>.ph-hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .hero .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(31,38,32,.78),rgba(31,38,32,.10) 62%)}
   .hero .badge{position:absolute;top:22px;left:22px;display:inline-flex;align-items:center;gap:8px;
     background:var(--card);border-radius:14px;padding:10px 14px;font-size:12.5px;font-weight:600;color:var(--ink);
@@ -245,6 +244,7 @@
 <section class="hero" id="top">
   <div class="wrap">
     <div class="frame">
+      <img class="ph-hero" src="hero.jpg" alt="A bright living room mid-clean: one of The Handy Pair mopping the floor with a cart of supplies" fetchpriority="high">
       <div class="shade" aria-hidden="true"></div>
       <div class="badge"><i>✓</i>We also serve businesses</div>
       <div class="content">
