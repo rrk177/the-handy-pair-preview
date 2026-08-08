@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Handy Pair — Cleaning for Homes &amp; Commercial Spaces · San Francisco</title>
+<meta name="description" content="Professional residential and commercial cleaning by Igor & Tatyana. Request a free quote — spotless is our standard.">
+<link rel="icon" type="image/png" href="../logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- V2 — fresh clean-service / trustworthy-local. Bright off-white ground, one calm forest-green
+     accent, warm rounded photo frames, bracketed eyebrows, pill service tags, green promo price card.
+     Reference matched for feel, not content. -->
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#F7F6F2;      /* bright warm off-white */
+    --card:#FFFFFF;
+    --ink:#1F2620;         /* near-black green-cast text */
+    --muted:#5C665B;       /* secondary text (5.5:1 on ground) */
+    --green:#3F5F44;       /* the one brand accent (6.6:1 on ground) */
+    --green-deep:#33503A;  /* hover / emphasis */
+    --green-fill:#4A6B50;  /* filled highlight cards (white text 6:1) */
+    --tint:#E7EDE4;        /* soft green tint for chips / stand-ins */
+    --line:rgba(31,38,32,.12);
+    --warm:#E9E2D6;        /* warm neutral stand-in for interior photos */
+    --warm-2:#DDD3C2;
+    --r-lg:26px; --r-md:18px; --r-pill:100px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--ground);color:var(--ink);font-family:"Onest",sans-serif;
+    -webkit-font-smoothing:antialiased;font-size:16.5px;line-height:1.6;overflow-x:clip}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2.5px solid var(--green);outline-offset:3px;border-radius:8px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  section{padding:88px 0}
+  h1,h2,h3{line-height:1.12;letter-spacing:-.015em}
+  .display{font-weight:800;font-size:clamp(34px,4.6vw,58px)}
+  .h2{font-weight:800;font-size:clamp(26px,3.4vw,40px)}
+  .lead{color:var(--muted);max-width:52ch}
+  .em{color:var(--green)}
+  /* bracketed eyebrow — the section grammar of this direction */
+  .eb{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--muted);margin-bottom:18px}
+  .eb::before{content:"[ "}.eb::after{content:" ]"}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--green);color:#fff;
+    font-weight:700;font-size:15px;padding:14px 26px;border:none;border-radius:var(--r-pill);cursor:pointer;
+    min-height:50px;white-space:nowrap;transition:background .2s ease,transform .18s cubic-bezier(0.22,1,0.36,1)}
+  .btn:hover{background:var(--green-deep)}
+  .btn:active{transform:scale(.98)}
+  .btn:disabled{opacity:.7;cursor:default;transform:none}
+  .btn.ghost{background:var(--card);color:var(--green);border:1.5px solid var(--green)}
+  .btn.ghost:hover{background:var(--tint)}
+  .btn.sm{min-height:42px;padding:10px 20px;font-size:14px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(247,246,242,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;transition:border-color .3s ease}
+  header.solid{border-bottom-color:var(--line)}
+  .bar{display:flex;align-items:center;gap:26px;height:74px}
+  /* logo — original mark, recolored to the brand green via mask */
+  .logo{display:block;width:64px;height:36px;background:var(--green);flex:none;
+    -webkit-mask:url(../logo.png) center/contain no-repeat;mask:url(../logo.png) center/contain no-repeat}
+  .wm{font-weight:800;font-size:18px;white-space:nowrap}
+  nav.links{display:flex;gap:24px;margin-left:6px}
+  nav.links a{font-size:14.5px;color:var(--muted);transition:color .15s}
+  nav.links a:hover{color:var(--ink)}
+  .hspace{flex:1}
+  .htel{font-size:14px;font-weight:600;white-space:nowrap}
+  .htel small{display:block;font-weight:400;font-size:11px;color:var(--muted)}
+  .menu-btn{display:none;width:44px;height:44px;place-items:center;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;color:var(--ink)}
+  .mmenu{display:none;position:fixed;inset:74px 0 auto 0;z-index:49;background:var(--ground);border-bottom:1px solid var(--line);padding:14px 24px 22px;flex-direction:column}
+  .mmenu.open{display:flex}
+  .mmenu a.mn{font-size:17px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .mmenu .btn{margin-top:14px}
+
+  /* hero */
+  .hero{padding:34px 0 88px}
+  .hero .frame{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:520px;
+    background:linear-gradient(150deg,var(--warm),var(--warm-2));display:flex;align-items:flex-end}
+  /* IMG DROP: hero interior — warm living room, soft daylight, wide 16:9-ish crop filling .frame
+     (position:absolute;inset:0;object-fit:cover). Layout is sized for it already. -->*/
+  .hero .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(31,38,32,.78),rgba(31,38,32,.10) 62%)}
+  .hero .badge{position:absolute;top:22px;left:22px;display:inline-flex;align-items:center;gap:8px;
+    background:var(--card);border-radius:14px;padding:10px 14px;font-size:12.5px;font-weight:600;color:var(--ink);
+    box-shadow:0 10px 26px rgba(31,38,32,.14)}
+  .hero .badge i{width:26px;height:26px;border-radius:8px;background:var(--tint);display:grid;place-items:center;font-style:normal;color:var(--green);font-size:13px}
+  .hero .content{position:relative;z-index:2;padding:96px 38px 38px;color:#fff;width:100%;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap}
+  .hero h1{color:#fff;max-width:15ch;text-transform:uppercase;letter-spacing:.01em}
+  .hero .tag{margin:14px 0 22px;font-size:16px;color:rgba(255,255,255,.85)}
+  /* inset couple card overlapping the frame edge */
+  .couple{flex:none;width:300px;background:var(--card);border-radius:var(--r-md);padding:10px 10px 14px;
+    box-shadow:0 18px 44px rgba(31,38,32,.22);color:var(--ink);margin-bottom:-72px}
+  .couple .ph{border-radius:12px;aspect-ratio:4/3;background:linear-gradient(140deg,var(--tint),#D7E0D3);
+    display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:10px}
+  /* IMG DROP: Igor & Tatyana together mid-shift, friendly, 4:3 crop → replace .couple .ph content -->*/
+  .couple p{font-size:13px;color:var(--muted);margin-top:11px;padding:0 4px}
+  .couple b{color:var(--ink)}
+
+  /* about + stats */
+  .about{padding-top:120px}
+  .about .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;margin-bottom:44px}
+  .about .lead2{font-size:clamp(19px,2.2vw,25px);font-weight:600;line-height:1.4}
+  .about .side{color:var(--muted);font-size:15.5px;display:grid;gap:14px;align-content:center}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:24px 22px;min-height:170px;
+    display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+  .stat .n{font-weight:800;font-size:clamp(20px,2vw,24px);line-height:1.2}
+  .stat p{font-size:13.5px;color:var(--muted)}
+  .stat.hl{background:var(--green-fill);border-color:transparent}
+  .stat.hl .n,.stat.hl p{color:#fff}
+  .stat.hl p{opacity:.9}
+
+  /* services */
+  .services .head{max-width:640px;margin-bottom:34px}
+  .tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
+  .tag-p{border:1px solid var(--line);background:var(--card);border-radius:var(--r-pill);padding:11px 20px;
+    font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;min-height:44px;
+    transition:background .2s ease,color .2s ease,border-color .2s ease}
+  .tag-p:hover{border-color:var(--green)}
+  .tag-p.on{background:var(--green);border-color:var(--green);color:#fff}
+  .show{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+  .show .photo{border-radius:var(--r-lg);min-height:380px;background:linear-gradient(150deg,var(--warm),var(--warm-2));
+    display:grid;place-items:center;color:#8A7F6C;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:20px}
+  /* IMG DROP: real cleaning photo per service (kitchen wipe-down, window squeegee, carpet wash…)
+     4:3-ish, fills .show .photo via object-fit:cover. JS swaps a data-photo label per tag for now. -->*/
+  .promo{border-radius:var(--r-lg);background:linear-gradient(160deg,var(--green-fill),var(--green-deep));color:#fff;
+    padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column;gap:14px;justify-content:space-between}
+  .promo h3{font-size:clamp(22px,2.6vw,30px);font-weight:800}
+  .promo p{color:rgba(255,255,255,.88);max-width:44ch;font-size:15.5px}
+  .promo .price{font-size:14px;color:rgba(255,255,255,.82)}
+  .promo .price b{display:block;font-size:clamp(20px,2.2vw,26px);color:#fff;font-weight:800;margin-top:2px}
+  .promo .btn{background:#fff;color:var(--green-deep);align-self:stretch}
+  .promo .btn:hover{background:var(--tint)}
+
+  /* reviews strip */
+  .reviews{padding-top:0}
+  .rev-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .rev{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:24px}
+  .rev .stars{color:var(--green);letter-spacing:2px;font-size:14px;margin-bottom:12px}
+  .rev p{font-size:15px;color:var(--ink)}
+  .rev .who{margin-top:14px;font-size:13px;color:var(--muted);font-weight:600}
+
+  /* booking */
+  .booking .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
+    display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+  .booking .info{padding:clamp(28px,3.4vw,46px);display:grid;gap:16px;align-content:center;background:var(--tint)}
+  .booking .info .row{font-size:15px;display:grid;gap:2px}
+  .booking .info .row small{color:var(--muted);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:600}
+  .booking .info .row a{font-weight:700}
+  .booking form{padding:clamp(28px,3.4vw,46px);display:grid;gap:13px}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  form label{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+  form input,form textarea{width:100%;background:var(--ground);border:1px solid var(--line);color:var(--ink);
+    padding:12px 14px;border-radius:12px;font-family:inherit;font-size:15px;min-height:47px}
+  form input::placeholder,form textarea::placeholder{color:#9AA197}
+  form input:focus,form textarea:focus{border-color:var(--green)}
+  form textarea{min-height:86px;resize:vertical}
+  .ok,.err{display:none;padding:12px 14px;border-radius:12px;font-size:14px}
+  .ok{background:var(--tint);border:1px solid var(--green);color:var(--green-deep)}
+  .err{background:#F3E4DC;border:1px solid #B96A45;color:#7C4326}
+  .ok.show,.err.show{display:block}
+
+  /* closing */
+  .closing{padding:0 0 88px}
+  .closing .card{background:linear-gradient(160deg,var(--green-fill),var(--green-deep));border-radius:var(--r-lg);
+    color:#fff;text-align:center;padding:clamp(44px,6vw,72px) 28px}
+  .closing h2{color:#fff;margin-bottom:12px}
+  .closing p{color:rgba(255,255,255,.85);max-width:46ch;margin:0 auto 26px}
+  .closing .btn{background:#fff;color:var(--green-deep)}
+  .closing .btn:hover{background:var(--tint)}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 40px}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;font-size:13.5px;color:var(--muted)}
+
+  /* reveals */
+  .rise{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(0.22,1,0.36,1),transform .6s cubic-bezier(0.22,1,0.36,1)}
+  .rise.in{opacity:1;transform:none}
+  .stats .stat:nth-child(2){transition-delay:.07s}
+  .stats .stat:nth-child(3){transition-delay:.14s}
+  .stats .stat:nth-child(4){transition-delay:.21s}
+
+  @media(max-width:920px){
+    nav.links,.htel{display:none}
+    .menu-btn{display:grid}
+    .hero .frame{min-height:440px}
+    /* when the couple card wraps below the copy the text rides high — darken the whole scrim so it stays readable */
+    .hero .shade{background:linear-gradient(to top,rgba(31,38,32,.84),rgba(31,38,32,.62))}
+    .couple{margin-bottom:-40px;width:260px}
+    .about{padding-top:96px}
+    .about .grid{grid-template-columns:1fr;gap:20px}
+    .stats{grid-template-columns:1fr 1fr}
+    .show{grid-template-columns:1fr}
+    .show .photo{min-height:280px}
+    .rev-row{grid-template-columns:1fr}
+    .booking .card{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){
+    .stats{grid-template-columns:1fr}
+    .hero .content{padding:84px 24px 24px}
+    .couple{width:100%;margin-bottom:-56px}
+    .frow{grid-template-columns:1fr}
+    .header-cta{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .rise{opacity:1;transform:none;transition:none}
+  }
+</style>
+<noscript><style>.rise{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap bar">
+    <a href="#top" class="logo" role="img" aria-label="The Handy Pair logo"></a>
+    <a href="#top" class="wm">The Handy Pair</a>
+    <nav class="links">
+      <a href="#about">About us</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contacts">Contacts</a>
+    </nav>
+    <span class="hspace"></span>
+    <a href="tel:+12365142372" class="htel">(236) 514-2372<small>7 days · 8:00–18:00</small></a>
+    <a href="#contacts" class="btn sm header-cta">Free consultation</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a class="mn" href="#about">About us</a>
+    <a class="mn" href="#services">Services</a>
+    <a class="mn" href="#reviews">Reviews</a>
+    <a class="mn" href="#contacts">Contacts</a>
+    <a class="mn" href="tel:+12365142372">Call (236) 514-2372</a>
+    <a href="#contacts" class="btn">Request a quote</a>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="frame">
+      <div class="shade" aria-hidden="true"></div>
+      <div class="badge"><i>✓</i>We also serve businesses</div>
+      <div class="content">
+        <div>
+          <h1 class="display"><span class="em" style="color:#CFE3C9">Cleaning for homes</span><br>and commercial spaces</h1>
+          <p class="tag">Spotless is our standard.</p>
+          <a href="#contacts" class="btn">Request a quote</a>
+        </div>
+        <div class="couple">
+          <div class="ph">Photo — Igor &amp; Tatyana</div>
+          <p><b>Our cleaning pair</b>: we handle every job ourselves: homes, offices and everything in between, across San Francisco.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- about -->
+<section class="about" id="about">
+  <div class="wrap">
+    <span class="eb rise">About us</span>
+    <div class="grid">
+      <p class="lead2 rise"><span class="em">We're a professional cleaning pair</span> who bring back comfort, shine and order to your home or business. We work carefully, fast, and with real attention to every client.</p>
+      <div class="side rise">
+        <p>We create the kind of clean you actually want to live and work in: spotless, and with zero hassle for you.</p>
+        <p>Our job isn't just to clean. It's to make the whole process clear, comfortable and even pleasant.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <!-- PLACEHOLDER FIGURES — confirm with client -->
+      <div class="stat rise"><div class="n">&gt;10 years<br>experience</div><p>We've been at this long enough to make cleaning easy and surprise-free.</p></div>
+      <div class="stat rise"><div class="n">&gt;500 happy<br>clients</div><p>When this many people invite us back again and again, it says a lot.</p></div>
+      <div class="stat hl rise"><div class="n">The Handy Pair —</div><p>the team that turns cleaning from a chore into a clean solution.</p></div>
+      <div class="stat rise"><div class="n">&gt;1000 cleans<br>done</div><p>We give our clients back spotless spaces and free time.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- services -->
+<section class="services" id="services">
+  <div class="wrap">
+    <span class="eb rise">Services</span>
+    <div class="head rise">
+      <h2 class="h2"><span class="em">Professional cleaning</span> for apartments, homes and offices.</h2>
+      <p class="lead" style="margin-top:12px">Safe products and modern equipment. The result: flawless cleanliness and order.</p>
+    </div>
+    <div class="tags rise" role="tablist" aria-label="Service types">
+      <button class="tag-p on" data-i="0" role="tab" aria-selected="true">Deep clean</button>
+      <button class="tag-p" data-i="1" role="tab" aria-selected="false">Maintenance clean</button>
+      <button class="tag-p" data-i="2" role="tab" aria-selected="false">Commercial clean</button>
+      <button class="tag-p" data-i="3" role="tab" aria-selected="false">Post-renovation</button>
+      <button class="tag-p" data-i="4" role="tab" aria-selected="false">Windows</button>
+      <button class="tag-p" data-i="5" role="tab" aria-selected="false">Upholstery &amp; carpets</button>
+    </div>
+    <div class="show rise">
+      <div class="photo" id="svcPhoto">Photo — deep clean in progress</div>
+      <div class="promo">
+        <div>
+          <h3 id="svcTitle">Deep clean</h3>
+          <p id="svcDesc">A complete top-to-bottom refresh of the whole home: built-up grime, hidden corners, baseboards and all.</p>
+        </div>
+        <div class="price">
+          <!-- PLACEHOLDER FIGURES: sample starting prices — confirm with client -->
+          Starting price<b id="svcPrice">from $0.25 / sq ft</b>
+        </div>
+        <a href="#contacts" class="btn">Request a quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- reviews -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <span class="eb rise">Reviews</span>
+    <div class="rev-row">
+      <!-- PLACEHOLDER: sample reviews — replace with real Google reviews before launch -->
+      <div class="rev rise"><div class="stars">★★★★★</div><p>“They moved the couch without being asked and cleaned under it. First cleaners who ever did.”</p><div class="who">Dana P. · Noe Valley</div></div>
+      <div class="rev rise" style="transition-delay:.07s"><div class="stars">★★★★★</div><p>“Fixed quote held to the dollar. The office looked better than the day we moved in.”</p><div class="who">Marcus L. · SoMa</div></div>
+      <div class="rev rise" style="transition-delay:.14s"><div class="stars">★★★★★</div><p>“Same two people every time, always on schedule. It's one less thing to think about.”</p><div class="who">Renée T. · Pacific Heights</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- contacts / booking -->
+<section class="booking" id="contacts" style="padding-top:0">
+  <div class="wrap">
+    <span class="eb rise">Contacts</span>
+    <div class="card rise">
+      <div class="info">
+        <h2 class="h2"><span class="em">Request a quote</span> — we'll reply the same day.</h2>
+        <div class="row"><small>Phone</small><a href="tel:+12365142372">(236) 514-2372</a></div>
+        <div class="row"><small>Email</small><a href="mailto:emoless2006@gmail.com">emoless2006@gmail.com</a></div>
+        <div class="row"><small>Service area</small><span>San Francisco · every neighborhood</span></div>
+        <div class="row"><small>Hours</small><span>7 days · 8:00–18:00, evenings by appointment</span></div>
+      </div>
+      <!-- action/method = no-JS fallback so the lead survives without scripts -->
+      <form id="quoteForm" novalidate action="https://formsubmit.co/emoless2006@gmail.com" method="POST">
+        <div class="frow">
+          <div><label for="f-name">Name *</label><input id="f-name" name="Name" type="text" placeholder="e.g. Dana" required autocomplete="name"></div>
+          <div><label for="f-phone">Phone *</label><input id="f-phone" name="Phone" type="tel" placeholder="(415) 555-0123" required autocomplete="tel" inputmode="tel" pattern="[0-9\(\)\+\.\s\-]{7,}" title="Please enter a phone number (at least 7 digits)"></div>
+        </div>
+        <div><label for="f-msg">What needs cleaning?</label><textarea id="f-msg" name="Message" placeholder="Home, office, move-out… size and how often"></textarea></div>
+        <input type="text" id="f-hp" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="New quote request — The Handy Pair (v2)">
+        <input type="hidden" name="_template" value="table">
+        <button class="btn" type="submit">Request a quote</button>
+        <p class="ok" id="ok" role="status">Thanks — we've got it. Igor or Tatyana will call you back today, or first thing tomorrow if it's after hours.</p>
+        <p class="err" id="err" role="alert">Something went wrong and the form didn't send. Please call <a href="tel:+12365142372" style="text-decoration:underline">(236) 514-2372</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- closing CTA -->
+<section class="closing">
+  <div class="wrap">
+    <div class="card rise">
+      <h2 class="h2">Ready for a spotless space?</h2>
+      <p>Tell us what needs cleaning and get an honest, fixed price: no walk-through, no obligation.</p>
+      <a href="#contacts" class="btn">Request a quote</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 The Handy Pair · San Francisco</span>
+    <span>Licensed, bonded &amp; insured · Certificates available on request</span>
+    <a href="tel:+12365142372" style="font-weight:700;color:var(--ink)">(236) 514-2372</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* header border on scroll */
+  var hdr=document.getElementById('hdr'),sch=false;
+  addEventListener('scroll',function(){
+    if(sch)return;sch=true;
+    requestAnimationFrame(function(){sch=false;hdr.classList.toggle('solid',scrollY>10);});
+  },{passive:true});
+
+  /* mobile menu */
+  var mb=document.getElementById('menuBtn'),mm=document.getElementById('mmenu');
+  mb.addEventListener('click',function(){var o=mm.classList.toggle('open');mb.setAttribute('aria-expanded',o);});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');mb.setAttribute('aria-expanded','false');});});
+
+  /* service tag switcher */
+  var svc=[
+    {t:'Deep clean',d:'A complete top-to-bottom refresh of the whole home: built-up grime, hidden corners, baseboards and all.',p:'from $0.25 / sq ft',ph:'Photo — deep clean in progress'},
+    {t:'Maintenance clean',d:'Weekly or bi-weekly upkeep by the same pair every visit, so your place simply never gets dirty.',p:'from $0.15 / sq ft',ph:'Photo — regular home clean'},
+    {t:'Commercial clean',d:'Offices, retail and hospitality spaces cleaned after hours: desks, floors, kitchens and common areas.',p:'from $0.12 / sq ft',ph:'Photo — office clean after hours'},
+    {t:'Post-renovation',d:'Dust-down and detail after the trades finish: residue, film, paint specks and construction dust gone.',p:'from $0.35 / sq ft',ph:'Photo — post-renovation detail'},
+    {t:'Windows',d:'Interior and reachable exterior glass, frames and sills, streak-free, with the right tools for it.',p:'from $8 / window',ph:'Photo — window squeegee close-up'},
+    {t:'Upholstery & carpets',d:'Professional deep extraction for sofas, chairs and rugs using safe, fabric-appropriate products.',p:'from $30 / item',ph:'Photo — carpet extraction wash'}
+  ];
+  var tags=[].slice.call(document.querySelectorAll('.tag-p'));
+  tags.forEach(function(b){
+    b.addEventListener('click',function(){
+      tags.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false');});
+      b.classList.add('on');b.setAttribute('aria-selected','true');
+      var s=svc[+b.dataset.i];
+      document.getElementById('svcTitle').textContent=s.t;
+      document.getElementById('svcDesc').textContent=s.d;
+      document.getElementById('svcPrice').textContent=s.p;
+      document.getElementById('svcPhoto').textContent=s.ph;
+    });
+  });
+
+  /* reveals */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.18});
+  document.querySelectorAll('.rise').forEach(function(el){io.observe(el);});
+
+  /* form — FormSubmit AJAX with native POST fallback; first submission triggers a one-time activation email */
+  var form=document.getElementById('quoteForm'),ok=document.getElementById('ok'),err=document.getElementById('err');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){form.reportValidity();return;}
+    var btn=form.querySelector('button[type=submit]'),orig=btn.textContent;
+    ok.classList.remove('show');err.classList.remove('show');
+    if(document.getElementById('f-hp').value){ok.classList.add('show');btn.textContent='Sent ✓';btn.disabled=true;return;}
+    btn.disabled=true;btn.textContent='Sending…';
+    fetch('https://formsubmit.co/ajax/emoless2006@gmail.com',{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'New quote request — The Handy Pair (v2)',_template:'table',
+        Name:document.getElementById('f-name').value.trim(),
+        Phone:document.getElementById('f-phone').value.trim(),
+        Message:document.getElementById('f-msg').value.trim()||'—'
+      })
+    }).then(function(r){
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      ok.classList.add('show');btn.textContent='Sent ✓';
+    }).catch(function(){
+      err.classList.add('show');btn.disabled=false;btn.textContent=orig;
+    });
+  });
+})();
+</script>
+</body>
+</html>
