@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Handy Pair — Cleaning for Homes &amp; Commercial Spaces · San Francisco</title>
-<meta name="description" content="Professional residential and commercial cleaning by Igor & Tatyana. Request a free quote — spotless is our standard.">
+<meta name="description" content="Professional residential and commercial cleaning by Igor & Tatyana. Request a free quote: spotless is our standard.">
 <link rel="icon" type="image/png" href="../logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- V2 — fresh clean-service / trustworthy-local. Bright off-white ground, one calm forest-green
      accent, warm rounded photo frames, bracketed eyebrows, pill service tags, green promo price card.
      Reference matched for feel, not content. -->
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --ground:#F7F6F2;      /* bright warm off-white */
@@ -71,6 +71,7 @@
   .htel{font-size:14px;font-weight:600;white-space:nowrap}
   .htel small{display:block;font-weight:400;font-size:11px;color:var(--muted)}
   .menu-btn{display:none;width:44px;height:44px;place-items:center;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;color:var(--ink)}
+  .hcall{display:none;width:44px;height:44px;place-items:center;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--green)}
   .mmenu{display:none;position:fixed;inset:74px 0 auto 0;z-index:49;background:var(--ground);border-bottom:1px solid var(--line);padding:14px 24px 22px;flex-direction:column}
   .mmenu.open{display:flex}
   .mmenu a.mn{font-size:17px;padding:14px 0;border-bottom:1px solid var(--line)}
@@ -81,7 +82,10 @@
   .hero .frame{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:520px;
     background:linear-gradient(150deg,var(--warm),var(--warm-2));display:flex;align-items:flex-end}
   .frame>.ph-hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .hero .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(31,38,32,.78),rgba(31,38,32,.10) 62%)}
+  /* scrim biased to the text column so the headline never ghosts over bright photo regions */
+  .hero .shade{position:absolute;inset:0;background:
+    linear-gradient(to right,rgba(31,38,32,.55),transparent 58%),
+    linear-gradient(to top,rgba(31,38,32,.78),rgba(31,38,32,.10) 62%)}
   .hero .badge{position:absolute;top:22px;left:22px;display:inline-flex;align-items:center;gap:8px;
     background:var(--card);border-radius:14px;padding:10px 14px;font-size:12.5px;font-weight:600;color:var(--ink);
     box-shadow:0 10px 26px rgba(31,38,32,.14)}
@@ -104,6 +108,8 @@
   .about .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;margin-bottom:44px}
   .about .lead2{font-size:clamp(19px,2.2vw,25px);font-weight:600;line-height:1.4}
   .about .side{color:var(--muted);font-size:15.5px;display:grid;gap:14px;align-content:center}
+  .about .side p{max-width:48ch}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
   .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:24px 22px;min-height:170px;
     display:flex;flex-direction:column;justify-content:space-between;gap:16px}
@@ -120,6 +126,7 @@
     transition:color .3s ease,transform .45s cubic-bezier(0.22,1,0.36,1);
     background:none;border:none;padding:0;cursor:pointer;text-align:left;display:block;font-family:inherit}
   .w.on{color:var(--green);transform:translateX(12px)}
+  @media (hover:hover) and (pointer:fine){ .w:not(.on):hover{color:var(--ink)} }
   .meta{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .4s ease,opacity .4s ease,visibility 0s .4s}
   .meta>.mi{overflow:hidden;display:flex;align-items:center;gap:16px;min-height:0;flex-wrap:wrap}
   .meta>.mi>*{margin:8px 0 12px} /* spacing as child margins inside the clipped row — collapses to 0 */
@@ -145,6 +152,7 @@
   .promo p{color:rgba(255,255,255,.88);max-width:44ch;font-size:15.5px}
   .promo .price{font-size:14px;color:rgba(255,255,255,.82)}
   .promo .price b{display:block;font-size:clamp(20px,2.2vw,26px);color:#fff;font-weight:800;margin-top:2px}
+  .promo .typ{display:block;font-size:13px;color:rgba(255,255,255,.75);margin-top:4px} /* anchor for visitors who don't know their sq ft */
   .promo .btn{background:#fff;color:var(--green-deep);align-self:stretch}
   .promo .btn:hover{background:var(--tint)}
 
@@ -168,7 +176,7 @@
   form label{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
   form input,form textarea{width:100%;background:var(--ground);border:1px solid var(--line);color:var(--ink);
     padding:12px 14px;border-radius:12px;font-family:inherit;font-size:15px;min-height:47px}
-  form input::placeholder,form textarea::placeholder{color:#9AA197}
+  form input::placeholder,form textarea::placeholder{color:#79837A} /* darker: the phone placeholder carries format guidance */
   form input:focus,form textarea:focus{border-color:var(--green)}
   form textarea{min-height:86px;resize:vertical}
   .ok,.err{display:none;padding:12px 14px;border-radius:12px;font-size:14px}
@@ -198,6 +206,7 @@
   @media(max-width:920px){
     nav.links,.htel{display:none}
     .menu-btn{display:grid}
+    .hcall{display:grid} /* one-tap calling stays in the bar even when the phone text is hidden */
     .hero .frame{min-height:440px}
     .hero .shade{background:linear-gradient(to top,rgba(31,38,32,.84),rgba(31,38,32,.55))}
     .about .grid{grid-template-columns:1fr;gap:20px}
@@ -218,6 +227,7 @@
     *{scroll-behavior:auto!important}
     .rise{opacity:1;transform:none;transition:none}
     .w,.w.on{transform:none;transition:color .3s ease}
+    .meta,.w.on+.meta{transition:none}
   }
 </style>
 <noscript><style>.rise{opacity:1;transform:none}</style></noscript>
@@ -236,7 +246,8 @@
     </nav>
     <span class="hspace"></span>
     <a href="tel:+12365142372" class="htel">(236) 514-2372<small>7 days · 8:00–18:00</small></a>
-    <a href="#contacts" class="btn sm header-cta">Free consultation</a>
+    <a href="#contacts" class="btn sm header-cta">Request a quote</a>
+    <a href="tel:+12365142372" class="hcall" aria-label="Call (236) 514-2372"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.6 1.5c.4-.4 1-.4 1.4 0l1.6 1.6c.4.4.4 1 0 1.4l-.9.9c.6 1.3 1.6 2.3 2.9 2.9l.9-.9c.4-.4 1-.4 1.4 0l1.6 1.6c.4.4.4 1 0 1.4l-1 1c-.5.5-1.2.7-1.9.5-4-1.2-7.2-4.4-8.4-8.4-.2-.7 0-1.4.5-1.9l.9-1.1z" fill="currentColor"/></svg></a>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
       <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
@@ -255,9 +266,9 @@
 <section class="hero" id="top">
   <div class="wrap">
     <div class="frame">
-      <img class="ph-hero" src="hero.jpg" alt="A bright living room mid-clean: one of The Handy Pair mopping the floor with a cart of supplies" fetchpriority="high">
+      <img class="ph-hero" src="hero.jpg" width="1920" height="1005" alt="A bright living room mid-clean: one of The Handy Pair mopping the floor with a cart of supplies" fetchpriority="high">
       <div class="shade" aria-hidden="true"></div>
-      <div class="badge"><i>✓</i>We also serve businesses</div>
+      <div class="badge"><i>✓</i>Igor &amp; Tatyana — the same pair, every visit</div>
       <div class="content">
         <div>
           <h1 class="display"><span class="em" style="color:#CFE3C9">Cleaning for homes</span><br>and commercial spaces</h1>
@@ -272,6 +283,7 @@
 <!-- about -->
 <section class="about" id="about">
   <div class="wrap">
+    <h2 class="sr-only">About us</h2>
     <span class="eb rise">About us</span>
     <div class="grid">
       <p class="lead2 rise"><span class="em">We're a professional cleaning pair</span> who bring back comfort, shine and order to your home or business. We work carefully, fast, and with real attention to every client.</p>
@@ -280,7 +292,7 @@
         <p>Our job isn't just to clean. It's to make the whole process clear, comfortable and even pleasant.</p>
         <div class="couple">
           <div class="ph">Photo — Igor &amp; Tatyana</div>
-          <p><b>Our cleaning pair</b>: we handle every job ourselves — homes, offices and everything in between, across San Francisco.</p>
+          <p><b>Our cleaning pair</b>: we handle every job ourselves: homes, offices and everything in between, across San Francisco.</p>
         </div>
       </div>
     </div>
@@ -297,6 +309,7 @@
 <!-- where we clean — scroll-driven rail -->
 <section class="spaces" id="spaces">
   <div class="wrap">
+    <h2 class="sr-only">Where we clean</h2>
     <span class="eb rise">Where we clean</span>
     <div class="rail" id="rail">
       <button type="button" class="w on">Homes</button><div class="meta"><div class="mi"><p>Regular and deep cleans for houses, kept to a standard.</p><a href="#contacts" class="btn sm">Request a quote</a></div></div>
@@ -317,13 +330,13 @@
       <h2 class="h2"><span class="em">Professional cleaning</span> for apartments, homes and offices.</h2>
       <p class="lead" style="margin-top:12px">Safe products and modern equipment. The result: flawless cleanliness and order.</p>
     </div>
-    <div class="tags rise" role="tablist" aria-label="Service types">
-      <button class="tag-p on" data-i="0" role="tab" aria-selected="true">Deep clean</button>
-      <button class="tag-p" data-i="1" role="tab" aria-selected="false">Maintenance clean</button>
-      <button class="tag-p" data-i="2" role="tab" aria-selected="false">Commercial clean</button>
-      <button class="tag-p" data-i="3" role="tab" aria-selected="false">Post-renovation</button>
-      <button class="tag-p" data-i="4" role="tab" aria-selected="false">Windows</button>
-      <button class="tag-p" data-i="5" role="tab" aria-selected="false">Upholstery &amp; carpets</button>
+    <div class="tags rise" role="group" aria-label="Service types">
+      <button class="tag-p on" data-i="0" aria-pressed="true">Deep clean</button>
+      <button class="tag-p" data-i="1" aria-pressed="false">Maintenance clean</button>
+      <button class="tag-p" data-i="2" aria-pressed="false">Commercial clean</button>
+      <button class="tag-p" data-i="3" aria-pressed="false">Post-renovation</button>
+      <button class="tag-p" data-i="4" aria-pressed="false">Windows</button>
+      <button class="tag-p" data-i="5" aria-pressed="false">Upholstery &amp; carpets</button>
     </div>
     <div class="show rise">
       <div class="photo" id="svcPhoto">Photo — deep clean in progress</div>
@@ -335,6 +348,7 @@
         <div class="price">
           <!-- PLACEHOLDER FIGURES: sample starting prices — confirm with client -->
           Starting price<b id="svcPrice">from $0.25 / sq ft</b>
+          <span class="typ" id="svcTyp">Typical 1-bed apartment ≈ $220</span>
         </div>
         <a href="#contacts" class="btn">Request a quote</a>
       </div>
@@ -361,24 +375,25 @@
     <span class="eb rise">Contacts</span>
     <div class="card rise">
       <div class="info">
-        <h2 class="h2"><span class="em">Request a quote</span> — we'll reply the same day.</h2>
+        <h2 class="h2"><span class="em">Request a quote</span> and we'll reply the same day.</h2>
         <div class="row"><small>Phone</small><a href="tel:+12365142372">(236) 514-2372</a></div>
         <div class="row"><small>Email</small><a href="mailto:emoless2006@gmail.com">emoless2006@gmail.com</a></div>
         <div class="row"><small>Service area</small><span>San Francisco · every neighborhood</span></div>
         <div class="row"><small>Hours</small><span>7 days · 8:00–18:00, evenings by appointment</span></div>
+        <div class="row"><small>Peace of mind</small><span>Licensed, bonded &amp; insured · Certificates on request</span></div>
       </div>
       <!-- action/method = no-JS fallback so the lead survives without scripts -->
       <form id="quoteForm" novalidate action="https://formsubmit.co/emoless2006@gmail.com" method="POST">
         <div class="frow">
           <div><label for="f-name">Name *</label><input id="f-name" name="Name" type="text" placeholder="e.g. Dana" required autocomplete="name"></div>
-          <div><label for="f-phone">Phone *</label><input id="f-phone" name="Phone" type="tel" placeholder="(415) 555-0123" required autocomplete="tel" inputmode="tel" pattern="[0-9\(\)\+\.\s\-]{7,}" title="Please enter a phone number (at least 7 digits)"></div>
+          <div><label for="f-phone">Phone *</label><input id="f-phone" name="Phone" type="tel" placeholder="(415) 555-0123" required autocomplete="tel" inputmode="tel" pattern="(?:[^0-9]*[0-9]){7,}[^0-9]*" title="Please enter a phone number (at least 7 digits)"></div>
         </div>
         <div><label for="f-msg">What needs cleaning?</label><textarea id="f-msg" name="Message" placeholder="Home, office, move-out… size and how often"></textarea></div>
         <input type="text" id="f-hp" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="New quote request — The Handy Pair (v2)">
         <input type="hidden" name="_template" value="table">
         <button class="btn" type="submit">Request a quote</button>
-        <p class="ok" id="ok" role="status">Thanks — we've got it. Igor or Tatyana will call you back today, or first thing tomorrow if it's after hours.</p>
+        <p class="ok" id="ok" role="status">Thanks, we've got it. Igor or Tatyana will call you back today, or first thing tomorrow if it's after hours.</p>
         <p class="err" id="err" role="alert">Something went wrong and the form didn't send. Please call <a href="tel:+12365142372" style="text-decoration:underline">(236) 514-2372</a>.</p>
       </form>
     </div>
@@ -410,13 +425,18 @@
 
   /* word rail — active word nearest viewport center (same mechanic as the main site) */
   var words=[].slice.call(document.querySelectorAll('#rail .w'));
+  var railVisible=false;
   function railScroll(){
+    if(!railVisible)return; /* no active-word churn while the rail is off-screen */
     var cy=innerHeight/2,best=0,bd=1e9;
     words.forEach(function(w,i){var r=w.getBoundingClientRect();var d=Math.abs((r.top+r.bottom)/2-cy);if(d<bd){bd=d;best=i;}});
     words.forEach(function(w,i){w.classList.toggle('on',i===best);});
   }
   words.forEach(function(w){w.addEventListener('click',function(){w.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});});});
-  if(words.length)railScroll();
+  if(words.length){
+    new IntersectionObserver(function(es){railVisible=es[0].isIntersecting;if(railVisible)railScroll();},{threshold:.1})
+      .observe(document.getElementById('rail'));
+  }
 
   /* one rAF-coalesced scroll handler: header border + word rail */
   var hdr=document.getElementById('hdr'),sch=false;
@@ -429,25 +449,30 @@
   var mb=document.getElementById('menuBtn'),mm=document.getElementById('mmenu');
   mb.addEventListener('click',function(){var o=mm.classList.toggle('open');mb.setAttribute('aria-expanded',o);});
   mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');mb.setAttribute('aria-expanded','false');});});
+  function closeMenu(){mm.classList.remove('open');mb.setAttribute('aria-expanded','false');}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
+  document.addEventListener('click',function(e){if(mm.classList.contains('open')&&!mm.contains(e.target)&&!mb.contains(e.target))closeMenu();});
 
   /* service tag switcher */
+  /* PLACEHOLDER FIGURES: prices and "typical" anchors are samples — confirm with client */
   var svc=[
-    {t:'Deep clean',d:'A complete top-to-bottom refresh of the whole home: built-up grime, hidden corners, baseboards and all.',p:'from $0.25 / sq ft',ph:'Photo — deep clean in progress'},
-    {t:'Maintenance clean',d:'Weekly or bi-weekly upkeep by the same pair every visit, so your place simply never gets dirty.',p:'from $0.15 / sq ft',ph:'Photo — regular home clean'},
-    {t:'Commercial clean',d:'Offices, retail and hospitality spaces cleaned after hours: desks, floors, kitchens and common areas.',p:'from $0.12 / sq ft',ph:'Photo — office clean after hours'},
-    {t:'Post-renovation',d:'Dust-down and detail after the trades finish: residue, film, paint specks and construction dust gone.',p:'from $0.35 / sq ft',ph:'Photo — post-renovation detail'},
-    {t:'Windows',d:'Interior and reachable exterior glass, frames and sills, streak-free, with the right tools for it.',p:'from $8 / window',ph:'Photo — window squeegee close-up'},
-    {t:'Upholstery & carpets',d:'Professional deep extraction for sofas, chairs and rugs using safe, fabric-appropriate products.',p:'from $30 / item',ph:'Photo — carpet extraction wash'}
+    {t:'Deep clean',d:'A complete top-to-bottom refresh of the whole home: built-up grime, hidden corners, baseboards and all.',p:'from $0.25 / sq ft',typ:'Typical 1-bed apartment ≈ $220',ph:'Photo — deep clean in progress'},
+    {t:'Maintenance clean',d:'Weekly or bi-weekly upkeep by the same pair every visit, so your place simply never gets dirty.',p:'from $0.15 / sq ft',typ:'Typical 1-bed visit ≈ $130',ph:'Photo — regular home clean'},
+    {t:'Commercial clean',d:'Offices, retail and hospitality spaces cleaned after hours: desks, floors, kitchens and common areas.',p:'from $0.12 / sq ft',typ:'Typical small office ≈ $180 / visit',ph:'Photo — office clean after hours'},
+    {t:'Post-renovation',d:'Dust-down and detail after the trades finish: residue, film, paint specks and construction dust gone.',p:'from $0.35 / sq ft',typ:'Typical 1-bed apartment ≈ $350',ph:'Photo — post-renovation detail'},
+    {t:'Windows',d:'Interior and reachable exterior glass, frames and sills, streak-free, with the right tools for it.',p:'from $8 / window',typ:'Typical home ≈ $120',ph:'Photo — window squeegee close-up'},
+    {t:'Upholstery & carpets',d:'Professional deep extraction for sofas, chairs and rugs using safe, fabric-appropriate products.',p:'from $30 / item',typ:'Typical sofa ≈ $90',ph:'Photo — carpet extraction wash'}
   ];
   var tags=[].slice.call(document.querySelectorAll('.tag-p'));
   tags.forEach(function(b){
     b.addEventListener('click',function(){
-      tags.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false');});
-      b.classList.add('on');b.setAttribute('aria-selected','true');
+      tags.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-pressed','false');});
+      b.classList.add('on');b.setAttribute('aria-pressed','true');
       var s=svc[+b.dataset.i];
       document.getElementById('svcTitle').textContent=s.t;
       document.getElementById('svcDesc').textContent=s.d;
       document.getElementById('svcPrice').textContent=s.p;
+      document.getElementById('svcTyp').textContent=s.typ;
       document.getElementById('svcPhoto').textContent=s.ph;
     });
   });
