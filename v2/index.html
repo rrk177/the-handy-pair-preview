@@ -166,6 +166,18 @@
   .promo .btn{background:#fff;color:var(--green-deep);align-self:stretch}
   .promo .btn:hover{background:var(--tint)}
 
+  /* process — numbered because the sequence itself is the message */
+  .process .head{max-width:620px;margin-bottom:38px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:26px 22px;
+    display:flex;flex-direction:column;gap:12px}
+  .step .n{font-weight:800;font-size:15px;color:var(--green);letter-spacing:.04em}
+  .step h3{font-size:18px;font-weight:700}
+  .step p{font-size:14px;color:var(--muted)}
+  .steps .step:nth-child(2){transition-delay:.07s}
+  .steps .step:nth-child(3){transition-delay:.14s}
+  .steps .step:nth-child(4){transition-delay:.21s}
+
   /* reviews strip */
   .reviews{padding-top:0}
   .rev-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -173,6 +185,22 @@
   .rev .stars{color:var(--green);letter-spacing:2px;font-size:14px;margin-bottom:12px}
   .rev p{font-size:15px;color:var(--ink)}
   .rev .who{margin-top:14px;font-size:13px;color:var(--muted);font-weight:600}
+
+  /* faq — split: intro column left, accordion right (uses the page width, no dead space) */
+  .faq .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+  .faq .intro p{margin-top:14px}
+  .faq .intro .tel{display:inline-block;margin-top:20px;font-weight:700;font-size:19px;color:var(--ink)}
+  .faq .intro .tel small{display:block;font-size:12.5px;font-weight:400;color:var(--muted);margin-top:3px}
+  .faq .list{display:grid;gap:10px}
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:20px 22px}
+  .faq details[open]{border-color:rgba(63,95,68,.35)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;
+    font-weight:700;font-size:16.5px;color:var(--ink);min-height:32px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pm{flex:none;width:26px;height:26px;border-radius:50%;background:var(--tint);color:var(--green);
+    display:grid;place-items:center;font-size:17px;line-height:1;transition:transform .2s cubic-bezier(0.23,1,0.32,1)}
+  .faq details[open] summary .pm{transform:rotate(45deg)}
+  .faq details p{margin-top:12px;font-size:15px;color:var(--muted);max-width:60ch}
 
   /* booking */
   .booking .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
@@ -229,6 +257,8 @@
     .show .photo{min-height:280px}
     .rev-row{grid-template-columns:1fr}
     .booking .card{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .faq .grid{grid-template-columns:1fr;gap:28px}
   }
   /* mobile: the rail is a plain list of spaces — descriptions and buttons live in Services below,
      so nothing pops in and out under the thumb while scrolling */
@@ -238,7 +268,7 @@
     .rail{gap:2px}
   }
   @media(max-width:560px){
-    .stats{grid-template-columns:1fr}
+    .stats,.steps{grid-template-columns:1fr}
     .hero .content{padding:84px 24px 24px}
     .couple{max-width:100%}
     .frow{grid-template-columns:1fr}
@@ -264,8 +294,9 @@
     <nav class="links">
       <a href="#about">About us</a>
       <a href="#services">Services</a>
+      <a href="#process">Process</a>
       <a href="#reviews">Reviews</a>
-      <a href="#contacts">Contacts</a>
+      <a href="#faq">FAQ</a>
     </nav>
     <span class="hspace"></span>
     <a href="tel:+12365142372" class="htel">(236) 514-2372<small>7 days · 8:00–18:00</small></a>
@@ -278,7 +309,9 @@
   <div class="mmenu" id="mmenu">
     <a class="mn" href="#about">About us</a>
     <a class="mn" href="#services">Services</a>
+    <a class="mn" href="#process">Process</a>
     <a class="mn" href="#reviews">Reviews</a>
+    <a class="mn" href="#faq">FAQ</a>
     <a class="mn" href="#contacts">Contacts</a>
     <a class="mn" href="tel:+12365142372">Call (236) 514-2372</a>
     <a href="#contacts" class="btn">Request a quote</a>
@@ -381,6 +414,22 @@
   </div>
 </section>
 
+<!-- process -->
+<section class="process" id="process" style="padding-top:0">
+  <div class="wrap">
+    <span class="eb rise">Process</span>
+    <div class="head rise">
+      <h2 class="h2"><span class="em">The simple method</span> behind our success</h2>
+    </div>
+    <div class="steps">
+      <div class="step rise"><div class="n">01</div><h3>Meet &amp; greet</h3><p>Upon receiving a cleaning request we offer a meet and greet via phone or in person, so you get to know us better.</p></div>
+      <div class="step rise"><div class="n">02</div><h3>Flexible scheduling</h3><p>We have flexible schedules and will try our best to accommodate the time that works for YOU.</p></div>
+      <div class="step rise"><div class="n">03</div><h3>We bring the supplies</h3><p>We bring our own cleaning supplies, so you don't have to worry about a thing.</p></div>
+      <div class="step rise"><div class="n">04</div><h3>We value your feedback</h3><p>We appreciate any feedback and will try our best to meet your needs.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- reviews -->
 <section class="reviews" id="reviews">
   <div class="wrap">
@@ -390,6 +439,28 @@
       <div class="rev rise"><div class="stars">★★★★★</div><p>“They moved the couch without being asked and cleaned under it. First cleaners who ever did.”</p><div class="who">Dana P. · Noe Valley</div></div>
       <div class="rev rise" style="transition-delay:.07s"><div class="stars">★★★★★</div><p>“Fixed quote held to the dollar. The office looked better than the day we moved in.”</p><div class="who">Marcus L. · SoMa</div></div>
       <div class="rev rise" style="transition-delay:.14s"><div class="stars">★★★★★</div><p>“Same two people every time, always on schedule. It's one less thing to think about.”</p><div class="who">Renée T. · Pacific Heights</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- faq -->
+<section class="faq" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="grid">
+      <div class="intro">
+        <span class="eb rise">FAQ</span>
+        <h2 class="h2 rise"><span class="em">Straight answers</span> before you book.</h2>
+        <p class="lead rise">The things clients ask us most, answered the way we'd answer them on the phone.</p>
+        <a href="tel:+12365142372" class="tel rise">(236) 514-2372<small>Still unsure? Call us, 7 days a week</small></a>
+      </div>
+      <div class="list rise">
+        <details open><summary>What's included in a standard clean?<span class="pm">+</span></summary><p>Every visit: dusting and wipe-downs in every room, floors vacuumed and mopped, kitchen counters and outside of appliances, bathrooms scrubbed and sanitized, mirrors, trash out and beds made. Add-ons on request: inside the oven or fridge, interior windows, laundry and linens, walls and baseboards. Your written quote lists exactly what's covered.</p></details>
+        <details><summary>Do I need to be home during the clean?<span class="pm">+</span></summary><p>No. Most clients give us secure entry instructions once and never think about it again. It's the same two of us every visit, and you get a note when we're done.</p></details>
+        <details><summary>Is the quote really fixed?<span class="pm">+</span></summary><p>Yes. The written price covers labour and supplies for the scope you approved. If something falls outside it, we quote that separately and wait for your go-ahead first.</p></details>
+        <details><summary>Do you bring your own supplies?<span class="pm">+</span></summary><p>Always: equipment, cloths and products included. Prefer we use your own products for allergy or surface reasons? Just tell us.</p></details>
+        <details><summary>What if I'm not happy with something?<span class="pm">+</span></summary><p>Point it out while we're still there and we redo it on the spot. Notice later? Call within 24 hours and we come back at no charge.</p></details>
+        <details><summary>Are you insured if something breaks?<span class="pm">+</span></summary><p>We carry $2M liability coverage and are bonded against loss. It rarely comes up, but it's there, in writing, before we start.</p></details>
+      </div>
     </div>
   </div>
 </section>
