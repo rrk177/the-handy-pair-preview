@@ -236,6 +236,41 @@
   form textarea{min-height:86px;resize:vertical}
   .ok,.err{display:none;padding:12px 14px;border-radius:12px;font-size:14px}
   .ok{background:var(--tint);border:1px solid var(--green);color:var(--green-deep)}
+  /* success takeover — overlays the form so nothing reflows; a rare moment, so it gets the delight */
+  .booking form{position:relative}
+  .sent{position:absolute;inset:-8px;z-index:2;background:var(--card);border-radius:var(--r-md);
+    display:grid;place-content:center;justify-items:center;text-align:center;gap:6px;padding:26px;
+    opacity:0;visibility:hidden;transform:scale(.985);
+    transition:opacity .28s ease-out,transform .28s cubic-bezier(0.23,1,0.32,1),visibility 0s .28s}
+  .sent.show{opacity:1;visibility:visible;transform:none;transition:opacity .28s ease-out,transform .28s cubic-bezier(0.23,1,0.32,1),visibility 0s}
+  .sent .badge{position:relative;width:64px;height:64px;margin-bottom:14px;display:grid;place-items:center}
+  .sent .disc{position:absolute;inset:0;border-radius:50%;background:var(--green);
+    transform:scale(.5);opacity:0}
+  .sent.show .disc{animation:discPop .5s cubic-bezier(0.22,1,0.36,1) .06s forwards}
+  @keyframes discPop{to{transform:none;opacity:1}}
+  .sent .halo{position:absolute;inset:0;border-radius:50%;border:2px solid var(--green);opacity:0;transform:scale(.6)}
+  .sent.show .halo{animation:halo .9s cubic-bezier(0.22,1,0.36,1) .22s forwards}
+  @keyframes halo{0%{opacity:.5;transform:scale(.7)}100%{opacity:0;transform:scale(1.9)}}
+  /* the svg must be positioned, or the absolutely-positioned .disc paints over it */
+  .sent .badge svg{position:relative;z-index:1}
+  .sent .tick{stroke-dasharray:34;stroke-dashoffset:34}
+  .sent.show .tick{animation:draw .42s cubic-bezier(0.23,1,0.32,1) .34s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .sent h3{font-size:21px;font-weight:800;opacity:0;transform:translateY(8px)}
+  .sent p{font-size:15px;color:var(--muted);max-width:34ch;opacity:0;transform:translateY(8px)}
+  .sent .again{font-size:13.5px;color:var(--green);font-weight:700;margin-top:10px;opacity:0;transform:translateY(8px)}
+  .sent.show h3{animation:sentIn .45s cubic-bezier(0.22,1,0.36,1) .42s forwards}
+  .sent.show p{animation:sentIn .45s cubic-bezier(0.22,1,0.36,1) .5s forwards}
+  .sent.show .again{animation:sentIn .45s cubic-bezier(0.22,1,0.36,1) .58s forwards}
+  @keyframes sentIn{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){
+    .sent,.sent.show{transition:none}
+    .sent.show .disc,.sent.show .halo,.sent.show .tick,.sent.show h3,.sent.show p,.sent.show .again{animation:none}
+    .sent.show .disc{opacity:1;transform:none}
+    .sent.show .tick{stroke-dashoffset:0}
+    .sent.show h3,.sent.show p,.sent.show .again{opacity:1;transform:none}
+    .sent.show .halo{opacity:0}
+  }
   .err{background:#F3E4DC;border:1px solid #B96A45;color:#7C4326}
   .ok.show,.err.show{display:block}
 
@@ -504,7 +539,7 @@
       <div class="info">
         <h2 class="h2"><span class="em">Request a quote</span> and we'll reply the same day.</h2>
         <div class="row"><small>Phone</small><a href="tel:+12365142372">(236) 514-2372</a></div>
-        <div class="row"><small>Email</small><a href="mailto:emoless2006@gmail.com">emoless2006@gmail.com</a></div>
+        <!-- PLACEHOLDER: add an Email row here once the business has a public address of its own -->
         <div class="row"><small>Service area</small><span>San Francisco · every neighborhood</span></div>
         <div class="row"><small>Hours</small><span>7 days · 8:00–18:00, evenings by appointment</span></div>
         <div class="row"><small>Peace of mind</small><span>Licensed, bonded &amp; insured · Certificates on request</span></div>
@@ -520,7 +555,17 @@
         <input type="hidden" name="_subject" value="New quote request — The Handy Pair (v2)">
         <input type="hidden" name="_template" value="table">
         <button class="btn" type="submit">Request a quote</button>
-        <p class="ok" id="ok" role="status">Thanks, we've got it. Igor or Tatyana will call you back today, or first thing tomorrow if it's after hours.</p>
+        <div class="sent" id="sent" role="status" aria-live="polite">
+          <span class="badge">
+            <span class="disc"></span><span class="halo"></span>
+            <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path class="tick" d="M9 16.5l5 5 9-10.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3>Thanks, we've got it</h3>
+          <p>Igor or Tatyana will call you back today, or first thing tomorrow if it's after hours.</p>
+          <a class="again" href="tel:+12365142372">Or call now — (236) 514-2372</a>
+        </div>
         <p class="err" id="err" role="alert">Something went wrong and the form didn't send. Please call <a href="tel:+12365142372" style="text-decoration:underline">(236) 514-2372</a>.</p>
       </form>
     </div>
@@ -653,13 +698,14 @@
   }
 
   /* form — FormSubmit AJAX with native POST fallback; first submission triggers a one-time activation email */
-  var form=document.getElementById('quoteForm'),ok=document.getElementById('ok'),err=document.getElementById('err');
+  var form=document.getElementById('quoteForm'),sent=document.getElementById('sent'),err=document.getElementById('err');
+  function showSent(){sent.classList.add('show');form.querySelectorAll('input,textarea,select,button').forEach(function(el){el.disabled=true;});}
   form.addEventListener('submit',function(e){
     e.preventDefault();
     if(!form.checkValidity()){form.reportValidity();return;}
     var btn=form.querySelector('button[type=submit]'),orig=btn.textContent;
-    ok.classList.remove('show');err.classList.remove('show');
-    if(document.getElementById('f-hp').value){ok.classList.add('show');btn.textContent='Sent ✓';btn.disabled=true;return;}
+    err.classList.remove('show');
+    if(document.getElementById('f-hp').value){showSent();return;} /* honeypot: pretend success */
     btn.disabled=true;btn.textContent='Sending…';
     fetch('https://formsubmit.co/ajax/emoless2006@gmail.com',{
       method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
@@ -671,7 +717,7 @@
       })
     }).then(function(r){
       if(!r.ok)throw new Error('HTTP '+r.status);
-      ok.classList.add('show');btn.textContent='Sent ✓';
+      btn.textContent='Sent ✓';showSent();
     }).catch(function(){
       err.classList.add('show');btn.disabled=false;btn.textContent=orig;
     });
