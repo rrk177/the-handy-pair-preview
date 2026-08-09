@@ -238,8 +238,10 @@
   .ok{background:var(--tint);border:1px solid var(--green);color:var(--green-deep)}
   /* success takeover — overlays the form so nothing reflows; a rare moment, so it gets the delight */
   .booking form{position:relative}
+  /* explicit single column — flex-column can't be re-flowed into two tracks by anything around it */
   .sent{position:absolute;inset:-8px;z-index:2;background:var(--card);border-radius:var(--r-md);
-    display:grid;place-content:center;justify-items:center;text-align:center;gap:6px;padding:26px;
+    display:flex;flex-direction:column;flex-wrap:nowrap;align-items:center;justify-content:center;
+    text-align:center;gap:6px;padding:26px;
     opacity:0;visibility:hidden;transform:scale(.985);
     transition:opacity .28s ease-out,transform .28s cubic-bezier(0.23,1,0.32,1),visibility 0s .28s}
   .sent.show{opacity:1;visibility:visible;transform:none;transition:opacity .28s ease-out,transform .28s cubic-bezier(0.23,1,0.32,1),visibility 0s}
