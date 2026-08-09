@@ -122,7 +122,7 @@
   .spaces{overflow-anchor:none} /* keep scroll anchoring from fighting the meta expand/collapse */
   .rail{display:flex;flex-direction:column;gap:4px;align-items:flex-start;max-width:920px}
   /* nowrap + a floor that keeps the longest word ("Post-construction") on one line down to 320px */
-  .w{font-weight:800;font-size:clamp(30px,6.8vw,80px);line-height:1.05;letter-spacing:-.025em;color:#827D6D;white-space:nowrap;
+  .w{font-weight:800;font-size:clamp(30px,10vw,80px);line-height:1.05;letter-spacing:-.025em;color:#827D6D;white-space:nowrap;
     transition:color .25s ease,transform .2s cubic-bezier(0.23,1,0.32,1);
     background:none;border:none;padding:0;cursor:pointer;text-align:left;display:block;font-family:inherit}
   .w.on{color:var(--green);transform:translateX(12px)}
@@ -166,17 +166,34 @@
   .promo .btn{background:#fff;color:var(--green-deep);align-self:stretch}
   .promo .btn:hover{background:var(--tint)}
 
-  /* process — numbered because the sequence itself is the message */
-  .process .head{max-width:620px;margin-bottom:38px}
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:26px 22px;
-    display:flex;flex-direction:column;gap:12px}
-  .step .n{font-weight:800;font-size:15px;color:var(--green);letter-spacing:.04em}
-  .step h3{font-size:18px;font-weight:700}
-  .step p{font-size:14px;color:var(--muted)}
-  .steps .step:nth-child(2){transition-delay:.07s}
-  .steps .step:nth-child(3){transition-delay:.14s}
-  .steps .step:nth-child(4){transition-delay:.21s}
+  /* process — vertical stepper; steps complete themselves as the reader scrolls past */
+  .process .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+  .process .intro p{margin-top:14px}
+  .stepper{list-style:none;display:grid}
+  .step{display:grid;grid-template-columns:32px 1fr;gap:18px;padding-bottom:30px;position:relative}
+  .step:last-child{padding-bottom:0}
+  /* rail: indicator + the connector that fills in green once the step is done */
+  .step .ind{position:relative;z-index:1;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+    background:var(--tint);color:var(--muted);font-size:12.5px;font-weight:700;
+    box-shadow:0 0 0 4px var(--ground);
+    transition:background .25s ease,color .25s ease}
+  .step .ind .num,.step .ind .tick{grid-area:1/1;transition:opacity .2s ease,transform .2s cubic-bezier(0.23,1,0.32,1)}
+  .step .ind .tick{opacity:0;transform:scale(.6);color:#fff;display:grid;place-items:center}
+  .step .sep{position:absolute;left:15px;top:32px;bottom:-2px;width:2px;border-radius:2px;background:var(--line);overflow:hidden}
+  .step:last-child .sep{display:none}
+  .step .sep::after{content:"";position:absolute;inset:0;background:var(--green);
+    transform:scaleY(0);transform-origin:top;transition:transform .45s cubic-bezier(0.23,1,0.32,1)}
+  /* states */
+  .step[data-state="active"] .ind{background:var(--card);color:var(--green);box-shadow:0 0 0 4px var(--ground),inset 0 0 0 2px var(--green)}
+  .step[data-state="completed"] .ind{background:var(--green);color:#fff}
+  .step[data-state="completed"] .ind .num{opacity:0;transform:scale(.6)}
+  .step[data-state="completed"] .ind .tick{opacity:1;transform:none}
+  .step[data-state="completed"] .sep::after{transform:scaleY(1)}
+  .step h3{font-size:18px;font-weight:700;margin-top:5px;transition:color .25s ease}
+  .step p{font-size:14.5px;color:var(--muted);margin-top:7px;max-width:46ch}
+  @media(prefers-reduced-motion:reduce){
+    .step .ind,.step .ind .num,.step .ind .tick,.step .sep::after,.step h3{transition:none}
+  }
 
   /* reviews strip */
   .reviews{padding-top:0}
@@ -257,8 +274,7 @@
     .show .photo{min-height:280px}
     .rev-row{grid-template-columns:1fr}
     .booking .card{grid-template-columns:1fr}
-    .steps{grid-template-columns:1fr 1fr}
-    .faq .grid{grid-template-columns:1fr;gap:28px}
+    .faq .grid,.process .grid{grid-template-columns:1fr;gap:28px}
   }
   /* mobile: the rail is a plain list of spaces — descriptions and buttons live in Services below,
      so nothing pops in and out under the thumb while scrolling */
@@ -268,7 +284,7 @@
     .rail{gap:2px}
   }
   @media(max-width:560px){
-    .stats,.steps{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr}
     .hero .content{padding:84px 24px 24px}
     .couple{max-width:100%}
     .frow{grid-template-columns:1fr}
@@ -417,15 +433,30 @@
 <!-- process -->
 <section class="process" id="process" style="padding-top:0">
   <div class="wrap">
-    <span class="eb rise">Process</span>
-    <div class="head rise">
-      <h2 class="h2"><span class="em">The simple method</span> behind our success</h2>
-    </div>
-    <div class="steps">
-      <div class="step rise"><div class="n">01</div><h3>Meet &amp; greet</h3><p>Upon receiving a cleaning request we offer a meet and greet via phone or in person, so you get to know us better.</p></div>
-      <div class="step rise"><div class="n">02</div><h3>Flexible scheduling</h3><p>We have flexible schedules and will try our best to accommodate the time that works for YOU.</p></div>
-      <div class="step rise"><div class="n">03</div><h3>We bring the supplies</h3><p>We bring our own cleaning supplies, so you don't have to worry about a thing.</p></div>
-      <div class="step rise"><div class="n">04</div><h3>We value your feedback</h3><p>We appreciate any feedback and will try our best to meet your needs.</p></div>
+    <div class="grid">
+      <div class="intro">
+        <span class="eb rise">Process</span>
+        <h2 class="h2 rise"><span class="em">The simple method</span> behind our success</h2>
+        <p class="lead rise">Four steps from your first message to a spotless space — no surprises in between.</p>
+      </div>
+      <ol class="stepper rise" id="stepper" aria-label="How working with us goes, step by step">
+        <li class="step" data-state="inactive">
+          <div><span class="ind"><span class="num">01</span><span class="tick"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sep"></span></div>
+          <div><h3>Meet &amp; greet</h3><p>Upon receiving a cleaning request we offer a meet and greet via phone or in person, so you get to know us better.</p></div>
+        </li>
+        <li class="step" data-state="inactive">
+          <div><span class="ind"><span class="num">02</span><span class="tick"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sep"></span></div>
+          <div><h3>Flexible scheduling</h3><p>We have flexible schedules and will try our best to accommodate the time that works for YOU.</p></div>
+        </li>
+        <li class="step" data-state="inactive">
+          <div><span class="ind"><span class="num">03</span><span class="tick"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sep"></span></div>
+          <div><h3>We bring the supplies</h3><p>We bring our own cleaning supplies, so you don't have to worry about a thing.</p></div>
+        </li>
+        <li class="step" data-state="inactive">
+          <div><span class="ind"><span class="num">04</span><span class="tick"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sep"></span></div>
+          <div><h3>We value your feedback</h3><p>We appreciate any feedback and will try our best to meet your needs.</p></div>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
@@ -533,7 +564,7 @@
 
   /* word rail — active word nearest viewport center (same mechanic as the main site) */
   var words=[].slice.call(document.querySelectorAll('#rail .w'));
-  var railVisible=false;
+  var railVisible=true; /* fail-open: IO only narrows this for perf, never gates correctness */
   function railScroll(){
     if(!railVisible)return; /* no active-word churn while the rail is off-screen */
     var cy=innerHeight/2,best=0,bd=1e9;
@@ -546,11 +577,30 @@
       .observe(document.getElementById('rail'));
   }
 
-  /* one rAF-coalesced scroll handler: header border + word rail */
+  /* process stepper — a step ticks green once its indicator passes the reading line (62% down) */
+  var steps=[].slice.call(document.querySelectorAll('#stepper .step')), stepperVisible=true; /* fail-open, as above */
+  function stepperScroll(){
+    if(!stepperVisible)return;
+    var line=innerHeight*.62, lastDone=-1;
+    steps.forEach(function(s,i){if(s.getBoundingClientRect().top<line)lastDone=i;});
+    steps.forEach(function(s,i){
+      s.dataset.state = i<lastDone ? 'completed' : (i===lastDone ? 'active' : 'inactive');
+    });
+    /* once the whole section is above the line, everything is done */
+    if(lastDone===steps.length-1 && steps[steps.length-1].getBoundingClientRect().bottom<line)
+      steps[steps.length-1].dataset.state='completed';
+  }
+  if(steps.length&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){stepperVisible=es[0].isIntersecting;if(stepperVisible)stepperScroll();},{threshold:0})
+      .observe(document.getElementById('stepper'));
+  }
+  stepperScroll();
+
+  /* one rAF-coalesced scroll handler: header border + word rail + stepper */
   var hdr=document.getElementById('hdr'),sch=false;
   addEventListener('scroll',function(){
     if(sch)return;sch=true;
-    requestAnimationFrame(function(){sch=false;hdr.classList.toggle('solid',scrollY>10);if(words.length)railScroll();});
+    requestAnimationFrame(function(){sch=false;hdr.classList.toggle('solid',scrollY>10);if(words.length)railScroll();stepperScroll();});
   },{passive:true});
 
   /* mobile menu */
@@ -594,8 +644,13 @@
   });
 
   /* reveals */
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.18});
-  document.querySelectorAll('.rise').forEach(function(el){io.observe(el);});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.18});
+    document.querySelectorAll('.rise').forEach(function(el){io.observe(el);});
+  }else{
+    /* no IO — show everything rather than leaving the page blank */
+    document.querySelectorAll('.rise').forEach(function(el){el.classList.add('in');});
+  }
 
   /* form — FormSubmit AJAX with native POST fallback; first submission triggers a one-time activation email */
   var form=document.getElementById('quoteForm'),ok=document.getElementById('ok'),err=document.getElementById('err');
