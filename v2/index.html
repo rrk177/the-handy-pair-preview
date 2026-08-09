@@ -97,9 +97,8 @@
   /* couple card — lives in the About side column */
   .couple{max-width:340px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);
     padding:10px 10px 14px;color:var(--ink);justify-self:center}
-  .couple .ph{border-radius:12px;aspect-ratio:4/3;background:linear-gradient(140deg,var(--tint),#D7E0D3);
-    display:grid;place-items:center;color:var(--green);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:10px}
-  /* IMG DROP: Igor & Tatyana together mid-shift, friendly, 4:3 crop → replace .couple .ph content -->*/
+  /* height:auto so the width/height attributes (which reserve space pre-load) don't beat aspect-ratio */
+  .couple .ph{display:block;width:100%;height:auto;border-radius:12px;aspect-ratio:4/3;object-fit:cover;background:var(--tint)}
   .couple p{font-size:13px;color:var(--muted);margin-top:11px;padding:0 4px}
   .couple b{color:var(--ink)}
 
@@ -150,10 +149,8 @@
   .tag-p:hover{border-color:var(--green)}
   .tag-p.on{background:var(--green);border-color:var(--green);color:#fff}
   .show{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
-  .show .photo{border-radius:var(--r-lg);min-height:380px;background:linear-gradient(150deg,var(--warm),var(--warm-2));
-    display:grid;place-items:center;color:#8A7F6C;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:20px}
-  /* IMG DROP: real cleaning photo per service (kitchen wipe-down, window squeegee, carpet wash…)
-     4:3-ish, fills .show .photo via object-fit:cover. JS swaps a data-photo label per tag for now. -->*/
+  .show .photo{display:block;width:100%;height:100%;min-height:380px;border-radius:var(--r-lg);object-fit:cover;
+    background:linear-gradient(150deg,var(--warm),var(--warm-2))}
   .promo{border-radius:var(--r-lg);background:linear-gradient(160deg,var(--green-fill),var(--green-deep));color:#fff;
     padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column;gap:14px;justify-content:space-between}
   .promo h3{font-size:clamp(22px,2.6vw,30px);font-weight:800}
@@ -320,7 +317,7 @@
         </div>
       </div>
       <div class="couple rise">
-        <div class="ph">Photo — Igor &amp; Tatyana</div>
+        <img class="ph" src="couple.jpg" width="900" height="675" loading="lazy" alt="Igor and Tatyana in their green work aprons, holding a caddy of cleaning supplies in a bright living room">
         <p><b>Our cleaning pair</b>: we handle every job ourselves: homes, offices and everything in between, across San Francisco.</p>
       </div>
     </div>
@@ -367,7 +364,7 @@
       <button class="tag-p" data-i="5" aria-pressed="false">Upholstery &amp; carpets</button>
     </div>
     <div class="show rise">
-      <div class="photo" id="svcPhoto">Photo — deep clean in progress</div>
+      <img class="photo" id="svcPhoto" src="svc-deep.jpg" width="1200" height="800" loading="lazy" alt="Igor and Tatyana deep-cleaning a bright modern kitchen together">
       <div class="promo" id="promo">
         <div class="swap">
           <h3 id="svcTitle">Deep clean</h3>
@@ -496,13 +493,15 @@
   /* service tag switcher */
   /* PLACEHOLDER FIGURES: prices and "typical" anchors are samples — confirm with client */
   var svc=[
-    {t:'Deep clean',d:'A complete top-to-bottom refresh of the whole home: built-up grime, hidden corners, baseboards and all.',p:'from $0.25 / sq ft',typ:'Typical 1-bed apartment ≈ $220',ph:'Photo — deep clean in progress'},
-    {t:'Maintenance clean',d:'Weekly or bi-weekly upkeep by the same pair every visit, so your place simply never gets dirty.',p:'from $0.15 / sq ft',typ:'Typical 1-bed visit ≈ $130',ph:'Photo — regular home clean'},
-    {t:'Commercial clean',d:'Offices, retail and hospitality spaces cleaned after hours: desks, floors, kitchens and common areas.',p:'from $0.12 / sq ft',typ:'Typical small office ≈ $180 / visit',ph:'Photo — office clean after hours'},
-    {t:'Post-renovation',d:'Dust-down and detail after the trades finish: residue, film, paint specks and construction dust gone.',p:'from $0.35 / sq ft',typ:'Typical 1-bed apartment ≈ $350',ph:'Photo — post-renovation detail'},
-    {t:'Windows',d:'Interior and reachable exterior glass, frames and sills, streak-free, with the right tools for it.',p:'from $8 / window',typ:'Typical home ≈ $120',ph:'Photo — window squeegee close-up'},
-    {t:'Upholstery & carpets',d:'Professional deep extraction for sofas, chairs and rugs using safe, fabric-appropriate products.',p:'from $30 / item',typ:'Typical sofa ≈ $90',ph:'Photo — carpet extraction wash'}
+    {t:'Deep clean',d:'A complete top-to-bottom refresh of the whole home: built-up grime, hidden corners, baseboards and all.',p:'from $0.25 / sq ft',typ:'Typical 1-bed apartment ≈ $220',img:'svc-deep.jpg',alt:'Igor and Tatyana deep-cleaning a bright modern kitchen together'},
+    {t:'Maintenance clean',d:'Weekly or bi-weekly upkeep by the same pair every visit, so your place simply never gets dirty.',p:'from $0.15 / sq ft',typ:'Typical 1-bed visit ≈ $130',img:'svc-maintenance.jpg',alt:'Regular upkeep clean in a warm minimalist living room'},
+    {t:'Commercial clean',d:'Offices, retail and hospitality spaces cleaned after hours: desks, floors, kitchens and common areas.',p:'from $0.12 / sq ft',typ:'Typical small office ≈ $180 / visit',img:'svc-commercial.jpg',alt:'Open-plan office being cleaned after hours'},
+    {t:'Post-renovation',d:'Dust-down and detail after the trades finish: residue, film, paint specks and construction dust gone.',p:'from $0.35 / sq ft',typ:'Typical 1-bed apartment ≈ $350',img:'svc-postreno.jpg',alt:'Construction dust being wiped and vacuumed from a freshly renovated apartment'},
+    {t:'Windows',d:'Interior and reachable exterior glass, frames and sills, streak-free, with the right tools for it.',p:'from $8 / window',typ:'Typical home ≈ $120',img:'svc-windows.jpg',alt:'A squeegee leaving a clean streak across a large window'},
+    {t:'Upholstery & carpets',d:'Professional deep extraction for sofas, chairs and rugs using safe, fabric-appropriate products.',p:'from $30 / item',typ:'Typical sofa ≈ $90',img:'svc-upholstery.jpg',alt:'Deep extraction cleaning of a fabric sofa'}
   ];
+  /* warm the cache so switching tags never shows a half-loaded photo */
+  addEventListener('load',function(){svc.forEach(function(s){var i=new Image();i.src=s.img;});});
   var tags=[].slice.call(document.querySelectorAll('.tag-p'));
   tags.forEach(function(b){
     b.addEventListener('click',function(){
@@ -514,7 +513,7 @@
         document.getElementById('svcDesc').textContent=s.d;
         document.getElementById('svcPrice').textContent=s.p;
         document.getElementById('svcTyp').textContent=s.typ;
-        photo.textContent=s.ph;
+        photo.src=s.img;photo.alt=s.alt;
         promo.classList.remove('fading');photo.classList.remove('fading');
       };
       if(reduce){apply();return;}
