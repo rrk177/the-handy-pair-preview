@@ -1,6 +1,6 @@
 # The Handy Pair — landing page directions
 
-Two live design directions for a family-run cleaning company in San Francisco (Igor & Tatyana).
+Two live design directions for a family-run cleaning company in San Francisco (Tanya & Igor).
 
 Open `index.html` and use the switcher in the top bar. Each version is also a standalone page:
 
