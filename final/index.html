@@ -81,8 +81,6 @@
   .cta:disabled{opacity:.75;cursor:default;transform:none}
   @media (hover:hover) and (pointer:fine){
     .cta:hover .ar{transform:translateX(4px)}
-    .ind{transition:transform .25s cubic-bezier(0.22,1,0.36,1),box-shadow .25s ease}
-    .ind:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(37,51,43,.10)}
     .step .n{transition:transform .25s cubic-bezier(0.22,1,0.36,1)}
     .step:hover .n{transform:translateY(-3px)}
   }
@@ -231,11 +229,6 @@
   .rev .dots button::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:9px;height:9px;border-radius:50%;background:var(--lgreen)}
   .rev .dots button.on::after{background:var(--gold)}
 
-  /* industries */
-  .inds{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
-  .ind{border-top:1px solid var(--lcream);padding-top:22px}
-  .ind h3{font-family:"Newsreader",serif;font-weight:500;font-size:24px;color:var(--ink);margin-bottom:12px}
-  .ind p{font-size:15.5px;color:var(--ink-soft);max-width:34ch}
 
   /* faq */
   .faq{max-width:800px;margin:0 auto}
@@ -352,8 +345,8 @@
   .trust.rise.in .t:nth-child(2),.stats.rise.in>div:nth-child(2){transition-delay:.08s}
   .trust.rise.in .t:nth-child(3),.stats.rise.in>div:nth-child(3){transition-delay:.16s}
   .trust.rise.in .t:nth-child(4),.stats.rise.in>div:nth-child(4){transition-delay:.24s}
-  .steps .step.rise:nth-child(2),.inds .ind.rise:nth-child(2){transition-delay:.08s}
-  .steps .step.rise:nth-child(3),.inds .ind.rise:nth-child(3){transition-delay:.16s}
+  .steps .step.rise:nth-child(2){transition-delay:.08s}
+  .steps .step.rise:nth-child(3){transition-delay:.16s}
   .steps .step.rise:nth-child(4){transition-delay:.24s}
 
   @media(max-width:900px){
@@ -366,7 +359,6 @@
     .steps{grid-template-columns:1fr 1fr;gap:28px}
     .about{grid-template-columns:1fr;gap:30px}
     .rev .card{flex:0 0 84%}
-    .inds{grid-template-columns:1fr;gap:30px}
     .closing .grid{grid-template-columns:1fr;gap:32px}
     form .frow{grid-template-columns:1fr}
     section{padding:70px 0}
@@ -394,7 +386,6 @@
       <a href="#how">Process</a>
       <a href="#about">About</a>
       <a href="#reviews">Reviews</a>
-      <a href="#industries">Industries</a>
     </nav>
     <span class="hspace"></span>
     <!-- PLACEHOLDER: (236) is a British Columbia area code — for an SF business confirm a local 415/628
@@ -408,7 +399,6 @@
     <a class="mn" href="#how">Process</a>
     <a class="mn" href="#about">About</a>
     <a class="mn" href="#reviews">Reviews</a>
-    <a class="mn" href="#industries">Industries</a>
     <a class="mn" href="tel:+12365142372">Call (236) 514-2372</a>
     <a href="#quote" class="cta badge"><span class="b">→</span>Get a Free Quote</a>
   </div>
@@ -534,21 +524,10 @@
   </div>
 </section>
 
-<!-- industries -->
-<section class="cream" id="industries">
-  <div class="deco" aria-hidden="true"><div class="bubble c" style="width:230px;height:230px;left:-80px;top:14%"></div><div class="bubble c" style="width:120px;height:120px;right:8%;bottom:10%"></div></div>
-  <div class="wrap">
-    <div class="sechead center rise"><span class="eyebrow" style="display:block;margin-bottom:16px">Industries</span><h2 class="h2">Homes, and the businesses that keep the city running.</h2></div>
-    <div class="inds">
-      <div class="ind rise"><h3>Retail</h3><p>Storefronts and showrooms ready for opening: floors, glass, fitting rooms and back-of-house, finished before your first customer walks in.</p></div>
-      <div class="ind rise"><h3>Technology</h3><p>Offices cleaned after hours by the same two people every visit: desks, kitchens and common areas, no rotating crews.</p></div>
-      <div class="ind rise"><h3>Hospitality</h3><p>Short-stay rentals and venues turned over fast between guests, with a checklist that never changes hands.</p></div>
-    </div>
-  </div>
-</section>
 
 <!-- faq -->
-<section class="cream" id="faq" style="padding-top:0">
+<!-- full top padding: this cream band now follows the green reviews band, not another cream one -->
+<section class="cream" id="faq">
   <div class="wrap">
     <div class="sechead center rise"><span class="eyebrow" style="display:block;margin-bottom:16px">Questions</span><h2 class="h2">Straight answers</h2></div>
     <div class="faq rise">
