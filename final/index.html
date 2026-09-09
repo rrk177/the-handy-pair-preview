@@ -98,7 +98,7 @@
     transition:transform .3s cubic-bezier(0.22,1,0.36,1);transform-origin:left center}
   header.compact .logo{transform:scale(.85)}
   .foot .logo{background:var(--ctext)}
-  .brand .wm{font-family:"Newsreader",serif;font-weight:500;font-size:19px;color:var(--ctext);white-space:nowrap}
+  .brand .wm{font-family:"Newsreader",serif;font-weight:400;letter-spacing:-.01em;font-size:19px;color:var(--ctext);white-space:nowrap}
   nav.links{display:flex;gap:26px;margin-left:8px}
   nav.links a{font-size:14.5px;color:var(--ctext-70);position:relative;padding-bottom:3px;transition:color .15s}
   nav.links a:hover,nav.links a.active{color:var(--ctext)}
@@ -153,12 +153,14 @@
   .b2{width:200px;height:200px;right:180px;bottom:14px;animation-duration:9s;animation-delay:1.2s}
   .b3{width:120px;height:120px;right:70px;top:190px;animation-duration:6s;animation-delay:.6s}
   /* IMG DROP: set a real photo of Tanya & Igor as the .hero-photo background (square crop, faces centered):
-     style="background:url(tanya-igor.jpg) center/cover" — the label span can then be deleted. */
+     style="background:url(tanya-igor.jpg) center/cover" — then delete .hero-photo-mark below, the logo
+     is only standing in for the photo until a real one is dropped in. */
   .hero-photo{position:absolute;width:300px;height:300px;right:-10px;top:0;border-radius:50%;overflow:hidden;
     background:radial-gradient(circle at 35% 30%, rgba(241,236,221,.30), rgba(241,236,221,.10) 72%);
     border:1px solid rgba(241,236,221,.38);box-shadow:inset 0 0 60px rgba(255,255,255,.10), 0 24px 55px rgba(10,18,12,.22);
     display:grid;place-items:center;text-align:center}
-  .hero-photo span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ctext-55);max-width:16ch;line-height:1.8}
+  .hero-photo-mark{width:46%;height:46%;background:var(--ctext);opacity:.92;
+    -webkit-mask:url(../logo.png) center/contain no-repeat;mask:url(../logo.png) center/contain no-repeat}
   /* site-wide decorative bubbles: a layer behind each section's content, cropped by the section */
   .deco{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
   .deco .bubble{position:absolute}
@@ -411,7 +413,7 @@
       <div class="copy">
         <span class="eyebrow">Family-run · San Francisco</span>
         <h1 class="display"><span class="hl"><span class="hli">A fresh start,</span></span><span class="hl"><span class="hli">every day.</span></span></h1>
-        <p class="sub">Modern cleaning for homes and offices. The same trusted pair every visit, and a free, fixed quote the same day you ask.</p>
+        <p class="sub">Tailored cleaning for every property. Accompanied by your dedicated cleaning duo each time.</p>
         <div class="hero-actions">
           <a href="#quote" class="cta badge"><span class="b">→</span>Get a Free Quote</a>
           <a href="tel:+12365142372" class="tel">(236) 514-2372<small>Tap to call</small></a>
@@ -422,7 +424,7 @@
       </div>
       <div class="forms">
         <!-- PLACEHOLDER: the trust anchor — a real photo of Tanya & Igor. See .hero-photo IMG DROP note in CSS. -->
-        <div class="hero-photo"><span>Photo — Tanya &amp; Igor</span></div>
+        <div class="hero-photo"><span class="hero-photo-mark" role="img" aria-label="The Handy Pair logo"></span></div>
         <div class="bubble b2" aria-hidden="true"></div>
         <div class="bubble b3" aria-hidden="true"></div>
       </div>
