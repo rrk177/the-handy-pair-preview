@@ -205,19 +205,22 @@
   .step p{font-size:16.5px;color:var(--ink);max-width:36ch}
 
   /* about */
-  .about{max-width:640px;margin:0 auto}
-  .about .txt p{margin-top:18px;color:var(--ink-soft);font-size:16.5px}
-  .about .sig{margin-top:22px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep)}
+  .txt{max-width:640px;margin:0 auto}
+  .txt p{margin-top:18px;color:var(--ink-soft);font-size:16.5px}
+  .sig{margin-top:22px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep)}
 
   /* reviews carousel (from v4, sliding) */
   .rev{overflow:hidden}
   .rev .track{display:flex;gap:22px;position:relative;transition:transform .5s cubic-bezier(0.22,1,0.36,1);will-change:transform}
+  /* flex column so short quotes don't leave dead space below them — the name anchors
+     to the card's bottom edge regardless of how long the review text runs */
   .rev .card{flex:0 0 clamp(280px,42%,440px);background:var(--cream-2);border-radius:var(--r);padding:32px;
+    display:flex;flex-direction:column;
     transform:scale(.92);opacity:.5;transition:transform .5s cubic-bezier(0.22,1,0.36,1),opacity .5s ease}
   .rev .card.on{transform:scale(1);opacity:1}
   .rev .card .stars{color:var(--gold);letter-spacing:3px;margin-bottom:12px}
   .rev .card p{font-size:17px;color:var(--ink);line-height:1.55}
-  .rev .card .who{margin-top:18px;font-weight:600;color:var(--ink);font-size:14px}
+  .rev .card .who{margin-top:auto;padding-top:18px;border-top:1px solid var(--lcream);font-weight:600;color:var(--ink);font-size:14px}
   .rev .card .who span{display:block;font-weight:400;color:var(--ink-soft);font-size:13px;margin-top:2px}
   .rev .dots{display:flex;gap:4px;justify-content:center;align-items:center;margin-top:34px}
   .rev .pause{width:30px;height:30px;border-radius:50%;border:1px solid var(--lgreen);background:none;color:var(--ctext-70);cursor:pointer;margin-left:10px;display:grid;place-items:center;font-size:11px;line-height:1}
@@ -476,12 +479,11 @@
 <section class="cream" id="about" style="padding-top:0">
   <div class="deco" aria-hidden="true"><div class="bubble c" style="width:200px;height:200px;right:-60px;bottom:8%"></div></div>
   <div class="wrap">
-    <div class="txt rise">
+    <div class="txt center rise">
       <span class="eyebrow" style="display:block;margin-bottom:16px">Who we are</span>
       <h2 class="h2">Hi! We're Tanya and Igor</h2>
       <p>We're a family-owned cleaning business, and honestly… we just really love what we do. There's something satisfying about turning a space into something fresh, calm, and spotless.</p>
       <p>For us, cleaning isn't just a job — it's something we take pride in. We treat every home like it's our own and every client like part of our extended family. If you want a space that truly feels clean, we've got you.</p>
-      <div class="sig">Tanya &amp; Igor · Founders</div>
     </div>
   </div>
 </section>
