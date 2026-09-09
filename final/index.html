@@ -232,11 +232,18 @@
   /* closing */
   /* closing form as a contained green card on the cream band — separated from the footer */
   .closing{background:var(--green);color:var(--ctext);border-radius:28px;padding:clamp(38px,5vw,60px)}
-  .closing .h2{color:var(--ctext)}
-  .closing p{color:var(--ctext-70)}
-  .closing .grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
-  .closing .tel{color:var(--ctext);margin-top:22px;display:inline-block;font-weight:700;font-size:20px}
-  .closing .tel small{display:block;color:var(--ctext-55);font-size:12px;font-weight:400;margin-top:4px}
+  /* a phone-first call banner, a divider, then the form — all centered as one flow.
+     Replaces the old two-column layout, which left an empty column once the intro copy was cut. */
+  .closing .callrow{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:clamp(28px,4vw,40px)}
+  .closing .callrow .ico{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--green);
+    display:grid;place-items:center;flex:none}
+  .closing .tel{color:var(--ctext);font-family:"Newsreader",serif;font-weight:500;font-size:clamp(24px,3.2vw,32px);
+    line-height:1.15;text-align:left}
+  .closing .tel small{display:block;color:var(--ctext-70);font-size:13px;font-weight:400;font-family:"Hanken Grotesk";margin-top:3px}
+  .closing .or{display:flex;align-items:center;gap:14px;
+    color:var(--ctext-55);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:clamp(28px,4vw,40px)}
+  .closing .or::before,.closing .or::after{content:"";flex:1;height:1px;background:var(--lgreen)}
+  .closing .col{max-width:480px;margin:0 auto}
   form{display:grid;gap:14px}
   form .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   form label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ctext-70);display:block;margin-bottom:7px}
@@ -340,7 +347,6 @@
     .hero .forms{min-height:170px} /* bubbles follow the copy on mobile — headline first */
     .hero-photo{width:160px;height:160px;right:6px}.b2{width:100px;height:100px;right:auto;left:0;bottom:0}.b3{width:64px;height:64px;top:6px;right:190px}
     .rev .card{flex:0 0 84%}
-    .closing .grid{grid-template-columns:1fr;gap:32px}
     form .frow{grid-template-columns:1fr}
     section{padding:70px 0}
     .mobilebar{display:flex}
@@ -500,10 +506,12 @@
   <div class="deco" aria-hidden="true"><div class="bubble c" style="width:230px;height:230px;right:-100px;top:18%"></div><div class="bubble c" style="width:130px;height:130px;left:-60px;bottom:14%"></div></div>
   <div class="wrap">
     <div class="closing rise">
-    <div class="grid">
-      <div>
-        <a href="tel:+12365142372" class="tel">(236) 514-2372<small>Or tap to call · 7 days a week</small></a>
+    <div class="col">
+      <div class="callrow">
+        <span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.7 3.6 4.9 6.3 6.3l2.1-2.1c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8Z" fill="currentColor"/></svg></span>
+        <a href="tel:+12365142372" class="tel">(236) 514-2372<small>Tap to call · 7 days a week</small></a>
       </div>
+      <div class="or"><span>Or send us the details</span></div>
       <!-- action/method = no-JS fallback: the browser posts straight to FormSubmit so the lead survives even if scripts fail -->
       <form id="quoteForm" novalidate action="https://formsubmit.co/emoless2006@gmail.com" method="POST">
         <div><label for="f-first">Name *</label><input id="f-first" name="Name" type="text" placeholder="e.g. Dana Parker" required autocomplete="name"></div>
