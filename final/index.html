@@ -189,10 +189,13 @@
   .ticker .w{font-family:"Hanken Grotesk";font-weight:800;font-size:clamp(40px,7.2vw,86px);line-height:1.04;letter-spacing:-.03em;color:#7A745F;transition:color .3s ease,transform .45s cubic-bezier(0.22,1,0.36,1);background:none;border:none;padding:0;cursor:pointer;text-align:left;display:block}
   .ticker .w.on{color:var(--ink);transform:translateX(12px)}
   /* expand via grid rows (no layout-thrash max-height); collapsed metas are hidden from tab order */
-  .ticker .meta{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .4s ease,opacity .4s ease,visibility 0s .4s}
+  /* contain+GPU-promote: Safari can ghost/overlap clipped text mid-scroll when many of these
+     toggle in quick succession during a fast fling — isolate paint per item so nothing bleeds
+     into a neighboring word, and force each onto its own compositor layer. */
+  .ticker .meta{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;contain:paint;transform:translateZ(0);transition:grid-template-rows .28s ease,opacity .28s ease,visibility 0s .28s}
   .ticker .meta>.mi{overflow:hidden;display:flex;align-items:center;gap:16px;min-height:0}
   .ticker .meta>.mi>*{margin:8px 0 12px} /* spacing as child margins inside the clipped row — collapses to 0, nothing animates layout */
-  .ticker .w.on + .meta{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .4s ease,opacity .4s ease,visibility 0s}
+  .ticker .w.on + .meta{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .28s ease,opacity .28s ease,visibility 0s}
   .ticker .meta p{color:var(--ink-soft);font-size:15px;margin:0;max-width:34ch}
   .ticker .learn{font-size:13px;font-weight:600;color:var(--gold-ink);background:var(--gold);border-radius:100px;padding:8px 16px;white-space:nowrap}
 
@@ -462,7 +465,7 @@
   <div class="wrap">
     <div class="sechead center rise"><span class="eyebrow" style="display:block;margin-bottom:14px">Everything we clean</span></div>
     <div class="rail" id="rail">
-      <button type="button" class="w on" data-i="0">Homes</button><div class="meta"><div class="mi"><p>Regular and deep cleans for houses, kept to a standard.</p><a href="#quote" class="learn">Get a quote</a></div></div>
+      <button type="button" class="w on" data-i="0">Homes</button><div class="meta"><div class="mi"><p>Regular and deep cleans.</p><a href="#quote" class="learn">Get a quote</a></div></div>
       <button type="button" class="w" data-i="1">Apartments</button><div class="meta"><div class="mi"><p>Weekly, bi-weekly or one-time — the same pair every visit.</p><a href="#quote" class="learn">Get a quote</a></div></div>
       <button type="button" class="w" data-i="2">Offices</button><div class="meta"><div class="mi"><p>Retail, tech and hospitality spaces, cleaned after hours.</p><a href="#quote" class="learn">Get a quote</a></div></div>
       <button type="button" class="w" data-i="3">Move-outs</button><div class="meta"><div class="mi"><p>Empty-home detail so you get the deposit back.</p><a href="#quote" class="learn">Get a quote</a></div></div>
@@ -659,12 +662,26 @@
   }
   spy();
 
-  /* word ticker — active word nearest viewport center */
+  /* word ticker — active word nearest viewport center.
+     Locked while a meta panel is mid-transition: on a fast fling the "nearest" word can
+     flip several times a second, and toggling straight through mid-animation is what let
+     two panels render partially open at once (Safari then paints them bleeding into each
+     other). Only ever switch once the previous switch has fully settled. */
   var words=[].slice.call(document.querySelectorAll('#rail .w'));
+  var tickerLocked=false, tickerActive=words.length?0:-1;
+  function tickerApply(next){
+    if(next===tickerActive) return;
+    tickerActive=next;
+    words.forEach(function(w,i){w.classList.toggle('on',i===next);});
+    if(reduce) return;
+    tickerLocked=true;
+    setTimeout(function(){tickerLocked=false;tickerScroll();},300); /* > the .28s meta transition */
+  }
   function tickerScroll(){
+    if(tickerLocked) return;
     var cy=innerHeight/2, best=0, bd=1e9;
     words.forEach(function(w,i){var r=w.getBoundingClientRect();var d=Math.abs((r.top+r.bottom)/2-cy);if(d<bd){bd=d;best=i;}});
-    words.forEach(function(w,i){w.classList.toggle('on',i===best);});
+    tickerApply(best);
   }
   if(words.length) tickerScroll();
   /* one rAF-coalesced scroll handler: header compact + scrollspy + ticker (≤1 layout read pass per frame) */
