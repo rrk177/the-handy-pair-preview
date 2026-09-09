@@ -19,7 +19,7 @@
  "description":"Family-owned residential and commercial cleaning in San Francisco.",
  "telephone":"+1-236-514-2372","url":"https://rrk177.github.io/the-handy-pair-preview/",
  "image":"https://rrk177.github.io/the-handy-pair-preview/logo.png",
- "areaServed":{"@type":"City","name":"San Francisco"},"priceRange":"$$",
+ "areaServed":{"@type":"City","name":"Northern Canada"},"priceRange":"$$",
  "openingHours":"Mo-Su 08:00-18:00"}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -200,25 +200,17 @@
   .ticker .learn{font-size:13px;font-weight:600;color:var(--gold-ink);background:var(--gold);border-radius:100px;padding:8px 16px;white-space:nowrap}
 
   /* process */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
   .step .n{font-family:"Newsreader",serif;font-size:34px;color:var(--gold-deep);line-height:1;margin-bottom:16px}
-  .step h3{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:8px}
-  .step p{font-size:15px;color:var(--ink-soft);max-width:30ch}
+  .step p{font-size:16.5px;color:var(--ink);max-width:36ch}
 
   /* about */
-  .about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-  .about .plate{border-radius:var(--r);aspect-ratio:4/5;overflow:hidden;position:relative;background:linear-gradient(160deg,#DED7C4,#C3BBA5)}
-  /* IMG DROP: 4:5 — Tanya & Igor mid-shift, soft daylight. Replace .plate background with a real photo. */
-  .about .plate .note{position:absolute;left:18px;bottom:16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6d6552}
+  .about{max-width:640px;margin:0 auto}
   .about .txt p{margin-top:18px;color:var(--ink-soft);font-size:16.5px}
   .about .sig{margin-top:22px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep)}
 
   /* reviews carousel (from v4, sliding) */
   .rev{overflow:hidden}
-  .rev .rating{text-align:center;margin-bottom:44px}
-  .rev .rating .big{font-family:"Newsreader",serif;font-weight:400;font-size:clamp(48px,7vw,72px);color:var(--ctext);line-height:1}
-  .rev .rating .stars{color:var(--gold);font-size:20px;letter-spacing:4px;margin:8px 0 6px}
-  .rev .rating .cap{font-size:13px;color:var(--ctext-70)}
   .rev .track{display:flex;gap:22px;position:relative;transition:transform .5s cubic-bezier(0.22,1,0.36,1);will-change:transform}
   .rev .card{flex:0 0 clamp(280px,42%,440px);background:var(--cream-2);border-radius:var(--r);padding:32px;
     transform:scale(.92);opacity:.5;transition:transform .5s cubic-bezier(0.22,1,0.36,1),opacity .5s ease}
@@ -236,14 +228,6 @@
 
 
   /* faq */
-  .faq{max-width:800px;margin:0 auto}
-  .faq details{border-bottom:1px solid var(--lcream);padding:24px 0}
-  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;
-    font-family:"Newsreader",serif;font-weight:500;font-size:20px;color:var(--ink);min-height:44px}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary .pm{color:var(--gold-deep);font-size:22px;flex:none;line-height:1;transition:transform .2s ease}
-  .faq details[open] summary .pm{transform:rotate(45deg)}
-  .faq p{margin-top:14px;font-size:16px;color:var(--ink-soft);max-width:72ch}
 
   /* closing */
   /* closing form as a contained green card on the cream band — separated from the footer */
@@ -251,10 +235,6 @@
   .closing .h2{color:var(--ctext)}
   .closing p{color:var(--ctext-70)}
   .closing .grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
-  .closing .anchors{list-style:none;margin:22px 0 4px;display:grid;gap:9px}
-  .closing .anchors li{font-size:14.5px;color:var(--ctext-70);display:flex;justify-content:space-between;gap:14px;max-width:34ch;
-    border-bottom:1px dashed var(--lgreen);padding-bottom:9px}
-  .closing .anchors b{color:var(--ctext);font-weight:700;white-space:nowrap}
   .closing .tel{color:var(--ctext);margin-top:22px;display:inline-block;font-weight:700;font-size:20px}
   .closing .tel small{display:block;color:var(--ctext-55);font-size:12px;font-weight:400;margin-top:4px}
   form{display:grid;gap:14px}
@@ -326,7 +306,7 @@
 
   /* footer */
   footer{padding:64px 0 40px}
-  .foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:30px}
+  .foot{display:grid;grid-template-columns:1.6fr 1fr 1.2fr;gap:30px}
   .foot .brand{margin-bottom:14px}
   .foot h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ctext-55);margin-bottom:15px;font-family:"Hanken Grotesk";font-weight:600}
   .foot p,.foot a{font-size:14.5px;color:var(--ctext-70);display:block;margin-bottom:9px}
@@ -352,7 +332,6 @@
   .trust.rise.in .t:nth-child(4),.stats.rise.in>div:nth-child(4){transition-delay:.24s}
   .steps .step.rise:nth-child(2){transition-delay:.08s}
   .steps .step.rise:nth-child(3){transition-delay:.16s}
-  .steps .step.rise:nth-child(4){transition-delay:.24s}
 
   @media(max-width:900px){
     nav.links,.htel,.header-cta{display:none}
@@ -360,15 +339,12 @@
     .hero .grid{grid-template-columns:1fr;gap:24px;min-height:0}
     .hero .forms{min-height:170px} /* bubbles follow the copy on mobile — headline first */
     .hero-photo{width:160px;height:160px;right:6px}.b2{width:100px;height:100px;right:auto;left:0;bottom:0}.b3{width:64px;height:64px;top:6px;right:190px}
-    .steps{grid-template-columns:1fr 1fr;gap:28px}
-    .about{grid-template-columns:1fr;gap:30px}
     .rev .card{flex:0 0 84%}
     .closing .grid{grid-template-columns:1fr;gap:32px}
     form .frow{grid-template-columns:1fr}
     section{padding:70px 0}
     .mobilebar{display:flex}
     body{padding-bottom:78px}
-    .foot{grid-template-columns:1fr 1fr}
   }
   @media(max-width:520px){.stats,.steps{grid-template-columns:1fr}.foot{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.rise{opacity:1;transform:none;transition:none}.rev .track{transition:none}
@@ -403,7 +379,6 @@
     <a class="mn" href="#how">Process</a>
     <a class="mn" href="#about">About</a>
     <a class="mn" href="#reviews">Reviews</a>
-    <a class="mn" href="tel:+12365142372">Call (236) 514-2372</a>
     <a href="#quote" class="cta badge"><span class="b">→</span>Get a Free Quote</a>
   </div>
 </header>
@@ -413,7 +388,7 @@
   <div class="wrap">
     <div class="grid">
       <div class="copy">
-        <span class="eyebrow">Family-run · San Francisco</span>
+        <span class="eyebrow">Family-run · Northern Canada</span>
         <h1 class="display"><span class="hl"><span class="hli">A fresh start,</span></span><span class="hl"><span class="hli">every day.</span></span></h1>
         <p class="sub">Tailored cleaning for every property. Accompanied by your dedicated cleaning duo each time.</p>
         <div class="hero-actions">
@@ -452,9 +427,9 @@
   <div class="wrap">
     <!-- PLACEHOLDER FIGURES — confirm with client -->
     <div class="stats rise" id="stats">
-      <div><div class="num" data-to="330" data-suffix="+">330+</div><div class="cap">Cleans completed</div></div>
+      <div><div class="num" data-to="330" data-suffix="+">330</div><div class="cap">Cleans completed</div></div>
       <div><div class="num">2</div><div class="cap">Person crew</div></div><!-- static: counting "2" up from 0 looks odd -->
-      <div><div class="num" data-to="4" data-suffix="+">4+</div><div class="cap">Years in business</div></div>
+      <div><div class="num" data-to="4" data-suffix="+">4</div><div class="cap">Years in business</div></div>
     </div>
   </div>
 </section>
@@ -466,11 +441,12 @@
     <div class="sechead center rise"><span class="eyebrow" style="display:block;margin-bottom:14px">Everything we clean</span></div>
     <div class="rail" id="rail">
       <button type="button" class="w on" data-i="0">Homes</button><div class="meta"><div class="mi"><p>Regular and deep cleans.</p><a href="#quote" class="learn">Get a quote</a></div></div>
-      <button type="button" class="w" data-i="1">Apartments</button><div class="meta"><div class="mi"><p>Weekly, bi-weekly or one-time — the same pair every visit.</p><a href="#quote" class="learn">Get a quote</a></div></div>
-      <button type="button" class="w" data-i="2">Offices</button><div class="meta"><div class="mi"><p>Retail, tech and hospitality spaces, cleaned after hours.</p><a href="#quote" class="learn">Get a quote</a></div></div>
+      <button type="button" class="w" data-i="1">Apartments</button><div class="meta"><div class="mi"><p>Weekly, bi-weekly or one-time visit.</p><a href="#quote" class="learn">Get a quote</a></div></div>
+      <button type="button" class="w" data-i="2">Commercial space</button><div class="meta"><div class="mi"><p>Licensed BC cleaning service. Invoices provided.</p><a href="#quote" class="learn">Get a quote</a></div></div>
       <button type="button" class="w" data-i="3">Move-outs</button><div class="meta"><div class="mi"><p>Empty-home detail so you get the deposit back.</p><a href="#quote" class="learn">Get a quote</a></div></div>
       <button type="button" class="w" data-i="4">Airbnbs</button><div class="meta"><div class="mi"><p>Fast, consistent turnovers between every guest.</p><a href="#quote" class="learn">Get a quote</a></div></div>
       <button type="button" class="w" data-i="5">Post-construction</button><div class="meta"><div class="mi"><p>Dust-down and detail after the trades finish.</p><a href="#quote" class="learn">Get a quote</a></div></div>
+      <button type="button" class="w" data-i="6">Household assistance</button><div class="meta"><div class="mi"><p>We specialise on things you delay.</p><a href="#quote" class="learn">Get a quote</a></div></div>
     </div>
   </div>
 </section>
@@ -478,12 +454,11 @@
 <!-- process -->
 <section class="cream" id="how" style="padding-top:0">
   <div class="wrap">
-    <div class="sechead center rise"><span class="eyebrow" style="display:block;margin-bottom:16px">Process</span><h2 class="h2">The simple method behind our success</h2></div>
+    <div class="sechead center rise"><span class="eyebrow" style="display:block">Process</span></div>
     <div class="steps">
-      <div class="step rise"><div class="n">01</div><h3>Meet &amp; greet</h3><p>Upon receiving a cleaning request we offer a meet and greet via phone or in person, so you get to know us better.</p></div>
-      <div class="step rise"><div class="n">02</div><h3>Flexible scheduling</h3><p>We have flexible schedules and will try our best to accommodate the time that works for YOU.</p></div>
-      <div class="step rise"><div class="n">03</div><h3>We bring the supplies</h3><p>We bring our own cleaning supplies, so you don't have to worry about a thing.</p></div>
-      <div class="step rise"><div class="n">04</div><h3>We value your feedback</h3><p>We appreciate any feedback and will try our best to meet your needs.</p></div>
+      <div class="step rise"><div class="n">01</div><p>We bring our own cleaning supplies: from paper towels to professional carpet cleaning machines.</p></div>
+      <div class="step rise"><div class="n">02</div><p>We are licensed, background-checked, with invoices provided.</p></div>
+      <div class="step rise"><div class="n">03</div><p>We provide services in all of the Lower Mainland: from North Vancouver to Abbotsford. We've got you.</p></div>
     </div>
   </div>
 </section>
@@ -491,12 +466,11 @@
 <!-- about -->
 <section class="cream" id="about" style="padding-top:0">
   <div class="deco" aria-hidden="true"><div class="bubble c" style="width:200px;height:200px;right:-60px;bottom:8%"></div></div>
-  <div class="wrap about">
-    <div class="plate rise"><span class="note">IMG // 4:5 · TANYA &amp; IGOR</span></div>
+  <div class="wrap">
     <div class="txt rise">
       <span class="eyebrow" style="display:block;margin-bottom:16px">Who we are</span>
       <h2 class="h2">Hi! We're Tanya and Igor</h2>
-      <p>We're a family-owned cleaning business, and honestly… we just really love what we do. There's something satisfying about turning a space into something fresh, calm, and spotless. We might have a tiny bit of OCD (okay, maybe not so tiny), but that just means we notice the details others miss — the corners, the edges, the little things that make a big difference.</p>
+      <p>We're a family-owned cleaning business, and honestly… we just really love what we do. There's something satisfying about turning a space into something fresh, calm, and spotless.</p>
       <p>For us, cleaning isn't just a job — it's something we take pride in. We treat every home like it's our own and every client like part of our extended family. If you want a space that truly feels clean, we've got you.</p>
       <div class="sig">Tanya &amp; Igor · Founders</div>
     </div>
@@ -506,69 +480,33 @@
 <!-- reviews carousel -->
 <section class="green rev" id="reviews">
   <div class="deco" aria-hidden="true"><div class="bubble" style="width:240px;height:240px;left:-80px;top:12%;opacity:.7"></div><div class="bubble" style="width:140px;height:140px;right:4%;bottom:8%;opacity:.7"></div></div>
-  <h2 class="sr-only">Reviews</h2>
   <div class="wrap">
-    <div class="rating rise">
-      <!-- PLACEHOLDER: rating + reviews are sample — replace with real Google reviews before launch -->
-      <div class="big">4.9</div>
-      <div class="stars">★★★★★</div>
-      <!-- PLACEHOLDER: swap href for the real Google Business profile URL when available -->
-      <div class="cap">Based on 100 Google reviews · <a href="https://www.google.com/search?q=The+Handy+Pair+cleaning+San+Francisco+reviews" target="_blank" rel="noopener" style="text-decoration:underline;color:var(--ctext)">read them on Google</a></div>
-    </div>
+    <div class="sechead center rise"><h2 class="eyebrow" style="display:block;margin:0">Reviews</h2></div>
   </div>
   <div class="wrap">
     <div class="track" id="revTrack">
-      <div class="card"><div class="stars">★★★★★</div><p>“They moved the couch without being asked and cleaned under it. First cleaners who ever did.”</p><div class="who">Dana P.<span>Recurring · Noe Valley</span></div></div>
-      <div class="card on"><div class="stars">★★★★★</div><p>“Fixed quote held to the dollar. The office looked better than the day we moved in.”</p><div class="who">Marcus L.<span>Commercial · SoMa</span></div></div>
-      <div class="card"><div class="stars">★★★★★</div><p>“Got my full deposit back. The landlord actually commented on how clean it was.”</p><div class="who">Priya S.<span>Move-out · the Mission</span></div></div>
-      <div class="card"><div class="stars">★★★★★</div><p>“Same two people every time, always on schedule. It's one less thing to think about.”</p><div class="who">Renée T.<span>Recurring · Pacific Heights</span></div></div>
+      <div class="card"><div class="stars">★★★★★</div><p>“Tanya and Igor are a fantastic couple and an incredible team. They supported us through every step of the process — from reorganizing and staging to listing our condo. The three words that best describe them are meticulous, creative, and professional. I would highly recommend their services to anyone. They are truly trustworthy and caring individuals.”</p><div class="who">Ally Han</div></div>
+      <div class="card on"><div class="stars">★★★★★</div><p>“Tanya and Igor have been cleaning my house for over half a year now. I've been pleased with all aspects of their work. They show up on time, they stay focussed on the task at hand, and they make sure that everything is complete within the two hours that we have agreed to. They are very open to feedback and adjust their routine accordingly. They are dependable and trustworthy, I have no hesitation leaving them alone in my house to do their work, I fully trust them. And they are a very pleasant couple to work with. If you were looking for cleaners who are dependable, Tanya and Igor would be a great choice.”</p><div class="who">Derek</div></div>
+      <div class="card"><div class="stars">★★★★★</div><p>“Tanya &amp; Igor were incredible guardians for Peri &amp; Houdini while we were away for five days. They were easy to communicate with, provided thoughtful updates throughout our trip, and gave us complete peace of mind knowing our pups were in such great hands. They treated our home with the same level of care as if it were their own and even went above and beyond by leaving everything spotless before they departed. It's easy to see why they have such outstanding reviews. I wouldn't hesitate to recommend Tanya &amp; Igor to anyone looking for trustworthy, caring pet sitters. We will absolutely be booking them again in the future, and I highly recommend that you do too!”</p><div class="who">Connor F.</div></div>
     </div>
     <div class="dots" id="revDots"></div>
   </div>
 </section>
 
 
-<!-- faq -->
-<!-- full top padding: this cream band now follows the green reviews band, not another cream one -->
-<section class="cream" id="faq">
-  <div class="wrap">
-    <div class="sechead center rise"><span class="eyebrow" style="display:block;margin-bottom:16px">Questions</span><h2 class="h2">Straight answers</h2></div>
-    <div class="faq rise">
-      <details open><summary>What's included in a standard clean?<span class="pm">+</span></summary><p>Every visit: dusting and wipe-downs in every room, floors vacuumed and mopped, kitchen counters and outside of appliances, bathrooms scrubbed and sanitized, mirrors, trash out and beds made. Add-ons on request: inside the oven or fridge, interior windows, laundry and linens, walls and baseboards. Your written quote lists exactly what's covered.</p></details>
-      <details><summary>Do I need to be home during the clean?<span class="pm">+</span></summary><p>No. Most clients give us secure entry instructions once and never think about it again. It's the same two of us every visit, and you get a note when we're done.</p></details>
-      <details><summary>Is the quote really fixed?<span class="pm">+</span></summary><p>Yes. The written price covers labour and supplies for the scope you approved. If something falls outside it, we quote that separately and wait for your go-ahead first.</p></details>
-      <details><summary>Do you bring your own supplies?<span class="pm">+</span></summary><p>Always: equipment, cloths and products included. Prefer we use your own products for allergy or surface reasons? Just tell us.</p></details>
-      <details><summary>What if I'm not happy with something?<span class="pm">+</span></summary><p>Point it out while we're still there and we redo it on the spot. Notice later? Call within 24 hours and we come back at no charge.</p></details>
-      <details><summary>Are you insured if something breaks?<span class="pm">+</span></summary><p>We carry $2M liability coverage and are bonded against loss. It rarely comes up, but it's there, in writing, before we start.</p></details>
-    </div>
-  </div>
-</section>
-
 <!-- closing -->
 <section class="cream" id="quote">
+  <h2 class="sr-only">Get a free quote</h2>
   <div class="deco" aria-hidden="true"><div class="bubble c" style="width:230px;height:230px;right:-100px;top:18%"></div><div class="bubble c" style="width:130px;height:130px;left:-60px;bottom:14%"></div></div>
   <div class="wrap">
     <div class="closing rise">
     <div class="grid">
       <div>
-        <span class="eyebrow">Book a free quote</span>
-        <h2 class="h2" style="margin-top:14px;color:var(--ctext)">Tell us the space. We'll send a price today.</h2>
-        <p>No walk-through, no obligation. An honest number and a pair who shows up on time.</p>
-        <!-- PLACEHOLDER FIGURES: sample price anchors — confirm real starting prices with the client -->
-        <ul class="anchors">
-          <li>Studios &amp; 1-bed <b>from $129</b></li>
-          <li>2–3 bed homes <b>from $189</b></li>
-          <li>Move-outs <b>from $249</b></li>
-          <li>Offices &amp; commercial <b>quoted by space</b></li>
-        </ul>
         <a href="tel:+12365142372" class="tel">(236) 514-2372<small>Or tap to call · 7 days a week</small></a>
       </div>
       <!-- action/method = no-JS fallback: the browser posts straight to FormSubmit so the lead survives even if scripts fail -->
       <form id="quoteForm" novalidate action="https://formsubmit.co/emoless2006@gmail.com" method="POST">
-        <div class="frow">
-          <div><label for="f-first">First name *</label><input id="f-first" name="First name" type="text" placeholder="e.g. Dana" required autocomplete="given-name"></div>
-          <div><label for="f-last">Last name *</label><input id="f-last" name="Last name" type="text" placeholder="e.g. Parker" required autocomplete="family-name"></div>
-        </div>
+        <div><label for="f-first">Name *</label><input id="f-first" name="Name" type="text" placeholder="e.g. Dana Parker" required autocomplete="name"></div>
         <div class="frow">
           <div><label for="f-phone">Phone *</label><input id="f-phone" name="Phone" type="tel" placeholder="(415) 555-0123" required autocomplete="tel" inputmode="tel" pattern="(?:[^0-9]*[0-9]){7,}[^0-9]*" title="Please enter a phone number (at least 7 digits)"></div>
           <div><label for="f-email">Email *</label><input id="f-email" name="Email" type="email" placeholder="you@email.com" required autocomplete="email"></div>
@@ -577,8 +515,8 @@
           <div><label for="f-type">Type of space *</label>
             <select id="f-type" name="Type of space" required>
               <option value="" selected disabled>Choose…</option>
-              <option>Home</option><option>Apartment</option><option>Office</option>
-              <option>Move-out</option><option>Airbnb</option><option>Post-construction</option>
+              <option>Home</option><option>Apartment</option><option>Commercial space</option>
+              <option>Move-out</option><option>Airbnb</option><option>Post-construction</option><option>Household assistance</option>
             </select>
           </div>
           <div><label for="f-size">Approx. size</label><input id="f-size" name="Approx. size" type="text" placeholder="e.g. 2 bed / 1,200 sq ft"></div>
@@ -616,18 +554,12 @@
       <a href="#top" class="brand"><span class="logo" role="img" aria-label="The Handy Pair logo"></span><span class="wm">The Handy Pair</span></a>
       <p style="color:var(--ctext-55);max-width:32ch">Family-owned residential &amp; commercial cleaning. Two pros on every visit: twice as fast, every task.</p>
     </div>
-    <!-- PLACEHOLDER: add the real street address here if the client wants one shown — the old
-         "500 Terry Francine St." was the stock Wix placeholder and read as fake -->
-    <div><h3>Service area</h3><p>San Francisco, CA</p><p>Every neighborhood in the city</p></div>
-    <div><h3>Hours</h3><p>7 days · 8:00–18:00</p><p>Evenings by appointment</p></div>
+    <div><h3>Hours</h3><p>7 days · 8:00 am – 10:00 pm</p></div>
     <!-- PLACEHOLDER: swap for the business email when one exists (form already delivers to this inbox) -->
     <!-- PLACEHOLDER: add a mailto row here once the business has a public email address -->
-    <div><h3>Contact</h3><a href="tel:+12365142372">(236) 514-2372</a><a href="#quote">Get a free quote</a></div>
+    <div><h3>Contact</h3><a href="tel:+12365142372">(236) 514-2372</a></div>
     <div class="fine">
-      <!-- PLACEHOLDER: insert the real CA business licence # when confirmed — an obviously fake
-           number (#CA-CLN-000000) hurts more than none -->
-      <span>Licensed, bonded &amp; insured · Certificates available on request</span>
-      <span>© 2026 The Handy Pair · San Francisco</span>
+      <span>The Handy Pair</span>
     </div>
   </div>
 </footer>
@@ -784,7 +716,7 @@
       body:JSON.stringify({
         _subject:'New quote request — The Handy Pair',
         _template:'table',
-        Name:v('f-first')+' '+v('f-last'),
+        Name:v('f-first'),
         Phone:v('f-phone'),
         Email:v('f-email'),
         'Type of space':v('f-type'),
