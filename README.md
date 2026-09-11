@@ -1,28 +1,22 @@
-# The Handy Pair — landing page directions
+# The Handy Pair — landing page
 
-Two live design directions for a family-run cleaning company in San Francisco (Tanya & Igor).
+Landing page for a family-run cleaning company in Northern Canada (Tanya & Igor).
 
-Open `index.html` and use the switcher in the top bar. Each version is also a standalone page:
-
-- **Final** → `final/index.html` — deep forest-green + milky-beige bands, Newsreader serif display,
-  soap-bubble decor, scroll-driven services ticker, auto-sliding reviews carousel.
-- **V2** → `v2/index.html` — bright off-white ground with one forest-green accent, Onest display type,
-  rounded photo frames, bracketed section eyebrows, pill service tags with a green promo price card,
-  scroll-driven "Where we clean" rail and a Process stepper that ticks green as you scroll.
-
-The switcher remembers your last choice and accepts `?v=final` / `?v=v2` for sharing a direct link.
+The whole site is a single file: `index.html` at the repo root, served as-is by GitHub Pages.
+Deep forest-green + milky-beige bands, soft gold accent, Newsreader serif display, soap-bubble decor,
+a scroll-driven services ticker and an auto-sliding reviews carousel.
 
 ## Before launch — client data still needed
 
-Everything below is marked with a `PLACEHOLDER` comment in the source:
+Everything below is marked with a `PLACEHOLDER` or `IMG DROP` comment in the source:
 
-- **Phone** — (236) 514-2372 is a British Columbia area code; an SF business needs a local 415/628 number.
-- **Photos** — V2 has real photography; the Final version's image slots are still flat CSS stand-ins.
-- **Licence number**, real Google Business profile URL, social profile URLs, business email.
-- **Prices and figures** — the starting prices, "typical ≈ $X" anchors and stat numbers are samples.
+- **Photo of Tanya & Igor** — the hero bubble shows the logo until a real photo is dropped in.
+- **Social profile URLs** — the social buttons stay hidden until real links exist.
+- **Business email** — the form currently delivers to a developer inbox; no email is shown on the page.
+- **Custom domain** — canonical and `og:url` point at the GitHub Pages address for now.
 
 ## Forms
 
-Both versions post to FormSubmit (no backend needed on GitHub Pages), with a native `action` fallback
+The quote form posts to FormSubmit (no backend needed on GitHub Pages), with a native `action` fallback
 so a lead still arrives if JavaScript fails. **The first real submission triggers a one-time activation
 email to the destination address — the link in it must be clicked before leads are delivered.**
