@@ -359,7 +359,7 @@
     form .frow{grid-template-columns:1fr}
     section{padding:70px 0}
     .mobilebar{display:flex}
-    footer{padding-bottom:calc(40px + 78px + env(safe-area-inset-bottom))} /* room for the fixed .mobilebar, kept inside the green footer */
+    footer{padding-bottom:calc(24px + 70px + env(safe-area-inset-bottom))} /* the mobilebar's real footprint (10+50+10) plus a 24px gap, not the old double-counted 118px */
   }
   @media(max-width:520px){.stats,.steps{grid-template-columns:1fr}.foot-info{gap:32px}}
   @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.rise{opacity:1;transform:none;transition:none}.rev .track{transition:none}
