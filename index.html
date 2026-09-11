@@ -359,7 +359,7 @@
     form .frow{grid-template-columns:1fr}
     section{padding:70px 0}
     .mobilebar{display:flex}
-    body{padding-bottom:78px}
+    footer{padding-bottom:calc(40px + 78px + env(safe-area-inset-bottom))} /* room for the fixed .mobilebar, kept inside the green footer */
   }
   @media(max-width:520px){.stats,.steps{grid-template-columns:1fr}.foot-info{gap:32px}}
   @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.rise{opacity:1;transform:none;transition:none}.rev .track{transition:none}
